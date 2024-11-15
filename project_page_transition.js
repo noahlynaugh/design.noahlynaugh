@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.onload = function() {
                 const savedScrollPosition = sessionStorage.getItem('scrollPosition');
                 if(savedScrollPosition){
-                    window,scrollTo(0, parseInt(savedScrollPosition, 10));
+                    window.scrollTo(0, parseInt(savedScrollPosition, 10));
                 }
                 homepageReturn();
             }     
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Navigate to the new page after the animation
                         window.addEventListener('beforeunload', () => {
                             if (window.location.pathname === '/' || window.location.pathname === '/home') {
-                                sessionStorage.setItem('scrollPosition', window.scrollY);
+                                sessionStorage.setItem('scrollPosition', window.pageYOffset);
                             }
                         });
                         window.location.href = link.href;
