@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.addEventListener('beforeunload', () => {
                             if (window.location.pathname === '/' || window.location.pathname === '/home') {
                                 sessionStorage.setItem('scrollPosition', window.scrollY);
+                                alert("scroll:",window.scrollY);
                             }
                         });
                         window.location.href = link.href;
