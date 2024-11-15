@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname === '/' || window.location.pathname === 'home') {
         sessionStorage.setItem('visitedHomepage', 'true');
         setTimeout(sessionStorage.removeItem('returningFromProject'),(500));
-        if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('returningFromProject') === null)
+        if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('visitedHomepage') === null)
         {
             tl.to(galleryContainer, {
                 opacity: 1,
@@ -62,6 +62,21 @@ document.addEventListener('DOMContentLoaded', function() {
     homepageLinks.forEach(link => {
         link.addEventListener('click', navigateToHomepageWithAnimation)
     })
+
+    // Detect when the page is loaded via the back button
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted || sessionStorage.getItem('returningFromProject') === 'true' && event.currentTarget.location.href === "/"){
+            console.log("Page restored via back button or returning from project");
+            playReturnAnimation();
+            setTimeout(() =>{ 
+            console.log("current Target:", event.currentTarget.location.href);
+            console.log(event);
+            overlayImageSource = sessionStorage.getItem("overlayImageSource");
+            homepageReturn();
+            }, 600);
+        }
+    });
+
 
     //Function to navigate with animation if the link is to the homepage from a project
     function navigateToHomepageWithAnimation(event){
@@ -148,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.addEventListener('beforeunload', () => {
                             if (window.location.pathname === '/' || window.location.pathname === '/home') {
                                 sessionStorage.setItem('scrollPosition', window.scrollY);
-                                alert("scroll:",window.scrollY);
                             }
                         });
                         window.location.href = link.href;
