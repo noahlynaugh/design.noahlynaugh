@@ -38,10 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check on the homepage
     if (window.location.pathname === '/' || window.location.pathname === 'home') {
+        console.log('loading Home')
+        console.log(galleryContainer);
         sessionStorage.setItem('visitedHomepage', 'true');
-        setTimeout(sessionStorage.removeItem('returningFromProject'),(500));
-        if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('visitedHomepage') === null)
+        setTimeout(() => {
+        sessionStorage.removeItem('returningFromProject');
+        }, 500);
+        if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('returningFromProject') === null )
         {
+            console.log("anim should be");
             tl.to(galleryContainer, {
                 opacity: 1,
                 duration: .2,
@@ -72,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("current Target:", event.currentTarget.location.href);
             console.log(event);
             overlayImageSource = sessionStorage.getItem("overlayImageSource");
+            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+                if(savedScrollPosition){
+                    tl.to(window, {duration:0,scrollTo:savedScrollPosition});
+                }
             homepageReturn();
             }, 600);
         }
