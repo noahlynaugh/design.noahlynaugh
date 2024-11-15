@@ -22,10 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
         'body *:not(#navbar):not(#overlay):not(#overlayImage):not(#page-transition)'
     );
     const tl = gsap.timeline();
-    var fadeDelay = .6;
+    var fadeDelay = .2;
 
     if ((window.location.pathname === '/' || window.location.pathname === 'home') && sessionStorage.getItem('returningFromProject') === 'true'){
             window.onload = function() {
+                const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+                if(savedScrollPosition){
+                    window,scrollTo(0, parseInt(savedScrollPosition, 10));
+                }
                 homepageReturn();
             }     
   
@@ -104,8 +108,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#Gallery-Card-Image-This').forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault(); // Prevent immediate navigation
-
-            const clickedCardImage = event.target;
+            let clickedCardImage;
+            if (event.target.tagName === 'IMG') {
+                // If the image itself was clicked
+                clickedCardImage = event.target;
+            } else {
+                const parentCard = event.target.closest('.gallery-card-container');
+                // If another element was clicked (like the button), find the image
+                if (parentCard){
+                    clickedCardImage = parentCard.querySelector('img');
+                }   
+            }
             console.log(clickedCardImage);
             updateOverlay(clickedCardImage);
 
@@ -126,12 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
             })
          
                 Flip.from( projectPageState, {
-                    duration: .6,
+                    duration: fadeDelay,
                     ease: "power1.out",
                     absolute: true,
                     delay: fadeDelay,
                     onComplete: () =>{
                         // Navigate to the new page after the animation
+                        window.addEventListener('beforeunload', () => {
+                            if (window.location.pathname === '/' || window.location.pathname === '/home') {
+                                sessionStorage.setItem('scrollPosition', window.scrollY);
+                            }
+                        });
                         window.location.href = link.href;
                     }
                 });         
@@ -142,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function playReturnAnimation(callback){
          // Simulate an animation by using a timeout (e.g., 2 seconds)
         console.log("Animation starting...");
-        tl.to(window, {duration:.6,scrollTo:0, ease:"power1.out"});
-        tl.to(projectPageLandingImage, {opacity: 0, duration:.4, ease: 'power3.in', onComplete: () =>{
+        tl.to(window, {duration:.3,scrollTo:0, ease:"power1.out"});
+        tl.to(projectPageLandingImage, {opacity: 0, duration:.3, ease: 'power3.in', onComplete: () =>{
             callback();  // This will run after the animation complete
             }
         });
@@ -164,14 +182,15 @@ document.addEventListener('DOMContentLoaded', function() {
             elementsToFade.forEach(element => element.style.opacity = '0');
             tl.to(overlayImage, {
                 opacity: 1,
-                duration: .4,
+                duration: .3,
                 ease: "power3.in",
                 onComplete: () =>{
                     //find the gallery image that matches 'overlayImageSource'
-                    const galleryCard = document.querySelectorAll('#Gallery-Card-Image-This');
-                    galleryCard.forEach((card) => {
+                    const galleryCardImages = document.querySelectorAll('#Gallery-Card-Image-This');
+                    galleryCardImages.forEach((card) => {
                         const img = card.querySelector('img');
-                        const imgSrc = img.src;
+                        if (img){
+                            const imgSrc = img.src;
                         if (imgSrc === overlayImageSource){
                     var matchingGalleryImage = img;
                     if (matchingGalleryImage) {
@@ -209,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.warn("No matching gallery image found.");
                     }
                 }
+            }
             
             });
                 }
