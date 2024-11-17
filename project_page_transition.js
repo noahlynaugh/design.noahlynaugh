@@ -64,7 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Detect when the page is loaded via the back button
     window.addEventListener('pageshow', (event) => {
-        if (event.persisted || sessionStorage.getItem('returningFromProject') === 'true' && event.target.location.href === "/"){
+        if (event.persisted){
+            console.log('pageshow');
+            console.log("returning From project:",sessionStorage.getItem('returningFromProject'));
+            console.log("visited the homepage?:",sessionStorage.getItem('visitedHomepage'));
+            console.log("the event target pathname:", event.target.location.pathname);
+            console.log("the start of pathname for event target:", event.target.location.pathname.startsWith("/work"));
+        if ((sessionStorage.getItem('returningFromProject') === 'true') && event.target.location.pathname === "/"){
             console.log("Page restored via back button or returning from project");
             console.log(event);
             playReturnAnimation();
@@ -76,9 +82,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(savedScrollPosition){
                     tl.to(window, {duration:0,scrollTo:savedScrollPosition});
                 }
+            sessionStorage.setItem('visitedHomepage', 'true');
+            sessionStorage.removeItem('returningFromProject');
             homepageReturn();
             }, 600);
         }
+        if((sessionStorage.getItem('visitedHomepage') === 'true') && event.target.location.pathname.startsWith("/work")){
+            console.log("forward to work");
+        }
+    }
     });
 
 
