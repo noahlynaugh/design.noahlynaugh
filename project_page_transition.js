@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Select image elements
     const pageTransitionContainer = document.querySelector('.gallery-container-page-transition');
     const galleryContainer = document.querySelector('#Gallery-Container');
+    galleryContainer.style.opacity = '0';
     const overlay = document.querySelector('#overlay');
     const overlayImage = document.querySelector('#overlayImage');
     const projectPageLandingImage = document.querySelector('.project-page-landing-image');
