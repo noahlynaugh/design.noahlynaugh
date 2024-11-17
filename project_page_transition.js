@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Select image elements
     const pageTransitionContainer = document.querySelector('.gallery-container-page-transition');
     const galleryContainer = document.querySelector('#Gallery-Container');
-    galleryContainer.style.opacity = '0';
     const overlay = document.querySelector('#overlay');
     const overlayImage = document.querySelector('#overlayImage');
     const projectPageLandingImage = document.querySelector('.project-page-landing-image');
@@ -48,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('returningFromProject') === null )
         {
             console.log("anim should be");
+            galleryContainer.style.opacity = '0';
             tl.to(galleryContainer, {
                 opacity: 1,
                 duration: .2,
