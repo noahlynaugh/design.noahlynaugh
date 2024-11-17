@@ -70,11 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Detect when the page is loaded via the back button
     window.addEventListener('pageshow', (event) => {
-        if (event.persisted || sessionStorage.getItem('returningFromProject') === 'true' && event.currentTarget.location.href === "/"){
+        if (event.persisted || sessionStorage.getItem('returningFromProject') === 'true' && event.target.location.href === "/"){
             console.log("Page restored via back button or returning from project");
+            console.log(event);
             playReturnAnimation();
             setTimeout(() =>{ 
-            console.log("current Target:", event.currentTarget.location.href);
+            console.log("current Target:", event.target.location.href);
             console.log(event);
             overlayImageSource = sessionStorage.getItem("overlayImageSource");
             const savedScrollPosition = sessionStorage.getItem('scrollPosition');
@@ -181,12 +182,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     //Animating back to homepage
-    function playReturnAnimation(callback){
+    function playReturnAnimation(){
          // Simulate an animation by using a timeout (e.g., 2 seconds)
         console.log("Animation starting...");
         tl.to(window, {duration:.3,scrollTo:0, ease:"power1.out"});
         tl.to(projectPageLandingImage, {opacity: 0, duration:.3, ease: 'power3.in', onComplete: () =>{
-            callback();  // This will run after the animation complete
             }
         });
 
