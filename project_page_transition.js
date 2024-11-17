@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Register GSAP and Flip
     gsap.registerPlugin(Flip);
 
+    ;
+
     // Select image elements
     const pageTransitionContainer = document.querySelector('.gallery-container-page-transition');
     const galleryContainer = document.querySelector('#Gallery-Container');
@@ -30,10 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(savedScrollPosition){
                     tl.to(window, {duration:0,scrollTo:savedScrollPosition});
                 }
+            }
                 homepageReturn();
             }     
   
-        }
+    
     
 
     // Check on the homepage
@@ -44,16 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
         sessionStorage.removeItem('returningFromProject');
         }, 500);
-        if (sessionStorage.getItem('returningFromProject') === 'false' || sessionStorage.getItem('returningFromProject') === null )
-        {
-            console.log("anim should be");
-            galleryContainer.style.opacity = '0';
-            tl.to(galleryContainer, {
-                opacity: 1,
-                duration: .2,
-                ease: "power3.in"
-            })
-        }
     }
 
     //Check if on a project page
