@@ -97,11 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if(sessionStorage.getItem('returningFromProject') === 'true'){
             console.log("Playing animation before navigating to homepage");
 
-            playReturnAnimation(() => {
+            playReturnAnimation();
+            setTimeout(() =>{
                 //After animation completes, nav to the homepage
-                console.log("playing");
                 navigateToHomepageURL(event);
-            })
+            }, 600);
             // Clear the flags after navigation
             sessionStorage.removeItem('visitedHomepage');
         }
@@ -182,9 +182,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //Animating back to homepage
     function playReturnAnimation(){
          // Simulate an animation by using a timeout (e.g., 2 seconds)
-        console.log("Animation starting...");
+        console.log("Return Animation starting...");
         tl.to(window, {duration:.3,scrollTo:0, ease:"power1.out"});
         tl.to(projectPageLandingImage, {opacity: 0, duration:.3, ease: 'power3.in', onComplete: () =>{
+            console.log("completed return animation");
             }
         });
 
