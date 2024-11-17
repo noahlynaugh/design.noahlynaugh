@@ -170,11 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     delay: fadeDelay,
                     onComplete: () =>{
                         // Navigate to the new page after the animation
-                        window.addEventListener('beforeunload', () => {
-                            if (window.location.pathname === '/' || window.location.pathname === '/home') {
+                        if (window.location.pathname === '/' || window.location.pathname === '/home') {
                                 sessionStorage.setItem('scrollPosition', window.scrollY);
-                            }
-                        });
+                        }
                         window.location.href = link.href;
                     }
                 });         
