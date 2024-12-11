@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const elementsToFade = data.current.container.querySelectorAll("#Gallery-Container,#Footer");
         const tl = gsap.timeline({
             defaults:{
-                ease: 'power3.out',
+                ease: 'power3.in',
                 duration: .3
             }
         });
@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a GSAP timeline and add Flip animation to it
         const tl = gsap.timeline({
         defaults:{
-            ease: 'power3.out',
-            duration: .4
+            ease: 'power6.out',
+            duration: .3
         }
         });
         // Add the Flip animation to the timeline
@@ -77,12 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const leaveProjectAnimation = (container) => {
         const tl = gsap.timeline({
             defaults:{
-                ease: 'power3.out',
+                ease: 'power4.out',
                 duration: .6
             }
         });
-
-        console.log(container);
 
         tl.to(container,{
             scrollTo:0,
@@ -93,63 +91,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const enterHomeAnimation = (container) => {
         const tl = gsap.timeline({
             defaults:{
-                ease: 'power3.out',
+                ease: 'power4.out',
                 duration: .3
             }
         });
         const scrollPos = sessionStorage.getItem('scrollPosition');
         const elementsToFade = container.querySelectorAll( "#Gallery-Container, #Footer");
-        tl.to(elementsToFade,{
-            autoAlpha:0,
-            duration:0,
-        });
+        const lander = document.querySelector('.lander');
+        const matchingCard = findCard(container);
+        // const body = document.querySelector(".Body");
+        //Get state
+        const state = Flip.getState(lander);
+        // container.style.overflow = "Clip";
+        lander.removeAttribute("style");
+        // Add the new class
+        lander.classList = (matchingCard.classList);
+        matchingCard.replaceWith(lander);
+        // gsap.set(elementsToFade, {autoAlpha:0});
+
         tl.to(container, {
             duration:0,
             scrollTo:scrollPos
         });
-        const lander = document.querySelector(".lander")
-        const overlay = container.querySelector(".overlay");
-        const overlayImage = overlay.childNodes[0];
-        const cardContent = findCard(container); // Find the corresponding card on the homepage
-        if ( !cardContent) {
-            console.error("No content or corresponding card found for Flip animation.");
-            return;
-        }
-        const rect = cardContent.getBoundingClientRect();
-        overlay.style.width = `${rect.width}px`;
-        overlay.style.height = `${rect.height}px`;
-        overlay.style.top = `${rect.top }px`;
-        overlay.style.left = `${rect.left}px`;
-        overlay.style.display = 'block';
-        overlay.style.overflow = 'visible';
-        overlay.style.aspectRatio = '2.39';
-        overlay.style.objectFit = 'cover';
-        overlay.style.boxSizing = 'content-box';
-        overlay.innerHTML = "";
-        const state = Flip.getState(lander);
-        overlay.appendChild(lander);
-        lander.classList = (cardContent.className);
-
+        // tl.to(elementsToFade,{
+        //     autoAlpha:1,
+        //     duration:.6,
+        //     ease: 'power3.in',
+        // });
         tl.add(Flip.from(state, {
+            zIndex: 10,
             absolute:true,
-            ease: 'power3.out',
-            zIndex: 90,
-            onUpdate: () => {
-                console.log("Frame");
-            },
-            onComplete: () => {
-                tl.to(elementsToFade,{
-                    autoAlpha:1,
-                    duration:.3,
-                    onComplete: () =>{
-                        overlay.style.display = 'none';
-                        overlay.innerHTML = "";
-                        overlay.appendChild(overlayImage);
-                        console.log("complete");
-                    }
-                });
+            nested:true,
+            fade: true,
+            onComplete: () =>{
+                
             }
         }));
+        
+        
 
         return tl
     }
