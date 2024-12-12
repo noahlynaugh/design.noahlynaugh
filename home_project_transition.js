@@ -6,24 +6,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const leaveAnimation = (data) => {
         //Find the content that links to the project interacted with
-        const content = findContent(data);
-        if (content) {
-            const projectId = content.dataset.src|| content.src; // Use your specific identifier
-            console.log(projectId);
-            sessionStorage.setItem("activeProjectId", projectId);
-        }
         // Fade all elements but content
-        const elementsToFade = data.current.container.querySelectorAll("#Gallery-Container,#Footer");
+        const galleryCardContainer = (data.trigger.parentElement);
+        const elementsToFade = galleryCardContainer.querySelectorAll(".button-link.w-inline-block, .w-layout-vflex.gallery_text");
+        const moreElementsFade = data.current.container.querySelectorAll("#Gallery-Container,#Footer");
         const tl = gsap.timeline({
             defaults:{
-                ease: 'power3.in',
+                ease: 'power3.out',
                 duration: .3
             }
         });
         // Add fade-out animation for selected elements
         tl.to(elementsToFade, {
             autoAlpha: 0,
+            onComplete: () =>{
+                const content = findContent(data);
+                if (content) {
+                    const projectId = content.dataset.src|| content.src; // Use your specific identifier
+                    console.log(projectId);
+                    sessionStorage.setItem("activeProjectId", projectId);
+                }
+            }
         });
+        tl.to(moreElementsFade, {
+            autoAlpha:0,
+            ease: "power2.in",
+        }, "-=.05")
+        
+        
+        
         //return the timeline animation 
         return tl;
     }
@@ -66,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         // Add the Flip animation to the timeline
             tl.add(Flip.from(state, {
-                zIndex: 10,
+                zIndex: 12,
                 duration:.4,
                 ease: 'power3.out',
             }));
@@ -96,10 +107,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
         const scrollPos = sessionStorage.getItem('scrollPosition');
-        const elementsToFade = container.querySelectorAll( "#Gallery-Container, #Footer");
         const lander = document.querySelector('.lander');
         const matchingCard = findCard(container);
-        // const body = document.querySelector(".Body");
+        const cardContainer = matchingCard.parentElement;
+        const galleryContainer = cardContainer.parentElement;
+        const elementsToFade = galleryContainer.querySelectorAll( ".button-link.w-inline-block, .w-layout-vflex.gallery_text");
+        tl.to(elementsToFade,{
+            autoAlpha:0,
+            duration:0,
+        });
         //Get state
         const state = Flip.getState(lander);
         // container.style.overflow = "Clip";
@@ -113,13 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
             duration:0,
             scrollTo:scrollPos
         });
-        // tl.to(elementsToFade,{
-        //     autoAlpha:1,
-        //     duration:.6,
-        //     ease: 'power3.in',
-        // });
         tl.add(Flip.from(state, {
-            zIndex: 10,
+            zIndex: 12,
             absolute:true,
             nested:true,
             fade: true,
@@ -127,6 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 
             }
         }));
+        tl.to(elementsToFade,{
+            autoAlpha:1,
+            ease: 'power3.out',
+        });
         
         
 
@@ -199,11 +214,11 @@ document.addEventListener("DOMContentLoaded", function () {
             updateOverlay(clickedCardVideo, 0);
             return clickedCardVideo;
         }
-        else if (data.trigger.className === "button w-button"){
+        else if (data.trigger.className === "button-link w-inline-block"){
             // If the button on the card was clicked
             const parentCard = data.trigger.closest('.gallery-card-container');
             if (parentCard){
-                const clickedCardImage = parentCard.querySelector('img');
+                const clickedCardImage = parentCard.querySelector('.card-project-image');
                 const clickedCardVideo = parentCard.querySelector('#mp4Video')
                 if (clickedCardImage){
                     updateOverlay(clickedCardImage, 1);
