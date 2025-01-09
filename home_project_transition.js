@@ -86,15 +86,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const leaveProjectAnimation = (container) => {
+        console.log(container);
+        const excludeElem = document.querySelector('#Project-Page-Lander');
         const tl = gsap.timeline({
             defaults:{
                 ease: 'power4.out',
                 duration: .6
             }
         });
-
+        const elementsToFade = Array.from(container.children).filter(element => element !== excludeElem);
+        
         tl.to(container,{
             scrollTo:0,
+        })
+        tl.to(elementsToFade,{
+            autoAlpha:0,
+            duration: .3
         })
         return tl
     }
