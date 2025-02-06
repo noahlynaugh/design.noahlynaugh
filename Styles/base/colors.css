@@ -1,0 +1,14 @@
+:root {
+    --color--surface: #f5f8fa;
+    --color--text: #212121;
+    --color--outershadowtop: white;
+    --color--elevation: #E9E9E9;
+    --color--outershadowbottom: #0000001a;
+    --color--gallerytext: #313131;
+    --color--black: black;
+    --color--dark--surface: #212121;
+    --color--dark--text: #f5f8fa;
+    --color--dark--outershadowtop: #313131;
+    --color--dark--outershadowbottom: #00000080;
+    --color--dark--elevation: #404040;
+  }

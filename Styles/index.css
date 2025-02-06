@@ -1,0 +1,105 @@
+@import './base/reset.css';
+@import './base/colors.css';
+@import './base/sizes.css';
+@import './base/type.css';
+@import './components/navbar.css';
+@import './components/footer.css';
+@import './components/galleryCard.css';
+
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+body{
+  background-color: var(--color--surface);
+  margin:0px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  height: fit-content;
+}
+
+main{
+  position: fixed;
+  overflow: scroll;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right:0;
+  left: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+}
+
+.galleryContainer{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  position: relative;
+  overflow: visible;
+  place-content: start space-around;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: calc(4rem + 8vh);
+  margin-bottom: 2rem;
+  height: fit-content;
+  width: 100%;
+  gap: 2rem;
+  max-width: var(--width--max);
+  justify-self: center;
+}
+
+.hover{
+    cursor: pointer;
+}
+
+
+/* Lock scrolling on body */
+.scroll-lock {
+  overflow: hidden; /* Prevents scrolling */
+}
+
+.svgLink{
+  width: fit-content;
+  height: fit-content;
+}
+
+html{
+  font-size: 16px;
+  font-family: neue-haas-unica, sans-serif;
+  color: var(--color--text);
+  font-kerning: normal;
+}
+
+@media (max-width: 992px){
+  html{
+    font-size: 12px;
+  }
+
+  .galleryContainer{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: visible;
+    place-content: start space-around;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: calc(4rem + 8vh);
+    margin-bottom: 2rem;
+    height: fit-content;
+    min-width: 100%;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px){
+  html{
+    font-size: 8px;
+  }
+}
+
+
