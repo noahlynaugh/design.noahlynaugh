@@ -14,9 +14,9 @@
           
         } 
     </style>
-    <script type="module" src="Components/navbar.js"></script>
-    <script type="module" src="Components/footer.js"></script>
-    <script type="module" src="Components/galleryCard.js"></script>
+    <script type="module" src="/Components/navbar.js"></script>
+    <script type="module" src="/Components/footer.js"></script>
+    <script type="module" src="/Components/galleryCard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
 </head>
 
@@ -29,24 +29,29 @@
         <a slot="navMenuLink" href="/Pages/index.html" class="hover">About</a>
     </nav-bar>
     <main data-barba="container" data-barba-namespace="project">
-        
+        <project-lander class="projectLander">
+            <video playsinline loop autoplay muted slot="landerMedia" class="landerMedia" loading="lazy" id="media" data-flip-id="media">
+                <source  src="/Assets/MP4/Disk Jockey Spin.93.mp4">
+                Your browser does not support the video tag.
+            </video>
+       </project-lander>
         <bottom-footer>
             <a slot="footerNavTitle" href="/Pages/index.html">
                 <p slot="websiteNamelink" class="hover websiteNameLink">design.noahlynaugh.com</p>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://github.com/noahlynaugh">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="Assets/SVG/Github_Icon.svg#uuid-7df3efb3-d985-401b-9720-f56fcd4fedfd"></use> 
+                    <use href="/Assets/SVG/Github_Icon.svg#uuid-7df3efb3-d985-401b-9720-f56fcd4fedfd"></use> 
                 </svg>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://www.instagram.com/noahlynaugh.design/">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="Assets/SVG/Instagram_Icon.svg#uuid-9efaaefe-0a97-4f98-9fde-0faad03923ba"></use> 
+                    <use href="/Assets/SVG/Instagram_Icon.svg#uuid-9efaaefe-0a97-4f98-9fde-0faad03923ba"></use> 
                 </svg>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://www.linkedin.com/in/noah-lynaugh/">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="Assets/SVG/Linkedin_Icon.svg#uuid-dbf0bd29-2dfe-43ce-8913-71080cc94989"></use> 
+                    <use href="/Assets/SVG/Linkedin_Icon.svg#uuid-dbf0bd29-2dfe-43ce-8913-71080cc94989"></use> 
                 </svg>
             </a>
             <div slot="footerBottom" id="footer-year-text-id">© Noah Lynaugh - *Year*</div>

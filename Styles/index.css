@@ -1,12 +1,16 @@
-@import './base/reset.css';
 @import './base/colors.css';
 @import './base/sizes.css';
 @import './base/type.css';
 @import './components/navbar.css';
 @import './components/footer.css';
 @import './components/galleryCard.css';
+@import './components/projectLander.css';
 
-
+/* removing scroll bar(vertical) */
+::-webkit-scrollbar {
+  display:none;
+  
+} 
 
 a {
     text-decoration: none;
@@ -14,26 +18,35 @@ a {
   }
 
 body{
-  background-color: var(--color--surface);
   margin:0px;
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  overflow: visible;
   height: fit-content;
+  flex-direction: column;
+  background-color: var(--color--surface);
 }
 
 main{
   position: fixed;
+  flex: 1;
   overflow: scroll;
   z-index: 0;
   top: 0;
   bottom: 0;
   right:0;
   left: 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.scrollWrapper{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right:0;
+  left: 0;
 }
 
 .galleryContainer{
@@ -56,7 +69,6 @@ main{
 .hover{
     cursor: pointer;
 }
-
 
 /* Lock scrolling on body */
 .scroll-lock {

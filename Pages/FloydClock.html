@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.typekit.net/bvi2cgb.css">
+    <link rel="stylesheet" href="/Styles/index.css">
+    <title>design.noahlynaugh.com</title>
+    <link href="/Assets/PNG/Favicon.png" rel="shortcut icon" type="image/x-icon"> 
+    <style>
+        /* removing scroll bar(vertical) */
+        ::-webkit-scrollbar {
+          display:none;
+          
+        } 
+    </style>
+    <script type="module" src="/Components/navbar.js" defer></script>
+    <script type="module" src="/Components/footer.js" defer></script>
+    <script type="module" src="/Components/galleryCard.js" defer></script>
+    <script type="module" src="/Components/projectLander.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
+</head>
+
+<body class="body" data-barba="wrapper">
+    <nav-bar id="navbar">
+        <a slot="logoLink" href="/Pages/index.html">
+        <h1 slot="logo" class="hover logo">Noah Lynaugh</h1>
+        </a>
+        <a slot="navMenuLink" href="/Pages/index.html" class="hover">Work</a>
+        <a slot="navMenuLink" href="/Pages/index.html" class="hover">About</a>
+    </nav-bar>
+    <main data-barba="container" data-barba-namespace="project">
+        <project-lander>
+            <img slot="landerMedia" src="/Assets/PNG/Underside.77.png" 
+            loading="lazy" class="landerMedia" id="media" data-flip-id="media">
+       </project-lander>
+        <bottom-footer>
+            <a slot="footerNavTitle" href="/Pages/index.html">
+                <p slot="websiteNamelink" class="hover websiteNameLink">design.noahlynaugh.com</p>
+            </a>
+            <a slot="svgIcon" style="line-height: 0px;" href="https://github.com/noahlynaugh">
+                <svg slot="svgIcon" class="svgIcon hover"> 
+                    <use href="/Assets/SVG/Github_Icon.svg#uuid-7df3efb3-d985-401b-9720-f56fcd4fedfd"></use> 
+                </svg>
+            </a>
+            <a slot="svgIcon" style="line-height: 0px;" href="https://www.instagram.com/noahlynaugh.design/">
+                <svg slot="svgIcon" class="svgIcon hover"> 
+                    <use href="/Assets/SVG/Instagram_Icon.svg#uuid-9efaaefe-0a97-4f98-9fde-0faad03923ba"></use> 
+                </svg>
+            </a>
+            <a slot="svgIcon" style="line-height: 0px;" href="https://www.linkedin.com/in/noah-lynaugh/">
+                <svg slot="svgIcon" class="svgIcon hover"> 
+                    <use href="/Assets/SVG/Linkedin_Icon.svg#uuid-dbf0bd29-2dfe-43ce-8913-71080cc94989"></use> 
+                </svg>
+            </a>
+            <div slot="footerBottom" id="footer-year-text-id">© Noah Lynaugh - *Year*</div>
+        </bottom-footer>
+    </main>
+    <!-- Footer for scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js" defer=""></script>
+    <script type="module" defer src="/Scripts/index.js"></script>
+    
+</body>
+</html>

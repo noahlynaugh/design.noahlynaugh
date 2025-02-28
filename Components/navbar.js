@@ -74,7 +74,7 @@ class NavBar extends HTMLElement {
 
 
     flipMenu() {
-        console.log(this.navMenuSlot.assignedNodes());
+        // console.log(this.navMenuSlot.assignedNodes());
         const navMenuLinks = this.navMenuSlot.assignedNodes()
         // Toggle the hidden class to show/hide the nav menu
         const state = Flip.getState([this.navMenu], {props: "borderRadius"});

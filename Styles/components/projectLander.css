@@ -1,0 +1,32 @@
+.landerContainer{
+  display: block;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  max-width: var(--width--max);
+}
+
+.landerMedia{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+    object-fit: cover;
+    position: relative;
+}
+
+.projectLander{
+    max-width: var(--width--max);
+    width: 100%;
+    justify-self: center;
+    display: flex;
+    flex-flow:row;
+    position: relative;
+    margin-top: calc(4rem + 8vh);
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    aspect-ratio: 16/9;
+    overflow: visible;
+    visibility: visible;
+}

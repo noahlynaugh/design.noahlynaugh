@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Register GSAP and Flip
     gsap.registerPlugin(Flip);
 
-    initializeVideos($('body'));
-
     const leaveAnimation = (data) => {
         //Find the content that links to the project interacted with
         // Fade all elements but content
-        const galleryCardContainer = (data.trigger.parentElement);
-        const elementsToFade = galleryCardContainer.querySelectorAll(".button-link.w-inline-block, .w-layout-vflex.gallery_text");
-        const moreElementsFade = data.current.container.querySelectorAll("#Gallery-Container,#Footer");
+        const galleryCardContainer = (data.trigger);
+        const elementsToFade = [galleryCardContainer.trigger.buttonLink,galleryCardContainer.trigger.galleryText];
+        const link = galleryCardContainer.trigger.link;
+        var moreElementsToFade = Array.from(data.current.container.querySelector("#Gallery-Container").children);
+        moreElementsToFade = moreElementsToFade.filter(element => (element.link != link));
         const tl = gsap.timeline({
             defaults:{
                 ease: 'power3.out',
@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
             onComplete: () =>{
                 const content = findContent(data);
                 if (content) {
-                    const projectId = content.dataset.src|| content.src; // Use your specific identifier
-                    console.log(projectId);
+                    const projectId = content.dataset.src|| content.src || content.currentSrc; // Use your specific identifier
+                    // console.log(projectId);
                     sessionStorage.setItem("activeProjectId", projectId);
                 }
             }
         });
-        tl.to(moreElementsFade, {
+        tl.to(moreElementsToFade, {
             autoAlpha:0,
             ease: "power2.in",
         }, "-=.05")
@@ -39,50 +39,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return tl;
     }
 
-    const enterAnimation = (container) => {
-    
-        const lander = container.querySelector(".lander");
-        const landerContainer = lander.childNodes[0];
-        const imgContainer = lander.parentElement;
-        const overlay = document.querySelector(".overlay");
-        const content = overlay.childNodes[0];
-        // Remove all children from landerContainer
-        if (landerContainer){
-            landerContainer.innerHTML = ""
-        }
-        else if (lander){
-            // Find the image container
-            imgContainer.innerHTML = "";
-        };
-        const state = Flip.getState(content);
+    const enterAnimation = (data) => {
+        const landerMedia = document.querySelector('project-lander');
+        const projectMedia = data.trigger.trigger
 
-        if (landerContainer){
-            landerContainer.appendChild(content);
-        }
-        else if(lander)
-        {
-            content.removeAttribute("style");
-            // Add the new class
-            content.classList = (lander.className);
-            imgContainer.appendChild(content);
-            
+        const media = [projectMedia,landerMedia]
 
-        };
-        // Create a GSAP timeline and add Flip animation to it
-        const tl = gsap.timeline({
-        defaults:{
-            ease: 'power6.out',
-            duration: .3
-        }
+        const state = Flip.getState(media)
+
+        swap(media);
+
+        Flip.from(state, {
+            absolute: true,
+            nested: true,
+            duration: .6,
+            ease: 'power4.out',
         });
-        // Add the Flip animation to the timeline
-            tl.add(Flip.from(state, {
-                zIndex: 12,
-                duration:.4,
-                ease: 'power3.out',
-            }));
-        return tl; // Return the timeline for Barba to wait on
-        
+    
     }
 
     const leaveProjectAnimation = (container) => {
@@ -154,10 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return tl
     }
-    
+
     barba.init({
         transitions: [
         {
+        debug:true,
         name: 'home-to-project-transtion',
         from: {
             namespace: ["home"]
@@ -171,79 +145,41 @@ document.addEventListener("DOMContentLoaded", function () {
             sessionStorage.setItem('scrollPosition', container.scrollTop);
             return leaveAnimation(data);
         },
-        enter({next}) {
-            // Reinitialize videos on new page load
-            initializeVideos($(next.container));
-            return enterAnimation(next.container)
+        enter(data) {
+            return enterAnimation(data)
             },
-        },
-        {
-        name: 'project-to-home-transtion',
-        from: {
-            namespace: ["project"]
-        },
-        to: {
-            namespace: ["home"]
-        },
-        leave({current}) {
-            console.log("to-home");
-            return leaveProjectAnimation(current.container);
-        },
-        enter({next}) {
-            // Reinitialize videos on new page load
-            initializeVideos($(next.container));
-            return enterHomeAnimation(next.container)
-            },
-        },
-        ]
-    });
-
-
-    function initializeVideos($container) {
-        console.log("filling sources");
-        // Select all video elements with a data-src attribute
-        $container.find('.video').each(function () {
-            const $video = $(this); // The current video element
-            const videoSrc = $video.data('src'); // Get the value of data-src
-            
-            // Set the source element's src attribute
-            $video.find('source').attr('src', videoSrc);
-            
-            // Reload the video to apply the new src
-            $video.find('video')[0].load();
-        });
-    };
+        }
+        ]});
+        // {
+        // name: 'project-to-home-transtion',
+        // from: {
+        //     namespace: ["project"]
+        // },
+        // to: {
+        //     namespace: ["home"]
+        // },
+        // leave({current}) {
+        //     console.log("to-home");
+        //     // return leaveProjectAnimation(current.container);
+        // },
+        // enter({next}) {
+        //     // return enterHomeAnimation(next.container)
+        //     },
+        // },
+        // ]
+  
 
     function findContent(data){
-        if (data.trigger.childNodes[0].className === "video w-embed") {
+        if (data.trigger.trigger.childNodes[1].tagName === "VIDEO") {
             // If a video was clicked
-            const clickedCardVideo = data.trigger.childNodes[0];
-            updateOverlay(clickedCardVideo, 0);
+            const clickedCardVideo = data.trigger.trigger.childNodes[1];
             return clickedCardVideo;
         }
-        else if (data.trigger.className === "button-link w-inline-block"){
-            // If the button on the card was clicked
-            const parentCard = data.trigger.closest('.gallery-card-container');
-            if (parentCard){
-                const clickedCardImage = parentCard.querySelector('.card-project-image');
-                const clickedCardVideo = parentCard.querySelector('#mp4Video')
-                if (clickedCardImage){
-                    updateOverlay(clickedCardImage, 1);
-                    return clickedCardImage;
-                }
-                if (clickedCardVideo){
-                    updateOverlay(clickedCardVideo, 0);
-                    return clickedCardVideo;
-                }
-                else{
-                    console.error("no content in card");
-                }
-            }
-        }
-        else if (data.trigger.childNodes[0].className === 'card-project-image'){
+        else if (data.trigger.trigger.childNodes[1].tagName === 'IMG'){
             // If an image was clicked
-            const clickedCardImage = data.trigger.childNodes[0];
-            updateOverlay(clickedCardImage, 1);
+            // console.log("data.trigger.trigger.childnodes",data.trigger.trigger.childNodes[1])
+            const clickedCardImage = data.trigger.trigger.childNodes[1];
+            // console.log("clickedCardImage",clickedCardImage)
             return clickedCardImage;
         }
     }
@@ -257,36 +193,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         // Find the matching card in the homepage container
-        const matchingCard = container.querySelector(`[data-src="${projectId}"], [src="${projectId}"]`);
         return matchingCard || null;
     }
 
-    //Creates initial state to animate
-    function updateOverlay(content, contentType){
-        const overlay = document.querySelector('#overlay');
-        const overlayImage = document.querySelector('#overlayImage');
-        const rect = content.getBoundingClientRect();
-        overlay.style.width = `${rect.width}px`;
-        overlay.style.height = `${rect.height}px`;
-        overlay.style.top = `${rect.top }px`;
-        overlay.style.left = `${rect.left}px`;
-        if (contentType == 0){
-            console.log("Content is a video",content);
-            overlay.innerHTML = ""; // Clear overlay
-            overlay.appendChild(content.cloneNode(true)); // Clone and append video
-        }
-        else if (contentType == 1){
-            console.log("Content is an image",content);
-            // For standard images
-            overlayImage.src = content.src; // Same image source
-            overlayImage.srcset = content.srcset;
-            overlayImage.sizes = content.sizes;
-            overlayImage.alt = content.alt;
-            overlayImage.style.width = '100%';
-            overlayImage.style.height = '100%';
-            overlayImage.style.objectFit = 'cover';
-        }
-        // Make overlay visible
-        overlay.style.display = 'block';
+    function swap([from,to]){
+        let fromSlot = from.querySelector("#media").getAttribute("slot"),
+            toSlot = to.querySelector("#media").getAttribute("slot"),
+            fromID = from.getAttribute("data-flip-id") || "from" + gsap.utils.random(0, 9999, 1),
+            toID = to.getAttribute("data-flip-id") || "to" + gsap.utils.random(0, 9999, 1);
+        to.appendChild(from.media.assignedNodes()[0]);
+        from.appendChild(to.media.assignedNodes()[0]);
+        to.querySelector("#media").setAttribute("slot", toSlot);
+        from.querySelector("#media").setAttribute("slot", fromSlot);
+        to.setAttribute("data-flip-id", fromID);
+        from.setAttribute("data-flip-id", toID);  
+
     }
+
+
 });

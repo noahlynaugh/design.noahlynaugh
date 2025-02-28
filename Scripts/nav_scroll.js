@@ -2,7 +2,6 @@ function nav_scroll() {
     const main = document.querySelector('main');
     const logo = document.querySelector('.logo');
     const navButtons = document.querySelector("#navbar").navButtons;
-    console.log("NavButtons", navButtons);
 
     // Track scroll position
     let lastScrollTop = 0;
