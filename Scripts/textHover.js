@@ -21,13 +21,27 @@ function setupHoverAnimation(element) {
         ease: "expoScale(0.5,7,power2.in)",
     });
 
-    // Add event listeners for hover
-    element.addEventListener('mouseenter', () => hoverAnimation.play());
-    element.addEventListener('mouseleave', () => hoverAnimation.reverse());
-
-    // Touch events for mobile
-    element.addEventListener('touchstart', () => hoverAnimation.play(),{ passive: true });
-    element.addEventListener('touchend', () => hoverAnimation.reverse(),{ passive: true });
+    // Add event listeners for interactions
+    element.addEventListener('pointerenter', (e) => {
+        console.log("pointerEnter",e); 
+        hoverAnimation.play()
+    });
+    element.addEventListener('pointerleave', (e) => {
+        console.log("pointerLeave",e);
+        hoverAnimation.reverse()
+    });
+    element.addEventListener('pointerdown', (e) => {
+        console.log("pointerDown",e);
+        hoverAnimation.play()}
+    );
+    element.addEventListener('pointerup', (e) => {
+        console.log("pointerUp",e);
+        hoverAnimation.reverse()
+    });
+    element.addEventListener('pointercancel', (e) => {
+        console.log("cancel",e);
+        hoverAnimation.reverse()
+    });
 }
 
 

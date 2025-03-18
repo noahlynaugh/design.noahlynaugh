@@ -28,7 +28,7 @@ function applyColorMode() {
         if (typeof gsap !== "undefined") {
             gsap.to(htmlElement, {
               ...colorObject,
-              duration: 0,
+              duration: 0.3,
               ease: 'power3.out',
             });
           } else {

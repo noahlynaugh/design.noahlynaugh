@@ -1,0 +1,39 @@
+// animation to enter the project page from the gallery page
+
+import {swap} from '../swap.js';
+
+const enterProjectAnimation = (data) => {
+    const landerMedia = document.querySelector('project-lander');
+    const projectMedia = data.trigger.trigger
+    const elementsToFade = Array.from(data.next.container.children).filter(element => element !== landerMedia);
+    gsap.set(elementsToFade,{
+        autoAlpha:0,
+    });
+    const tl = gsap.timeline({
+        defaults:{
+            ease: 'power4.out',
+            duration: .6
+        }
+    });
+
+    const media = [projectMedia,landerMedia]
+
+    const state = Flip.getState(media)
+
+    swap(media);
+
+    tl.add(Flip.from(state, {
+        absolute: true,
+        nested: true,
+        duration: .6,
+        ease: 'power4.out',
+    }));
+    tl.to(elementsToFade,{
+        autoAlpha:1,
+        duration:.6,
+        ease: 'power4.out',
+    });
+
+}
+
+export default enterProjectAnimation;

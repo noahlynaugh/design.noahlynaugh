@@ -1,21 +1,32 @@
-// init lenis
-const lenis = new Lenis({
-    wrapper: document.querySelector('[data-barba="wrapper"]'),
-    content: document.querySelector('[data-scroll-container]'),
-    eventsTarget: document.querySelector('[data-barba="container"]'),
+let lenis; // Declare lenis outside so it's accessible
+
+export function initLenis(wrapper) {
+  if (!wrapper) {
+    console.error("Lenis: No wrapper found!");
+    return; // Prevent errors if wrapper doesn't exist
+  }
+
+  lenis = new Lenis({
+    wrapper: wrapper,
     lerp: 0.1,
     smooth: true,
   });
-  
-  const loop = (time) => {
-    lenis.raf(time);
-    requestAnimationFrame(loop);
-  };
 
-    // Listen for the scroll event and log the event data
-    lenis.on('scroll', (e) => {
-        console.log(e);
-    });
-  
-  requestAnimationFrame(loop);
-  
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  lenis.on('scroll', (e) => {
+    console.log(e);
+  });
+
+  requestAnimationFrame(raf);
+}
+
+// Export a function to manually trigger Lenis updates
+export function destroyLenis() {
+  if (lenis) {
+    lenis.destroy();
+  }
+}
