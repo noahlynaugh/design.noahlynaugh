@@ -38,19 +38,19 @@ class galleryCard extends HTMLElement {
         this.galleryText= shadowRoot.querySelector(".galleryText");
         this.media = shadowRoot.querySelector("#projectMedia");
         this.link = this.getAttribute("href");
+        this.imageSlot = this.shadowRoot.querySelector('slot[name="galleryCardMedia"]');
     }
 
 
     connectedCallback() {
-        const imageSlot = this.shadowRoot.querySelector('slot[name="galleryCardMedia"]');
         const link = this.getAttribute("href")
-    
-        imageSlot.addEventListener("slotchange", () => {
-            const img = imageSlot.assignedElements()[0];
-            if (img) {
-                this.checkImageBrightness(img);
-            }
-        });
+
+        // this.imageSlot.addEventListener("slotchange", () => {
+        //     const img = this.imageSlot.assignedElements()[0];
+        //     if (img) {
+        //         this.checkImageBrightness(img);
+        //     }
+        // });
 
         this.addEventListener("click", (event) => {
             barba.go(link, { trigger: event.currentTarget });
@@ -58,7 +58,10 @@ class galleryCard extends HTMLElement {
     }
 
     checkImageBrightness(img) {
-        img.onload = () => {
+        if (!img.complete || img.naturalWidth === 0) {
+            img.onload = () => checkImageBrightness(img); // Retry after load
+            return;
+        }
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = img.naturalWidth;
@@ -80,8 +83,26 @@ class galleryCard extends HTMLElement {
                 this.galleryText.classList.add("lightCardText");
             }
         }
-    }
-
 }
     // gallery-card component as a custom HTML element
 customElements.define('gallery-card', galleryCard);
+
+// export function checkImageBrightness(img) {
+//         const canvas = document.createElement("canvas");
+//         const ctx = canvas.getContext("2d");
+//         canvas.width = img.naturalWidth;
+//         canvas.height = img.naturalHeight;
+
+//         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+//         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+//         let brightness = 0;
+//         for (let i = 0; i < imageData.length; i += 4) {
+//             brightness += (imageData[i] + imageData[i + 1] + imageData[i + 2]) / 3;
+//         }
+
+//         brightness /= imageData.length / 4;
+
+//         return brightness;
+
+// }

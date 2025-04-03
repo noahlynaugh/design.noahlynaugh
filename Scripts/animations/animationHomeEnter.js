@@ -13,36 +13,36 @@ import {swap} from '../swap.js';
         const scrollPos = sessionStorage.getItem('scrollPosition');
         const landerMedia = data.current.container.querySelector('project-lander');
         const matchingCard = findCard(data.next.container);
-        const projectMedia = matchingCard.parentElement;
+        const projectMedia = matchingCard.closest("gallery-card");
         const link = projectMedia.link;
 
         var elementsToFade = Array.from(data.next.container.querySelector("#Gallery-Container").children);
         elementsToFade = elementsToFade.filter(element => (element.link != link));
-        var moreElementsToFade = [elementsToFade, Array.from(data.next.container.children).filter(element => element !== document.querySelector("#Gallery-Container"))];
+        var moreElementsToFade = [projectMedia.galleryText, projectMedia.buttonLink, elementsToFade, Array.from(data.next.container.children).filter(element => element !== document.querySelector("#Gallery-Container"))];
 
         tl.set(moreElementsToFade,{
             autoAlpha:0,
         });
 
-        const media = [projectMedia,landerMedia];
-        
+        const media = [landerMedia,projectMedia]
+
         const state = Flip.getState(media);
+
         swap(media)
-        
-        
 
         tl.add(Flip.from(state, {
+            absolute:true,
+            nested: true,
             duration: 2,
-            onUpdate: () => {
-                console.log("media", media)
-                console.log("update");
+            onUpdate: () =>{
+
             }
         }));
-        tl.to(moreElementsToFade,{
-            stagger:0.2,
-            autoAlpha:1,
-            duration:3
-        });
+        // tl.to(moreElementsToFade,{
+        //     stagger:0.2,
+        //     autoAlpha:1,
+        //     duration:3
+        // });
 
         return tl
     }

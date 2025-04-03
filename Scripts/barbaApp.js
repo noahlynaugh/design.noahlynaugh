@@ -1,17 +1,25 @@
 import {initLenis,destroyLenis} from "./lenis.js";
 import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation} from "./animations/index.js";
+// import {checkImageBrightness} from "../Components/galleryCard.js";
 document.addEventListener("DOMContentLoaded", function () {
-    // Register GSAP and Flip
     gsap.registerPlugin(Flip);
 
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
+    }
+
     barba.init({
-        //should probably change this into a global hook 
-        // to make sure that code is effcient and smooth scroll works on the whole site. 
         views: [
             {
               namespace: "home",
               beforeEnter(data) {
                 initLenis(data.next.container); // Initialize Lenis when entering "home"
+                data.next.container.querySelectorAll("gallery-card").forEach(card => {
+                  const img = card.imageSlot.assignedNodes()[0];
+                  if (img){
+                    card.checkImageBrightness(img);
+                  }
+                })
               },
               afterLeave() {
                 destroyLenis(); // Ensure Lenis keeps updating
@@ -35,8 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             namespace: ["project"]
         },
         leave(data) {
-            const container = data.current.container;
-            sessionStorage.setItem('scrollPosition', container.scrollTop);
+            sessionStorage.setItem ("scrollY", data.current.container.scrollTop);
             return leaveHomeAnimation(data);
         },
         enter(data) {
@@ -54,7 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
         leave(data) {
             return leaveProjectAnimation(data.current.container);
         },
-        enter(data) {
+        afterEnter(data) {
+            // let scrollY = sessionStorage.getItem("scrollY");
+            // gsap.to(data.next.container,{
+            //   scrollTo: scrollY
+            // })
             return enterHomeAnimation(data);
             },
         }]}

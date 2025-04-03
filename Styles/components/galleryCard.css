@@ -1,6 +1,7 @@
 .galleryCard{
     display: flex;
     flex:1 1 auto;
+    box-sizing: border-box;
 }
 
 .galleryCardSection{
@@ -11,6 +12,7 @@
     width: 100%;
     height: 100%;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .galleryCardContainer{
@@ -25,6 +27,7 @@
     align-self:stretch;
     align-items: flex-start;
     position: relative;
+    box-sizing: border-box;
 }
 
 .galleryCardMedia{
@@ -116,6 +119,10 @@
     .galleryCardMedia{
         aspect-ratio: 4/3;
     }
+
+    .cardMedia{
+        aspect-ratio: 4/3;
+    }
 }
   
 @media (max-width: 480px){
@@ -125,6 +132,10 @@
     }
 
     .galleryCardMedia{
+        aspect-ratio: 1/1;
+    }
+
+    .cardMedia{
         aspect-ratio: 1/1;
     }
 }

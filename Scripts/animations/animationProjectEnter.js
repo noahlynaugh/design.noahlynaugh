@@ -25,7 +25,7 @@ const enterProjectAnimation = (data) => {
     tl.add(Flip.from(state, {
         absolute: true,
         nested: true,
-        duration: .6,
+        duration: 1.2,
         ease: 'power4.out',
     }));
     tl.to(elementsToFade,{
