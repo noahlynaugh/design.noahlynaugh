@@ -23,6 +23,7 @@ class Footer extends HTMLElement {
         const shadowRoot = this.attachShadow({ mode: 'open' });
         let clone = template.content.cloneNode(true);
         shadowRoot.append(clone);
+        this.className = "footer"
     }
 }
 

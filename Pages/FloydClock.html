@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.typekit.net/bvi2cgb.css">
     <link rel="stylesheet" href="/Styles/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
     <title>design.noahlynaugh.com</title>
     <link href="/Assets/PNG/Favicon.png" rel="shortcut icon" type="image/x-icon"> 
     <style>
@@ -30,9 +31,11 @@
         <a slot="navMenuLink" href="/Pages/index.html" class="hover">About</a>
     </nav-bar>
     <main data-barba="container" data-barba-namespace="project">
-        <project-lander>
-            <img slot="landerMedia" src="/Assets/PNG/Underside.77.png" 
-            loading="lazy" class="landerMedia" id="media" data-flip-id="media">
+        <project-lander class="projectLander">
+            <div class="landerContainer">
+                <img src="/Assets/PNG/Underside.77.png" 
+                loading="lazy" class="landerMedia" id="media">
+            </div>
        </project-lander>
         <bottom-footer>
             <a slot="footerNavTitle" href="/Pages/index.html">

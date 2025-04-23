@@ -22,15 +22,13 @@ body{
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 2rem;
-  overflow: visible;
-  height: fit-content;
-  flex-direction: column;
+  /* overflow: visible; */
   background-color: var(--color--surface);
+  height:fit-content;
 }
 
 main{
   position: fixed;
-  flex: 1;
   overflow: scroll;
   z-index: 0;
   top: 0;
@@ -39,6 +37,7 @@ main{
   left: 0;
   margin-left: 2rem;
   margin-right: 2rem;
+  align-items: center;
 }
 
 .scrollWrapper{
@@ -51,19 +50,15 @@ main{
 
 .galleryContainer{
   display: grid;
-  grid-template-columns: repeat(2,1fr);
   position: relative;
   overflow: visible;
-  place-content: start space-around;
-  justify-content: center;
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(480px, 720px));
   margin-top: calc(4rem + 8vh);
   margin-bottom: 2rem;
-  height: fit-content;
   width: 100%;
   gap: 2rem;
   max-width: var(--width--max);
-  justify-self: center;
+  justify-self: anchor-center;
 }
 
 .hover{
@@ -93,18 +88,14 @@ html{
   }
 
   .galleryContainer{
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: visible;
-    place-content: start space-around;
-    justify-content: center;
-    align-items: stretch;
-    margin-top: calc(4rem + 8vh);
-    margin-bottom: 2rem;
-    height: fit-content;
-    min-width: 100%;
-    gap: 2rem;
+    grid-template-columns: repeat(2,minmax(360px, 720px));
+
+  }
+}
+
+@media (max-width: 720px){
+  .galleryContainer{
+    grid-template-columns: 1fr;
   }
 }
 

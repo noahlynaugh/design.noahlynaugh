@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.typekit.net/bvi2cgb.css">
     <link rel="stylesheet" href="/Styles/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
     <title>design.noahlynaugh.com</title>
     <link href="/Assets/PNG/Favicon.png" rel="shortcut icon" type="image/x-icon"> 
     <script type="module" src="/Components/navbar.js"></script>
@@ -24,30 +25,82 @@
     </nav-bar>
     <main data-barba="container" data-barba-namespace="home">
         <div class="galleryContainer" id="Gallery-Container">
-            <gallery-card href="/Pages/Screwdriver.html">
-                <img slot="galleryCardMedia" src="/Assets/PNG/3 Handle Variations.172.png" class="cardMedia" loading="lazy" id="media">
-                <h5 slot="Title">Cordless Screwdriver</h5>
-                <p slot="Subtitle">A convienent piece of a the home toolkit</p>
+            <gallery-card class="galleryCard" href="/Pages/Screwdriver.html" >
+                <section class="galleryCardSection">
+                    <div class="galleryCardContainer">
+                        <div class="buttonLink hover">
+                            <svg width="20.0192" height="16">
+                                <use href="/Assets/SVG/Arrow Graphic.svg#uuid-734dd229-9c06-4076-83cc-49fa06ff17e0"></use>
+                            </svg>
+                        </div>
+                        <div class="galleryCardMedia">
+                            <img class="cardMedia" id=media src="/Assets/PNG/3 Handle Variations.172.png" loading="lazy">
+                        </div>
+                        <div class="galleryText">
+                            <h5>Cordless Screwdriver</h5>
+                            <p>A convienent piece of a the home toolkit</p>
+                        </div>
+                    </div>
+                </section>
             </gallery-card>
-            <gallery-card href="/Pages/Dec.html">
-                <video playsinline loop autoplay muted slot="galleryCardMedia" class="cardMedia" loading="lazy" id="media" >
-                    <source src="/Assets/MP4/Disk Jockey Spin.93.mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <h5 slot="Title">Digital Effect Controller</h5>
-                <p slot="Subtitle">A digital effect controller for musicians</p>
+            <gallery-card class="galleryCard" href="/Pages/Dec.html">
+                <section class="galleryCardSection">
+                    <div class="galleryCardContainer">
+                        <div class="buttonLink hover">
+                            <svg width="20.0192" height="16">
+                                <use href="/Assets/SVG/Arrow Graphic.svg#uuid-734dd229-9c06-4076-83cc-49fa06ff17e0"></use>
+                            </svg>
+                        </div>
+                        <div class="galleryCardMedia">
+                            <video playsinline loop autoplay muted class="cardMedia" loading="lazy" id="media" >
+                                <source src="/Assets/MP4/Disk Jockey Spin.93.mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="galleryText">
+                            <h5>Digital Effect Controller</h5>
+                            <p>A digital effect controller for musicians</p>
+                        </div>
+                    </div>
+                </section>
             </gallery-card>
-            <gallery-card>
-                <img slot="galleryCardMedia" src="/Assets/PNG/Interaction.png" class="cardMedia" preload="none" >
-                <h5 slot="Title">Frequency</h5>
-                <p slot="Subtitle">A case study on cochlear implant audio processors</p>
+            <gallery-card class="galleryCard" href="/">
+                <section class="galleryCardSection">
+                    <div class="galleryCardContainer">
+                        <div class="buttonLink hover">
+                            <svg width="20.0192" height="16">
+                                <use href="/Assets/SVG/Arrow Graphic.svg#uuid-734dd229-9c06-4076-83cc-49fa06ff17e0"></use>
+                            </svg>
+                        </div>
+                        <div class="galleryCardMedia">
+                            <img class="cardMedia" id=media src="/Assets/PNG/Interaction.png" loading="lazy">
+                        </div>
+                        <div class="galleryText">
+                            <h5>Frequency</h5>
+                            <p>A case study on cochlear implant audio processors</p>
+                        </div>
+                    </div>
+                </section>
             </gallery-card>
-            <gallery-card href="/Pages/FloydClock.html">
-                <img slot="galleryCardMedia" src="/Assets/PNG/Underside.77.png" class="cardMedia" loading="lazy" id="media">
-                <h5 slot="Title">Floyd Alarm Clock</h5>
-                <p slot="Subtitle">An alarm clock module for Floyd Home</p>
-            </gallery-card>
-        </div>
+            <gallery-card class="galleryCard" href="/Pages/FloydClock.html">
+                <section class="galleryCardSection">
+                    <div class="galleryCardContainer">
+                        <div class="buttonLink hover">
+                            <svg width="20.0192" height="16">
+                                <use href="/Assets/SVG/Arrow Graphic.svg#uuid-734dd229-9c06-4076-83cc-49fa06ff17e0"></use>
+                            </svg>
+                        </div>
+                        <div class="galleryCardMedia">
+                            <img class="cardMedia" id=media src="/Assets/PNG/Underside.77.png" loading="lazy">
+                        </div>
+                        <div class="galleryText">
+                            <h5>Floyd Alarm Clock</h5>
+                            <p>An alarm clock module for Floyd Home</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </gallery-card>
         <bottom-footer id="Footer">
             <a slot="footerNavTitle" href="/Pages/index.html">
                 <p slot="websiteNamelink" class="hover websiteNameLink">design.noahlynaugh.com</p>

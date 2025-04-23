@@ -3,7 +3,7 @@
 import {swap} from '../swap.js';
 
 const enterProjectAnimation = (data) => {
-    const landerMedia = document.querySelector('project-lander');
+    const landerMedia = document.querySelector("project-lander");
     const projectMedia = data.trigger.trigger
     const elementsToFade = Array.from(data.next.container.children).filter(element => element !== landerMedia);
     gsap.set(elementsToFade,{
@@ -16,16 +16,17 @@ const enterProjectAnimation = (data) => {
         }
     });
 
-    const media = [projectMedia,landerMedia]
+    let media = [projectMedia,landerMedia]
+
+    swap(media);
 
     const state = Flip.getState(media)
 
-    swap(media);
 
     tl.add(Flip.from(state, {
         absolute: true,
         nested: true,
-        duration: 1.2,
+        duration: .6,
         ease: 'power4.out',
     }));
     tl.to(elementsToFade,{

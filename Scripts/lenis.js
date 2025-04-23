@@ -18,7 +18,9 @@ export function initLenis(wrapper) {
   }
 
   lenis.on('scroll', (e) => {
-    console.log(e);
+    console.log('scrolly',e.scroll);
+    console.log("limit", e.limit);
+    console.log("dimensions", e.dimensions);
   });
 
   requestAnimationFrame(raf);
@@ -28,5 +30,17 @@ export function initLenis(wrapper) {
 export function destroyLenis() {
   if (lenis) {
     lenis.destroy();
+  }
+}
+
+export function stopLenis() {
+  if(lenis){
+    lenis.stop();
+  }
+}
+
+export function startLenis() {
+  if(lenis){
+    lenis.start();
   }
 }

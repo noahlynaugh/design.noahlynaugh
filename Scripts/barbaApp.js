@@ -1,38 +1,40 @@
-import {initLenis,destroyLenis} from "./lenis.js";
+import {initLenis,destroyLenis, startLenis,stopLenis} from "./lenis.js";
 import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation} from "./animations/index.js";
-// import {checkImageBrightness} from "../Components/galleryCard.js";
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(Flip);
 
-    if (history.scrollRestoration) {
-      history.scrollRestoration = 'manual';
-    }
+    barba.hooks.after((data) => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            console.log('nextContainer scrollHeight:', document.querySelector('[data-barba="container"]').scrollHeight);
+            console.log('nextContainer',data.next.container)
+            initLenis(data.next.container)
+            startLenis();
+          }, 1000);
+        });
+      });
+    });
+
+    barba.hooks.before(() => {
+      stopLenis();
+    })
 
     barba.init({
         views: [
             {
               namespace: "home",
               beforeEnter(data) {
-                initLenis(data.next.container); // Initialize Lenis when entering "home"
-                data.next.container.querySelectorAll("gallery-card").forEach(card => {
-                  const img = card.imageSlot.assignedNodes()[0];
-                  if (img){
-                    card.checkImageBrightness(img);
-                  }
+                let scrollTop = sessionStorage.getItem("scrollY") || 0;
+                gsap.set(data.next.container,{
+                  scrollTop: scrollTop
                 })
               },
-              afterLeave() {
-                destroyLenis(); // Ensure Lenis keeps updating
-              },
-            },
-            {
-              namespace: "project",
-              beforeEnter(data) {
-                initLenis(data.next.container); // Initialize Lsenis when entering "project"
+              beforeLeave(data){
+                sessionStorage.setItem ("scrollTop", data.current.container.scrollTop);
               },
             },
           ],
-        debug: true,
         transitions: [
         {
         name: 'home-to-project-transtion',
@@ -43,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
             namespace: ["project"]
         },
         leave(data) {
-            sessionStorage.setItem ("scrollY", data.current.container.scrollTop);
             return leaveHomeAnimation(data);
         },
         enter(data) {
@@ -61,11 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         leave(data) {
             return leaveProjectAnimation(data.current.container);
         },
-        afterEnter(data) {
-            // let scrollY = sessionStorage.getItem("scrollY");
-            // gsap.to(data.next.container,{
-            //   scrollTo: scrollY
-            // })
+        enter(data) {
             return enterHomeAnimation(data);
             },
         }]}

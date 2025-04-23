@@ -5,7 +5,7 @@ import {swap} from '../swap.js';
  const enterHomeAnimation = (data) => {
         const tl = gsap.timeline({
             defaults:{
-                ease: 'power4.out',
+                ease: 'power4.in',
                 duration: .6
             }
         });
@@ -20,29 +20,33 @@ import {swap} from '../swap.js';
         elementsToFade = elementsToFade.filter(element => (element.link != link));
         var moreElementsToFade = [projectMedia.galleryText, projectMedia.buttonLink, elementsToFade, Array.from(data.next.container.children).filter(element => element !== document.querySelector("#Gallery-Container"))];
 
-        tl.set(moreElementsToFade,{
+        gsap.set([projectMedia,moreElementsToFade],{
             autoAlpha:0,
+            duration:0
         });
 
-        const media = [landerMedia,projectMedia]
-
-        const state = Flip.getState(media);
+        let media = [projectMedia,landerMedia]
 
         swap(media)
 
-        tl.add(Flip.from(state, {
+        const state = Flip.getState(media);
+
+     
+
+        tl.add(Flip.to(state, {
+            targets: media,
             absolute:true,
             nested: true,
-            duration: 2,
-            onUpdate: () =>{
+            duration: .6,
+            onUpdate:() =>{
 
             }
         }));
-        // tl.to(moreElementsToFade,{
-        //     stagger:0.2,
-        //     autoAlpha:1,
-        //     duration:3
-        // });
+        tl.to([projectMedia,moreElementsToFade],{
+            stagger:0.3,
+            autoAlpha:1,
+            duration:.6
+        });
 
         return tl
     }
@@ -50,12 +54,11 @@ import {swap} from '../swap.js';
     function findCard(container) {
         // Assuming you have a way to match the project content with a card (e.g., data-id or class name)
         const projectId = sessionStorage.getItem("activeProjectId"); // Store this during the `leave` transition
-        const fileName = decodeURIComponent(new URL(projectId).pathname);
         if (!projectId) {
             console.error("No activeProjectId found.");
             return null;
         }
-
+        const fileName = decodeURIComponent(new URL(projectId).pathname);
         const matchingCard = container.querySelector(`[src="${fileName}"]`);
 
         // Find the matching card in the homepage container

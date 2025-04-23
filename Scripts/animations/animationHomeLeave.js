@@ -1,14 +1,15 @@
 // animtion to leave the gallery page and go to the project page
 
 function findContent(data){
-    if (data.trigger.trigger.childNodes[1].tagName === "VIDEO") {
+    let content = data.trigger.trigger.querySelector("#media")
+    if (content.tagName === "VIDEO") {
         // If a video was clicked
-        const clickedCardVideo = data.trigger.trigger.childNodes[1];
+        const clickedCardVideo = data.trigger.trigger.querySelector("#media");
         return clickedCardVideo;
     }
-    else if (data.trigger.trigger.childNodes[1].tagName === 'IMG'){
+    else if (content.tagName === 'IMG'){
         // If an image was clicked
-        const clickedCardImage = data.trigger.trigger.childNodes[1];
+        const clickedCardImage = data.trigger.trigger.querySelector("#media");
         return clickedCardImage;
     }
 }
@@ -34,7 +35,6 @@ const leaveHomeAnimation = (data) => {
             const content = findContent(data);
             if (content) {
                 const projectId = content.dataset.src|| content.src || content.currentSrc; // Use your specific identifier
-                // console.log(projectId);
                 sessionStorage.setItem("activeProjectId", projectId);
             }
         }

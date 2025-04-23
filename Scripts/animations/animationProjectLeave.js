@@ -1,7 +1,6 @@
 // animation to leave the project page to the home page
 
 const leaveProjectAnimation = (container) => {
-    console.log(container);
     const excludeElem = document.querySelector('project-lander');
     const tl = gsap.timeline({
         defaults:{
