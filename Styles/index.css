@@ -65,9 +65,14 @@ main{
     cursor: pointer;
 }
 
+.scalingHover{
+  cursor: pointer;
+}
+
 /* Lock scrolling on body */
 .scroll-lock {
   overflow: hidden; /* Prevents scrolling */
+  pointer-events: none;
 }
 
 .svgLink{

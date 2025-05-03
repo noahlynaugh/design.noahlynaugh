@@ -3,29 +3,38 @@ import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHom
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(Flip);
 
+    initLenis(document.querySelector('[data-barba="container"]'));
+
     barba.hooks.after((data) => {
+      //doesnt keep track of video frame between transitions. I guess the real issue is that
+      //it pauses to begin with
+      data.next.container.querySelectorAll('video').forEach((video) => {
+        video.play();
+      })
+      //
+      //
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setTimeout(() => {
-            console.log('nextContainer scrollHeight:', document.querySelector('[data-barba="container"]').scrollHeight);
-            console.log('nextContainer',data.next.container)
-            initLenis(data.next.container)
-            startLenis();
-          }, 1000);
+            initLenis(data.next.container);
+            data.next.container.classList.remove('scroll-lock')
+            data.current.container.classList.remove('scroll-lock');
+          }, 300);
         });
       });
     });
 
-    barba.hooks.before(() => {
-      stopLenis();
-    })
+    barba.hooks.before((data) => {
+      data.current.container.classList.add('scroll-lock')
+      data.next.container.classList.add('scroll-lock');
+      })
 
     barba.init({
         views: [
             {
               namespace: "home",
               beforeEnter(data) {
-                let scrollTop = sessionStorage.getItem("scrollY") || 0;
+                let scrollTop = sessionStorage.getItem("scrollTop") || 0;
                 gsap.set(data.next.container,{
                   scrollTop: scrollTop
                 })

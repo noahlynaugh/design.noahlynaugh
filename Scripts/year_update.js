@@ -4,7 +4,7 @@ function updateYear() {
     // Loop through all the selected footer elements and update their textContent
     footerTextElement.forEach((TextElement) => {
         TextElement.textContent = TextElement.textContent.replace("*Year*", currentYear);
-        console.log("Year updated to", currentYear);
+        console.log("Loading the current year... the year is", currentYear);
     });
 }
 

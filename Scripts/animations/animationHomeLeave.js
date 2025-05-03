@@ -24,8 +24,8 @@ const leaveHomeAnimation = (data) => {
     moreElementsToFade = moreElementsToFade.filter(element => (element.link != link));
     const tl = gsap.timeline({
         defaults:{
-            ease: 'power3.out',
-            duration: .3
+            ease: 'power3.in',
+            duration: .35
         }
     });
     // Add fade-out animation for selected elements
@@ -41,8 +41,7 @@ const leaveHomeAnimation = (data) => {
     });
     tl.to(moreElementsToFade, {
         autoAlpha:0,
-        ease: "power2.in",
-    }, "-=.05")
+    }, "-=.5")
     
     
     

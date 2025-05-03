@@ -9,7 +9,7 @@ template.innerHTML = /*html*/ `
                 <slot name="websiteNamelink" class="websiteNameLink"> Website Name </slot>
             </slot>
             <div class="socialIcons">
-                <slot name= "svgIcon" class="svgIcon hover"> </slot>
+                <slot name= "svgIcon" class="svgIcon scalingHover"> </slot>
             </div>
         </div>
         <div class="lineSpacer"></div>

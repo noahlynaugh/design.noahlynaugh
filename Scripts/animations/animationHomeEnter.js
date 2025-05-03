@@ -31,21 +31,29 @@ import {swap} from '../swap.js';
 
         const state = Flip.getState(media);
 
-     
-
         tl.add(Flip.to(state, {
             targets: media,
-            absolute:true,
+            absolute:true, 
             nested: true,
-            duration: .6,
-            onUpdate:() =>{
-
+            duration: .3,
+            onComplete : () => {
+                if (projectMedia.querySelector("video") instanceof HTMLVideoElement) {
+                    projectMedia.querySelector("video").currentTime = landerMedia.querySelector("video").currentTime;
+                    tl.set(projectMedia,{
+                        autoAlpha:1
+                    })
+                }
+                else{
+                    tl.set(projectMedia,{
+                        autoAlpha:1
+                    })
+                }
             }
         }));
-        tl.to([projectMedia,moreElementsToFade],{
-            stagger:0.3,
+        tl.to([moreElementsToFade],{
+            stagger:0.1,
             autoAlpha:1,
-            duration:.6
+            duration:.3
         });
 
         return tl

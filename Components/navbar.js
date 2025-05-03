@@ -39,6 +39,7 @@ class NavBar extends HTMLElement {
         this.navMenu = shadowRoot.querySelector('.navMenuContainer');
         this.navMenuLinks = shadowRoot.querySelectorAll('.navMenuLink');
         this.navMenuSlot = shadowRoot.querySelector('slot[name="navMenuLink"]');
+        this.link = this.navMenuSlot.getAttribute("href");
         this.menuLineTop = shadowRoot.querySelector('.menuIconLineTop');
         this.menuLineMiddle = shadowRoot.querySelector('.menuIconLineMiddle');
         this.menuLineBottom = shadowRoot.querySelector('.menuIconLineBottom');
@@ -47,7 +48,7 @@ class NavBar extends HTMLElement {
 
     connectedCallback() {
         const mediaQuery = window.matchMedia("(max-width: 992px)");
-        
+
         this.burger.addEventListener('click', () => {
             // Disable click events to prevent multiple triggers during animation
             this.burger.style.pointerEvents = 'none';
@@ -59,12 +60,22 @@ class NavBar extends HTMLElement {
             }, 600); // Matches the animation duration
         });
 
+        // Keep a reference to the handler so you can remove it
+        const handleNavClick = (event) => {
+            this.flipMenu();
+            event.preventDefault();
+            barba.go(this.link);
+        };
+
         const updateNav = () =>{
             if (mediaQuery.matches){
                 this.navMenuSlot.style.pointerEvents = "none"
+                this.navMenuSlot.removeEventListener('click', handleNavClick); // clean up before adding
+                this.navMenuSlot.addEventListener('click', handleNavClick);
             }
             else{
                 this.navMenuSlot.style.pointerEvents = "auto"
+                this.navMenuSlot.removeEventListener('click', handleNavClick);
             }
         }
 

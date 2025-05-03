@@ -28,7 +28,7 @@ function applyColorMode() {
         if (typeof gsap !== "undefined") {
             gsap.to(htmlElement, {
               ...colorObject,
-              duration: 0.3,
+              duration: .6,
               ease: 'power3.out',
             });
           } else {
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", applyColorMode);
 
 // Hook into Barba.js transitions
 if (window.barba) {
-    barba.hooks.after(() => {
+    barba.hooks.before(() => {
         applyColorMode();
     });
 }

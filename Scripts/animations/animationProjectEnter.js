@@ -12,7 +12,7 @@ const enterProjectAnimation = (data) => {
     const tl = gsap.timeline({
         defaults:{
             ease: 'power4.out',
-            duration: .6
+            duration: .2
         }
     });
 
@@ -26,14 +26,18 @@ const enterProjectAnimation = (data) => {
     tl.add(Flip.from(state, {
         absolute: true,
         nested: true,
-        duration: .6,
+        duration: .3,
         ease: 'power4.out',
     }));
     tl.to(elementsToFade,{
         autoAlpha:1,
-        duration:.6,
+        duration:.3,
         ease: 'power4.out',
     });
+    tl.to(landerMedia,{
+        scale:1,
+        duration:.3,
+    })
 
 }
 
