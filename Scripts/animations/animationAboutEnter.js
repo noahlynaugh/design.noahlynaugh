@@ -1,11 +1,13 @@
 const aboutEnterAnimation = (data) => {
-    gsap.set(data.next.container.querySelector('#headline'),{
+    let split = SplitText.create('#headline',{ type: "words, chars"});
+    gsap.from(split.chars,{
         autoAlpha: 0,
-    })
-    gsap.to(data.next.container.querySelector('#headline'),{
-        autoAlpha: 1,
-        duration: 1.2,
-        ease: 'power3.out'
+        duration: 2,
+        y: -75,
+        x: -10,
+        scale: 2,
+        ease: 'elastic.out',
+        stagger: 0.01,
     })
 }
 

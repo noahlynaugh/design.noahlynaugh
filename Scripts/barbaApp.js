@@ -1,7 +1,8 @@
-import {initLenis,destroyLenis, startLenis,stopLenis} from "./lenis.js";
+import {initLenis} from "./lenis.js";
 import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation,aboutEnterAnimation,aboutLeaveAnimation} from "./animations/index.js";
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(Flip);
+    gsap.registerPlugin(SplitText)
 
     initLenis(document.querySelector('[data-barba="container"]'));
 
