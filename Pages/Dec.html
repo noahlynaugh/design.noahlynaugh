@@ -27,14 +27,16 @@
         <h1 slot="logo" class="hover logo">Noah Lynaugh</h1>
         </a>
         <a slot="navMenuLink" href="/Pages/index.html" class="hover">Work</a>
-        <a slot="navMenuLink" href="/Pages/index.html" class="hover">About</a>
+        <a slot="navMenuLink" href="/Pages/About.html" class="hover">About</a>
     </nav-bar>
     <main data-barba="container" data-barba-namespace="project">
         <project-lander class="projectLander">
-            <video playsinline loop autoplay muted slot="landerMedia" class="landerMedia" loading="lazy" id="media" data-flip-id="media">
-                <source  src="/Assets/MP4/Disk Jockey Spin.93.mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div class='landerContainer'>
+                <video playsinline loop autoplay muted slot="landerMedia" class="landerMedia" loading="lazy" id="media" data-flip-id="media">
+                    <source  src="/Assets/MP4/Disk Jockey Spin.93.mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
        </project-lander>
         <bottom-footer>
             <a slot="footerNavTitle" href="/Pages/index.html">

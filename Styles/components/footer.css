@@ -9,7 +9,6 @@
     position: relative;
     inset: 0% 0% auto;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0);
     max-width: var(--width--max);
     justify-self: anchor-center;
     margin-bottom:2rem;
@@ -25,9 +24,8 @@
 }
 
 .websiteNameLink{
-    text-decoration: none;
     font-size: var(--font-size);
-    width: fit-content !important;
+    width: fit-content;
     padding: 0;
 }
 

@@ -50,6 +50,10 @@ import {swap} from '../swap.js';
                 }
             }
         }));
+        tl.to([projectMedia.media,landerMedia.media],{
+            scale: 1.2,
+            duration: .3,
+        })
         tl.to([moreElementsToFade],{
             stagger:0.1,
             autoAlpha:1,

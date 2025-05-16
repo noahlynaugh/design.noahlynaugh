@@ -1,15 +1,5 @@
-document.querySelectorAll('.hover').forEach((element) => {
-    //should only work on text elements with hover
-        textHoverAnimation(element);
-    //
-});
-
-document.querySelectorAll(".scalingHover").forEach(element => {
-        scalingHoverAnimation(element);
-});
-
 barba.hooks.beforeEnter((data) => {
-    data.next.container.querySelectorAll('.hover').forEach((element) =>{
+    data.next.container.parentElement.querySelectorAll('.hover').forEach((element) =>{
         textHoverAnimation(element);
     });
     data.next.container.querySelectorAll('.scalingHover').forEach((element) =>{
@@ -31,42 +21,34 @@ function textHoverAnimation(element) {
         }
     }
     const hoverColor=getHoverColor();
-
-    const textHoverAnimation = gsap.to(element, {
+    
+    const textHoverAnimation =gsap.to(element, {
         color: hoverColor,
-        //**
-        textDecoration: 'var(--color--background--hover)',
-        //**i want this bkg to be an underline of the element
-        borderRadius: '4px',
         duration: .06, 
-        paused: true,
         ease: "expoScale(0.5,7,power2.in)",
-    });
+        paused: true,
+    }) 
+    
 
-    addListeners(element,textHoverAnimation);
+    addListeners(element,textHoverAnimation)
     
 }
 
 function addListeners(element,animation){
-    // Add event listeners for interactions
+    // Add event listeners for interactions with the same in and out
     element.addEventListener('pointerenter', (e) => {
-        console.log("pointerEnter",e); 
         animation.play()
     });
     element.addEventListener('pointerleave', (e) => {
-        console.log("pointerLeave",e);
         animation.reverse()
     });
     element.addEventListener('pointerdown', (e) => {
-        console.log("pointerDown",e);
         animation.play()}
     );
     element.addEventListener('pointerup', (e) => {
-        console.log("pointerUp",e);
         animation.reverse()
     });
     element.addEventListener('pointercancel', (e) => {
-        console.log("cancel",e);
         animation.reverse()
     });
 }
@@ -75,7 +57,7 @@ function addListeners(element,animation){
 function scalingHoverAnimation(element){
 
     const scalingHoverAnimation = gsap.to(element, {
-        scale: 1.1,
+        scale: 1.2,
         duration: .1, 
         paused: true,
         ease: "expoScale(0.5,7,power2.in)",

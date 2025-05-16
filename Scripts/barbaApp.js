@@ -1,18 +1,14 @@
 import {initLenis,destroyLenis, startLenis,stopLenis} from "./lenis.js";
-import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation} from "./animations/index.js";
+import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation,aboutEnterAnimation,aboutLeaveAnimation} from "./animations/index.js";
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(Flip);
 
     initLenis(document.querySelector('[data-barba="container"]'));
 
     barba.hooks.after((data) => {
-      //doesnt keep track of video frame between transitions. I guess the real issue is that
-      //it pauses to begin with
       data.next.container.querySelectorAll('video').forEach((video) => {
         video.play();
       })
-      //
-      //
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setTimeout(() => {
@@ -74,6 +70,36 @@ document.addEventListener("DOMContentLoaded", function () {
         enter(data) {
             return enterHomeAnimation(data);
             },
-        }]}
-    );
+        },
+        {
+        name: 'to-about-transition',
+        sync:true,
+        to: {
+          namespace: ["about"]
+        },
+        leave(data){
+          return aboutLeaveAnimation(data);
+        },
+        enter(data){
+          return aboutEnterAnimation(data);
+        }
+      },
+      // {
+      //   name: 'from-about-transition',
+      //   sync:true,
+      //   from: {
+      //     namespace: ["about"]
+      //   },
+      //   leave(data){
+      //** 
+      //     //need to call this something logical and include something here to transition to any page from about
+      //     // return aboutLeaveAnimation(data);
+      //   },
+      //   enter(data){
+      //     //need to call this something logical and include something here to transition into any page from about
+      //     // return aboutEnterAnimation(data);
+      //*/
+      //   }
+      // }
+    ]})
 });

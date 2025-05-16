@@ -22,22 +22,23 @@ const enterProjectAnimation = (data) => {
 
     const state = Flip.getState(media)
 
-
     tl.add(Flip.from(state, {
         absolute: true,
         nested: true,
         duration: .3,
         ease: 'power4.out',
+        onComplete: () => {
+            tl.to(landerMedia.media,{
+                scale:1,
+                duration:.3,
+            })
+        }
     }));
     tl.to(elementsToFade,{
         autoAlpha:1,
         duration:.3,
         ease: 'power4.out',
     });
-    tl.to(landerMedia,{
-        scale:1,
-        duration:.3,
-    })
 
 }
 

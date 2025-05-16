@@ -17,11 +17,11 @@ export function initLenis(wrapper) {
     requestAnimationFrame(raf);
   }
 
-  lenis.on('scroll', (e) => {
-    console.log('scrolly',e.scroll);
-    console.log("limit", e.limit);
-    console.log("dimensions", e.dimensions);
-  });
+  // lenis.on('scroll', (e) => {
+  //   console.log('scrolly',e.scroll);
+  //   console.log("limit", e.limit);
+  //   console.log("dimensions", e.dimensions);
+  // });
 
   requestAnimationFrame(raf);
 }

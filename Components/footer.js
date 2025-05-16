@@ -6,7 +6,7 @@ template.innerHTML = /*html*/ `
     <footer class="footerContainer">
         <div class="footerSocials">
             <slot name="footerNavTitle" class="logoLinkblock">
-                <slot name="websiteNamelink" class="websiteNameLink"> Website Name </slot>
+                <slot name="websiteNamelink" class="websiteNameLink hover"> Website Name </slot>
             </slot>
             <div class="socialIcons">
                 <slot name= "svgIcon" class="svgIcon scalingHover"> </slot>
