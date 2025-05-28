@@ -19,6 +19,7 @@
     <script type="module" src="/Components/footer.js" defer></script>
     <script type="module" src="/Components/galleryCard.js" defer></script>
     <script type="module" src="/Components/projectLander.js" defer></script>
+    <script type="module" src="/Components/contactForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
 </head>
 
@@ -27,7 +28,7 @@
         <a slot="logoLink" href="/Pages/index.html">
         <h1 slot="logo" class="hover logo">Noah Lynaugh</h1>
         </a>
-        <a slot="navMenuLink" href="/Pages/index.html" class="hover">Work</a>
+        <a slot="navMenuLink" href="/Pages/index.html" class="hover">Projects</a>
         <a slot="navMenuLink" href="/Pages/About.html" class="hover">About</a>
     </nav-bar>  
     <main data-barba="container" data-barba-namespace="project">
@@ -39,6 +40,7 @@
         </project-lander>
         <div style="height: 20vh; width:100%; max-width: var(--width--max); background-image:linear-gradient(#efefef,#e25d24) ; border-radius: 4px; justify-self: center;">
         </div>
+        <contact-form></contact-form>
         <bottom-footer>
             <a slot="footerNavTitle" href="/Pages/index.html">
                 <p slot="websiteNamelink" class="websiteNameLink hover">design.noahlynaugh.com</p>

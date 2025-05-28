@@ -1,6 +1,5 @@
 //Author: Noah Lynaugh
 //This file is the the **navbar** component
-//It only needs to run, not be imported by main.js
 
 // Takes a logo, link for the logo, and various links in the nav menu
 const template = document.createElement('template');
@@ -9,7 +8,6 @@ template.innerHTML = /*html*/ `
     @import '/Styles/index.css';
     ::slotted(logo){
         text-decoration: none; /* Ensure no underline */
-        color: var(--color--text); /* Or any color you prefer */
     }
 </style>
     <nav class="navContainer">
@@ -37,7 +35,7 @@ class NavBar extends HTMLElement {
         shadowRoot.append(clone);
         this.burger= shadowRoot.querySelector('.hamburgerMenu');
         this.navMenu = shadowRoot.querySelector('.navMenuContainer');
-        this.navMenuLinks = shadowRoot.querySelectorAll('.navMenuLink');
+        this.navMenuLinks = shadowRoot.querySelectorAll('#navLink');
         this.navMenuSlot = shadowRoot.querySelector('slot[name="navMenuLink"]');
         this.link = this.navMenuSlot.getAttribute("href");
         this.menuLineTop = shadowRoot.querySelector('.menuIconLineTop');
@@ -64,7 +62,6 @@ class NavBar extends HTMLElement {
         const handleNavClick = (event) => {
             this.flipMenu();
             event.preventDefault();
-            barba.go(this.link);
         };
 
         const updateNav = () =>{
@@ -118,17 +115,17 @@ class NavBar extends HTMLElement {
                 opacity: 1
             });
             tl.add('burger')
+            tl.to(this.menuLineMiddle, {
+                width: 0,
+                duration: .3,
+                ease: "power4.out",
+            },  'burger');
             tl.to(this.menuLineTop, {
                 y: 8,
                 rotate: 45,
                 duration: .5,
                 ease: "power1.out",
             }, 'burger');
-            tl.to(this.menuLineMiddle, {
-                width: 0,
-                duration: .3,
-                ease: "power4.out",
-            },  'burger');
             tl.to(this.menuLineBottom, {
                 y: -8,
                 rotate: -45,
@@ -136,8 +133,8 @@ class NavBar extends HTMLElement {
                 ease: "power2.out",
             }, 'burger');
             tl.add(Flip.from(state,{
-                duration:.3,
-                ease: "expoScale(0.5,7,power1.in)",
+                duration:.6,
+                ease: "power3.inOut",
                 borderRadius: 0,
             }, 'burger'));
             tl.fromTo(
@@ -194,9 +191,10 @@ class NavBar extends HTMLElement {
             setTimeout(() => {
                 this.navMenu.classList.toggle('open');
                 tl.add(Flip.from(state,{
-                    duration:.2,
-                    ease: "expoScale(0.5,7,power1.in)",
-                    borderRadius: 4,
+                    duration:.6,
+                    ease: "power4.inOut",
+                    simple:true,
+                    absolute:true,
                 }));
             }, 400);
         }

@@ -10,6 +10,7 @@
     <link href="/Assets/PNG/Favicon.png" rel="shortcut icon" type="image/x-icon"> 
     <script type="module" src="/Components/navbar.js"></script>
     <script type="module" src="/Components/footer.js"></script>
+    <script type="module" src="/Components/contactForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
 </head>
 
@@ -18,22 +19,24 @@
         <a slot="logoLink" href="/Pages/index.html">
         <h1 slot="logo" class="logo hover">Noah Lynaugh</h1>
         </a>
-        <a slot="navMenuLink" href="/Pages/index.html" class="hover">Work</a>
-        <a slot="navMenuLink" href="/Pages/index.html" class="hover">About</a>
+        <a slot="navMenuLink" href="/Pages/index.html" class="hover">Projects</a>
+        <a slot="navMenuLink" href="/Pages/about.html" class="hover">About</a>
     </nav-bar>
     <main data-barba="container" data-barba-namespace="about">
-        <div class="aboutContainer">
+        <div class="aboutContainer" id="aboutContainer">
             <h2 id="headline">Noah Lynaugh is an industrial designer with a focus on technological innovation.</h2>
             <h3>Bio</h3>
             <p>Noah Lynaugh is an industrial designer currently based in Rochester, NY and is open to relocation. He holds an industrial design degree
             from the Rochester Institute of Techonlogy with minors in digital business and philosophy.
             </p>
-            <p>On free time, Noah experiments with sound at music.noahlynaugh.com and develops his skills in visual communication, programming and protoyoping at 
-                instagram.com/noahlynaugh.design
+            <p>On free time, Noah experiments with sound, develops his skills in visual communication, programming, prototyping and loves to keep healthy.
             </p>
             <h3>Experience</h3>
-            <h6>Layer Metrics - Design Intern</h6>
-            <h6>Kek Design - Industrial Design Intern</h6>
+            <h6>Layer Metrics &mdash; Design Intern</h6>
+            <h6>Kek Design &mdash; Industrial Design Intern</h6>
+            <h3>Contact</h3>
+            <p>If you have an idea for a product that you think Noah would help design, or would like to chat, please get in contact via this form!</p>
+            <contact-form></contact-form>
             <bottom-footer id="Footer">
                 <a slot="footerNavTitle" href="/Pages/index.html">
                     <p slot="websiteNamelink" class="websiteNameLink hover">design.noahlynaugh.com</p>

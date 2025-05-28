@@ -1,5 +1,5 @@
 import {initLenis} from "./lenis.js";
-import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation,aboutEnterAnimation,aboutLeaveAnimation} from "./animations/index.js";
+import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation,aboutEnterAnimation,opacityFadeOutAnimation,opacityFadeInAnimation} from "./animations/index.js";
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(Flip);
     gsap.registerPlugin(SplitText)
@@ -74,33 +74,29 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
         name: 'to-about-transition',
-        sync:true,
         to: {
           namespace: ["about"]
         },
-        leave(data){
-          return aboutLeaveAnimation(data);
+        leave: ({current}) => {
+         return opacityFadeOutAnimation(current.container)
         },
-        enter(data){
-          return aboutEnterAnimation(data);
+        enter: ({next}) => {
+          return aboutEnterAnimation(next.container,false);
         }
       },
-      // {
-      //   name: 'from-about-transition',
-      //   sync:true,
-      //   from: {
-      //     namespace: ["about"]
-      //   },
-      //   leave(data){
-      //** 
-      //     //need to call this something logical and include something here to transition to any page from about
-      //     // return aboutLeaveAnimation(data);
-      //   },
-      //   enter(data){
-      //     //need to call this something logical and include something here to transition into any page from about
-      //     // return aboutEnterAnimation(data);
-      //*/
-      //   }
-      // }
+      {
+        name: 'from-about-transition',
+        from: {
+          namespace: ["about"]
+        },
+        leave: ({current}) => {
+          console.log("fade out")
+          return aboutEnterAnimation(current.container,true)
+        },
+        enter: ({next}) =>{
+          console.log("fade in")
+          return opacityFadeInAnimation(next.container)
+        }
+      }
     ]})
 });

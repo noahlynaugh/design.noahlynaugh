@@ -1,4 +1,5 @@
 /*Overall container of the nav component*/
+
 .navContainer{
     flex-direction: 0 auto;
     justify-content: space-between;
@@ -49,6 +50,7 @@
     padding-bottom: 0;
     letter-spacing: -.075rem;
     z-index: 3;
+    color: var(--color--text);
 }
 
 .menuIconLineTop,
@@ -57,7 +59,6 @@
     width: 24px;
     height: 2px;
     background-color: var(--color--text);
-    border-radius: 1px;
 }
 
 /* Nav menu text*/
@@ -70,7 +71,7 @@
     column-gap: 2rem;
     opacity: 1;
     pointer-events: auto;
-    line-height: var(--line-height-2);
+    color: var(--color--text);
 }
 
 /* BKG and container of the desktop nav menu*/
@@ -145,6 +146,7 @@
         overflow-x: visible;
         scrollbar-width: none;
         z-index: -1;
+        line-height: var(--line-height-2);
     }
 
     

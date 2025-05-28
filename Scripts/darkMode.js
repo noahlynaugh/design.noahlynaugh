@@ -1,8 +1,8 @@
-function applyColorMode() {
+(function applyColorMode() {
     const htmlElement = document.documentElement;
     const computed = getComputedStyle(htmlElement);
   
-    const colorVars = "surface,text,outershadowtop,outershadowbottom,elevation";
+    const colorVars = "surface,text,elevation,hoverText,galleryText";
   
     // Retrieve light and dark colors from CSS variables
     let lightColors = {};
@@ -48,26 +48,13 @@ function applyColorMode() {
         }
     }
   
-    // Check and apply the system's color preference
-    function checkPreference(e) {
-        applyDarkMode(e.matches);
-    }
-  
     const colorPreference = window.matchMedia("(prefers-color-scheme: dark)");
   
     // Set initial color mode based on system preference
     applyDarkMode(colorPreference.matches);
   
     // Update color mode when system preference changes
-    colorPreference.addEventListener("change", checkPreference);
-}
-  
-// Call the function to apply color mode on page load
-document.addEventListener("DOMContentLoaded", applyColorMode);
-
-// Hook into Barba.js transitions
-if (window.barba) {
-    barba.hooks.before(() => {
-        applyColorMode();
+    colorPreference.addEventListener("change", (e) => {
+        applyDarkMode(e.matches)
     });
-}
+})();

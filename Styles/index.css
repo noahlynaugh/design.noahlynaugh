@@ -5,16 +5,44 @@
 @import './components/footer.css';
 @import './components/galleryCard.css';
 @import './components/projectLander.css';
+@import './components/contactForm.css';
 
 /* removing scroll bar(vertical) */
 ::-webkit-scrollbar {
   display:none;
   
-} 
+}
+
+.hover {
+  color: var(--color--text);
+  transition: color 0.1s cubic-bezier(0.5,0,0.9,0.4);
+}
+
+.hover:hover {
+  color: var(--color--hoverText);
+}
+
+.scalingHover {
+  transition: transform 0.1s cubic-bezier(0.5,0,0.9,0.4);
+}
+
+.scalingHover:hover {
+  transform: scale(1.2);
+}
+
+button{
+  background-color: var(--color--text);
+  color: var(--color--surface);
+  border-radius: 4px;
+  font-family: neue-haas-unica, sans-serif;
+  font-size: var(--font-size-1);
+  font-weight: 800;
+  border-style: none;
+}
 
 a {
     text-decoration: none;
-    color: inherit
+    color: var(--color--text)
   }
 
 body{
@@ -35,8 +63,8 @@ main{
   bottom: 0;
   right:0;
   left: 0;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   align-items: center;
 }
 
@@ -52,12 +80,12 @@ main{
   display: grid;
   position: relative;
   overflow: visible;
-  grid-template-columns: repeat(2, minmax(480px, 720px));
+  grid-template-columns: repeat(2, minmax(360px, 720px));
   margin-top: calc(4rem + 8vh);
   margin-bottom: 2rem;
-  width: 100%;
   gap: 2rem;
   max-width: var(--width--max);
+  width: 100%;
   justify-self: anchor-center;
 }
 
@@ -101,8 +129,7 @@ html{
   }
 
   .galleryContainer{
-    grid-template-columns: repeat(2,minmax(360px, 720px));
-
+    grid-template-columns: repeat(2,minmax(240px, 720px));
   }
 }
 

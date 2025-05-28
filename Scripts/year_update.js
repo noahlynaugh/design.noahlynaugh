@@ -8,9 +8,6 @@ function updateYear() {
     });
 }
 
-// Run the updateYear function on initial load
-document.addEventListener('DOMContentLoaded', updateYear);
-
 // Hook into Barba.js transitions
 barba.hooks.beforeEnter(() => {
     updateYear();
