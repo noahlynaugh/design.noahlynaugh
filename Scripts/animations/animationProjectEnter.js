@@ -17,6 +17,9 @@ const enterProjectAnimation = (data) => {
     });
 
     let media = [projectMedia,landerMedia]
+    gsap.set(media.media, {
+        scale:1.2,
+    });
 
     swap(media);
 
@@ -25,7 +28,7 @@ const enterProjectAnimation = (data) => {
     tl.add(Flip.from(state, {
         absolute: true,
         nested: true,
-        duration: .3,
+        duration: 2,
         ease: 'power4.out',
         onComplete: () => {
             tl.to(landerMedia.media,{
