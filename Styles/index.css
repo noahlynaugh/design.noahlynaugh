@@ -7,6 +7,10 @@
 @import './components/projectLander.css';
 @import './components/contactForm.css';
 
+::-webkit-scrollbar{
+  display: none;
+}
+
 .hover {
   position: relative;
   color: var(--color--text);
@@ -17,8 +21,8 @@
   content:"";
   position: absolute;
   width: 100%;
-  height: 2px;
-  border-radius: 4px;
+  height: 1px;
+  border-radius: 1px;
   background-color: var(--color--hoverText);
   bottom: -.25rem;
   left:0;
@@ -40,6 +44,10 @@
   transform: scale(1.2);
 }
 
+.galleryCard:hover .cardMedia{
+  cursor: pointer;
+}
+
 .scalingHover {
   transition: transform 0.1s cubic-bezier(0.5,0,0.9,0.4);
 }
@@ -47,6 +55,7 @@
 .scalingHover:hover {
   transform: scale(1.2);
 }
+
 
 button{
   background-color: var(--color--text);
