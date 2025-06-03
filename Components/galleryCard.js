@@ -29,7 +29,7 @@ export class galleryCard extends HTMLElement{
 
     analyzeBrightness() {
     this.checkMediaBrightness(this.media).then(brightness => {
-        if (brightness < 185) {
+        if (brightness < 195) {
             this.buttonLink?.classList.add("lightCardButton");
             this.galleryText?.classList.add("lightCardText");
         }

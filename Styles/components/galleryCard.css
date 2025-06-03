@@ -103,7 +103,7 @@
     align-self: flex-start;
     position: absolute;
     inset: auto 1rem 0rem;
-    color: var(--color--gallerytext) !important;
+    color: var(--color--gallerytext);
 }
 
 @media (max-width: 992px){
