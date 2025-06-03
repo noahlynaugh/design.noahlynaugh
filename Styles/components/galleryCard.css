@@ -67,8 +67,8 @@
     z-index: 10;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background-color: #212121 !important;
-    mix-blend-mode: darken !important;
+    background-color: #212121;
+    mix-blend-mode: darken ;
     border-radius: 32px;
     flex-flow: column;
     justify-content: center;
@@ -80,13 +80,15 @@
     display: flex;
     position: absolute;
     inset: 1rem 1rem auto auto;
-    color: #ffffff !important;
+    color: #ffffff ;
+    fill: white
 }
 
 .lightCardButton{
-    background-color: #f5f8fa !important;
-    color: #000000 !important;
-    mix-blend-mode: lighten !important;
+    background-color: #f5f8fa ;
+    color: #000000 ;
+    fill: black;
+    mix-blend-mode: lighten ;
 }
 
 .lightCardText{
