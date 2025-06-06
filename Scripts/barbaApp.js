@@ -6,27 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initLenis(document.querySelector('[data-barba="container"]'));
 
-    barba.hooks.after((data) => {
-      data.next.container.querySelectorAll('video').forEach((video) => {
-        video.play();
-      })
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            initLenis(data.next.container);
-            data.next.container.classList.remove('scroll-lock')
-            data.current.container.classList.remove('scroll-lock');
-          }, 300);
-        });
-      });
+    barba.hooks.before(() => {
+      document.body.classList.add('scroll-lock');
     });
 
-    barba.hooks.before((data) => {
-      data.current.container.classList.add('scroll-lock')
-      data.next.container.classList.add('scroll-lock');
-      })
+    barba.hooks.after(() => {
+      document.body.classList.remove('scroll-lock');
+    });
 
     barba.init({
+        preventRunning: true,
         views: [
             {
               namespace: "home",
@@ -35,6 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 gsap.set(data.next.container,{
                   scrollTop: scrollTop
                 })
+                const video = document.querySelector('video');
+                if (video.paused) {
+                  video.play().catch(err => {
+                    console.warn('Autoplay failed:', err);
+                  });
+                }
               },
               beforeLeave(data){
                 sessionStorage.setItem ("scrollTop", data.current.container.scrollTop);
@@ -50,10 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
         to: {
             namespace: ["project"]
         },
-        leave(data) {
+        leave: (data) => {
             return leaveHomeAnimation(data);
         },
-        enter(data) {
+        enter: (data) => {
             return enterProjectAnimation(data);
             },
         },
@@ -65,11 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
         to: {
             namespace: ["home"]
         },
-        leave(data) {
-            return leaveProjectAnimation(data.current.container);
+        leave:(data) => {
+            return leaveProjectAnimation(data);
         },
-        enter(data) {
+        enter:(data) => {
             return enterHomeAnimation(data);
+
             },
         },
         {

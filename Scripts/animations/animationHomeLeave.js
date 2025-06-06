@@ -1,25 +1,12 @@
 // animtion to leave the gallery page and go to the project page
 
-function findContent(data){
-    let content = data.trigger.trigger.querySelector("#media")
-    if (content.tagName === "VIDEO") {
-        // If a video was clicked
-        const clickedCardVideo = data.trigger.trigger.querySelector("#media");
-        return clickedCardVideo;
-    }
-    else if (content.tagName === 'IMG'){
-        // If an image was clicked
-        const clickedCardImage = data.trigger.trigger.querySelector("#media");
-        return clickedCardImage;
-    }
-}
-
 const leaveHomeAnimation = (data) => {
     //Find the content that links to the project interacted with
     // Fade all elements but content
     const galleryCardContainer = (data.trigger);
     const elementsToFade = [galleryCardContainer.trigger.buttonLink,galleryCardContainer.trigger.galleryText];
     const link = galleryCardContainer.trigger.link;
+    const footer = data.current.container.querySelector("#Footer");
     var moreElementsToFade = Array.from(data.current.container.querySelector("#Gallery-Container").children);
     moreElementsToFade = moreElementsToFade.filter(element => (element.link != link));
     const tl = gsap.timeline({
@@ -32,14 +19,14 @@ const leaveHomeAnimation = (data) => {
     tl.to(elementsToFade, {
         autoAlpha: 0,
         onComplete: () =>{
-            const content = findContent(data);
+            const content = data.trigger.trigger.media;
             if (content) {
                 const projectId = content.dataset.src|| content.src || content.currentSrc; // Use your specific identifier
                 sessionStorage.setItem("activeProjectId", projectId);
             }
         }
     });
-    tl.to(moreElementsToFade, {
+    tl.to([moreElementsToFade,footer], {
         autoAlpha:0,
     }, "-=.5")
     

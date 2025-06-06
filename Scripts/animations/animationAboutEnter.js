@@ -29,12 +29,14 @@ const aboutEnterAnimation = (container,reverse) => {
             y: -75,
             x: -10,
             scale: 2,
-            ease: 'elastic.out',
+            ease: 'elastic.out(2,1)',
             stagger: 0.01,
         })
         tl.from(elementsToFade,{
-            autoAlpha:0
+            autoAlpha:0,
+            duration:.3
         },'-=1.8')
+        tl.timeScale(1.5)
         return tl
     }
     

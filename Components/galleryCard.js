@@ -17,7 +17,7 @@ export class galleryCard extends HTMLElement{
             });
         }
 
-        this.setupEventListeners();
+        this.setupEventListeners(); 
     }
 
     setupEventListeners() {
