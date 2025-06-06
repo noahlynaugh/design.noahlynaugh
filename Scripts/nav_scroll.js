@@ -13,13 +13,17 @@ function nav_scroll() {
         const currentScrollTop = main.scrollTop;
         console.log("currentScrollTop",currentScrollTop,"LastScrollTop",lastScrollTop)
 
-        if ((currentScrollTop > lastScrollTop) & (currentScrollTop>=0)) {
+        if ((currentScrollTop > lastScrollTop) ^ (currentScrollTop===0)) {
             // Scrolling down: Fade out navbar
-            gsap.to(navButtons, { autoAlpha: 0, duration: 0.3 });
-        } else {
-            // Scrolling up: Fade in navbar buttons
-            gsap.to(navButtons, { autoAlpha: 1, duration: 0.3 });
+            gsap.set(navButtons, { autoAlpha: 1});
         }
+        else if(currentScrollTop > lastScrollTop){
+            gsap.to(navButtons, { autoAlpha: 0, duration: 0.3 });
+        }
+        // else if((currentScrollTop < lastScrollTop)) {
+        //     // Scrolling up: Fade in navbar buttons
+        //     gsap.to(navButtons, { autoAlpha: 1, duration: 0.3 });
+        // }
 
         if (currentScrollTop <= 0) {
             gsap.to(logo, { autoAlpha: 1, duration: 0.5 });
