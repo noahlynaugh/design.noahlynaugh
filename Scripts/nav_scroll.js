@@ -13,7 +13,7 @@ function nav_scroll() {
         const currentScrollTop = main.scrollTop;
         console.log("currentScrollTop",currentScrollTop,"LastScrollTop",lastScrollTop)
 
-        if (currentScrollTop > lastScrollTop) {
+        if ((currentScrollTop > lastScrollTop) & (currentScrollTop>=0)) {
             // Scrolling down: Fade out navbar
             gsap.to(navButtons, { autoAlpha: 0, duration: 0.3 });
         } else {
