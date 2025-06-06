@@ -119,3 +119,7 @@ button.custom{
     padding-right:1rem;
     max-width: fit-content;
 }
+
+.sendArrow{
+    vertical-align: middle; 
+}

@@ -24,7 +24,7 @@ template.innerHTML = /*html*/ `
         </div>
         <button class="custom scalingHover" type="submit" id="submit-button">
         Send
-        <svg width="20.0192" height="16">
+        <svg width="20.0192" height="16" class="sendArrow">
             <use href="/Assets/SVG/Arrow Graphic.svg#uuid-734dd229-9c06-4076-83cc-49fa06ff17e0"></use>
         </svg>
         </button>
