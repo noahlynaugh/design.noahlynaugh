@@ -21,7 +21,7 @@ function nav_scroll() {
             gsap.to(navButtons, { autoAlpha: 1, duration: 0.3 });
         }
 
-        if (currentScrollTop === 0) {
+        if (currentScrollTop <= 0) {
             gsap.to(logo, { autoAlpha: 1, duration: 0.5 });
         } else {
             gsap.to(logo, { autoAlpha: 0, duration: 0.3 });
