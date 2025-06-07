@@ -11,7 +11,6 @@ function nav_scroll() {
         if (skipAnimations) return;
 
         const currentScrollTop = main.scrollTop;
-        console.log("currentScrollTop",currentScrollTop,"LastScrollTop",lastScrollTop)
 
         if ((currentScrollTop < lastScrollTop) ^ (currentScrollTop==0) ^ (lastScrollTop<0)) {
             // Scrolling down: Fade out navbar
