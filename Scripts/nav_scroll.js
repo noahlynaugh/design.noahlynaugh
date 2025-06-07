@@ -17,7 +17,7 @@ function nav_scroll() {
             // Scrolling down: Fade out navbar
             gsap.set(navButtons, { autoAlpha: 1});
         }
-        else if(currentScrollTop > lastScrollTop){
+        else if((currentScrollTop > lastScrollTop) & (lastScrollTop>0)) {
             gsap.to(navButtons, { autoAlpha: 0, duration: 0.3 });
         }
         // else if((currentScrollTop < lastScrollTop)) {
