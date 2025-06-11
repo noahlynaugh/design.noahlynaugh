@@ -1,7 +1,7 @@
 function swap([from,to]){
-    let fromID = from.getAttribute("data-flip-id"),
-        toID = to.getAttribute("data-flip-id");
-    from.setAttribute("data-flip-id", toID);
+    let fromID = from.getAttribute("data-flip-id");
+        // toID = to.getAttribute("data-flip-id");
+    // from.setAttribute("data-flip-id", toID);
     to.setAttribute("data-flip-id", fromID); 
 }
 

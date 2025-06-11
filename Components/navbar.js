@@ -1,6 +1,8 @@
 //Author: Noah Lynaugh
 //This file is the the **navbar** component
 
+import {gsap,Flip} from "gsap/all";
+gsap.registerPlugin(Flip)
 // Takes a logo, link for the logo, and various links in the nav menu
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
@@ -133,7 +135,7 @@ class NavBar extends HTMLElement {
                 ease: "power2.out",
             }, 'burger');
             tl.add(Flip.from(state,{
-                duration:.6,
+                duration:.3,
                 ease: "power3.inOut",
                 borderRadius: 0,
             }, 'burger'));
@@ -191,7 +193,7 @@ class NavBar extends HTMLElement {
             setTimeout(() => {
                 this.navMenu.classList.toggle('open');
                 tl.add(Flip.from(state,{
-                    duration:.6,
+                    duration:.3,
                     ease: "power4.inOut",
                     simple:true,
                     absolute:true,

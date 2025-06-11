@@ -1,6 +1,6 @@
 :root {
     --font-ratio: 1.333;
-    --font-size: 1rem;
+    --font-size: 1.2rem;
     --font-size-1: calc(var(--font-size) * var(--font-ratio));
     --font-size-2: calc(var(--font-size-1) * var(--font-ratio));
     --font-size-3: calc(var(--font-size-2) * var(--font-ratio));
@@ -8,12 +8,12 @@
     --font-size-5: calc(var(--font-size-4) * var(--font-ratio));
     --font-size-6: calc(var(--font-size-5) * var(--font-ratio));
 
-    --line-height-1: 1rem;
-    --line-height-2: 2rem;
-    --line-height-3: 3rem;
-    --line-height-4: 4rem;
-    --line-height-5: 5rem;
-    --line-height-6: 6rem;
+    --line-height-1: calc(var(--font-size) * 1);
+    --line-height-2: calc(var(--font-size) * 2);
+    --line-height-3: calc(var(--font-size) * 3);
+    --line-height-4: calc(var(--font-size) * 4);
+    --line-height-5: calc(var(--font-size) * 5);
+    --line-height-6: calc(var(--font-size) * 6);
   }
 
 h1{
@@ -22,6 +22,7 @@ h1{
     margin:0;
     line-height: var(--line-height-6);
     padding-bottom: var(--line-height-1);
+    text-wrap: balance;
 }
 h2 {
     font-size: var(--font-size-5);
@@ -29,6 +30,7 @@ h2 {
     margin:0;
     line-height: var(--line-height-5);
     padding-bottom: var(--line-height-1);
+    text-wrap: balance;
 }
 h3 {
     font-size: var(--font-size-4);
@@ -62,7 +64,7 @@ p {
     font-size: var(--font-size);
     font-weight: 300;
     line-height: var(--line-height-1);
-    width: 36rem;
+    width: calc(var(--font-size)*36);
     max-width: 100vw;
     margin:0;
     margin-block-start: 0rem;
@@ -70,6 +72,7 @@ p {
     margin-inline-start: 0rem,;
     margin-inline-end: 0rem;
     padding-bottom: var(--line-height-1);
+    text-wrap: pretty;
 }
 a{
     font-size: var(--font-size-1);

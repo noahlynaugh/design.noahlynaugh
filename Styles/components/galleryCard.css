@@ -57,6 +57,8 @@
     max-width: 100%;
 }
 
+
+
 .link{
     height: 100%;
     width: 100%;
@@ -68,7 +70,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     background-color: #212121;
-    mix-blend-mode: darken;
+    mix-blend-mode: darken ;
     border-radius: 32px;
     flex-flow: column;
     justify-content: center;
@@ -80,12 +82,14 @@
     display: flex;
     position: absolute;
     inset: 1rem 1rem auto auto;
-    color: #ffffff;
+    color: #ffffff ;
+    fill: white
 }
 
 .lightCardButton{
-    background-color: #f5f8fa;
-    color: #000000;
+    background-color: #f5f8fa ;
+    color: #000000 ;
+    fill: black;
     mix-blend-mode: lighten ;
 }
 

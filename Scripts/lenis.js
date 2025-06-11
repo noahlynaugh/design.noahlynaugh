@@ -1,3 +1,5 @@
+import Lenis from 'lenis'
+
 let lenis; // Declare lenis outside so it's accessible
 
 export function initLenis(wrapper) {
@@ -16,13 +18,6 @@ export function initLenis(wrapper) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
-
-  // lenis.on('scroll', (e) => {
-  //   console.log('scrolly',e.scroll);
-  //   console.log("limit", e.limit);
-  //   console.log("dimensions", e.dimensions);
-  // });
-
   requestAnimationFrame(raf);
 }
 

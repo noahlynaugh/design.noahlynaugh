@@ -1,3 +1,5 @@
+import barba from '@barba/core'
+
 // Function to handle gallery card clicks
 export function handleGalleryCardClick(event) {
     const card = event.target.closest(".galleryCard");
