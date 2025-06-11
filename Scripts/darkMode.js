@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 (function applyColorMode() {
     const htmlElement = document.documentElement;
     const computed = getComputedStyle(htmlElement);

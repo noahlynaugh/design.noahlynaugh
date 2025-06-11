@@ -1,6 +1,8 @@
 //Author: Noah Lynaugh
 //This file is the the **navbar** component
 
+import {gsap,Flip} from "gsap/all";
+gsap.registerPlugin(Flip)
 // Takes a logo, link for the logo, and various links in the nav menu
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `

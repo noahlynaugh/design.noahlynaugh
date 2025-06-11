@@ -1,5 +1,6 @@
 // animation to enter the project page from the gallery page
-
+import {gsap,Flip} from 'gsap/all';
+gsap.registerPlugin(Flip);
 import {swap} from '../swap.js';
 
 const enterProjectAnimation = (data) => {
@@ -36,7 +37,8 @@ const enterProjectAnimation = (data) => {
         autoAlpha:1,
         duration:.3,
         ease: 'power4.out',
-    });
+    })
+    tl.totalDuration(.6)
 
     return tl
 

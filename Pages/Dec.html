@@ -8,19 +8,8 @@
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
     <title>design.noahlynaugh.com</title>
     <link href="/Assets/PNG/Favicon.png" rel="shortcut icon" type="image/x-icon"> 
-    <style>
-        /* removing scroll bar(vertical) */
-        ::-webkit-scrollbar {
-          display:none;
-          
-        } 
-    </style>
-    <script type="module" src="/Components/navbar.js"></script>
-    <script type="module" src="/Components/footer.js"></script>
-    <script type="module" src="/Components/galleryCard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
+    <script type="module" defer src="/Scripts/index.js"></script>
 </head>
-
 <body class="body" data-barba="wrapper" >
     <nav-bar id="navbar">
         <a slot="logoLink" href="/index.html">
@@ -32,40 +21,32 @@
     <main data-barba="container" data-barba-namespace="project">
         <project-lander class="projectLander">
             <div class='landerContainer'>
-                <video playsinline loop autoplay muted slot="landerMedia" class="landerMedia" id="media" data-flip-id="media" src="/Assets/MP4/JoystickDial.mp4">
+                <video playsinline loop autoplay muted slot="landerMedia" class="landerMedia" id="media" data-flip-id="media" src="/MP4/JoystickDial.mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
        </project-lander>
         <bottom-footer>
-            <a slot="footerNavTitle" href="/Pages/index.html">
+            <a slot="footerNavTitle" href="/index.html">
                 <p slot="websiteNamelink" class="hover websiteNameLink">design.noahlynaugh.com</p>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://github.com/noahlynaugh">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="/Assets/SVG/Github_Icon.svg#uuid-7df3efb3-d985-401b-9720-f56fcd4fedfd"></use> 
+                    <use href="/SVG/Github_Icon.svg#uuid-7df3efb3-d985-401b-9720-f56fcd4fedfd"></use> 
                 </svg>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://www.instagram.com/noahlynaugh.design/">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="/Assets/SVG/Instagram_Icon.svg#uuid-9efaaefe-0a97-4f98-9fde-0faad03923ba"></use> 
+                    <use href="/SVG/Instagram_Icon.svg#uuid-9efaaefe-0a97-4f98-9fde-0faad03923ba"></use> 
                 </svg>
             </a>
             <a slot="svgIcon" style="line-height: 0px;" href="https://www.linkedin.com/in/noah-lynaugh/">
                 <svg slot="svgIcon" class="svgIcon hover"> 
-                    <use href="/Assets/SVG/Linkedin_Icon.svg#uuid-dbf0bd29-2dfe-43ce-8913-71080cc94989"></use> 
+                    <use href="/SVG/Linkedin_Icon.svg#uuid-dbf0bd29-2dfe-43ce-8913-71080cc94989"></use> 
                 </svg>
             </a>
             <div slot="footerBottom" id="footer-year-text-id">© Noah Lynaugh - *Year*</div>
         </bottom-footer>
     </main>
-    <!-- Footer for scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer=""></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer=""></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js" defer=""></script>
-    <script src="https://unpkg.com/lenis@1.1.21/dist/lenis.min.js" defer=""></script>
-    <script src="https://unpkg.com/split-type" defer=""></script>  
-    <script type="module" defer src="/Scripts/index.js"></script>
-    
 </body>
 </html>

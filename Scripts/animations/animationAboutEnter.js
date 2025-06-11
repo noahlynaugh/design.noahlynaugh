@@ -1,3 +1,6 @@
+import {gsap,SplitText} from "gsap/all"
+gsap.registerPlugin(SplitText);
+
 const aboutEnterAnimation = (container,reverse) => {
     const tl = gsap.timeline({
         });
@@ -19,7 +22,7 @@ const aboutEnterAnimation = (container,reverse) => {
         tl.from(elementsToFade,{
             autoAlpha:0
         },'-=1.8')
-        tl.timeScale(4)
+        tl.totalDuration(.6)
         return tl.reverse(0)
     }
     else{
@@ -28,15 +31,16 @@ const aboutEnterAnimation = (container,reverse) => {
             duration: 2,
             y: -75,
             x: -10,
-            scale: 2,
+            scale: 1.8,
             ease: 'elastic.out(2,1)',
-            stagger: 0.01,
+            stagger: 0.02,
         })
         tl.from(elementsToFade,{
             autoAlpha:0,
-            duration:.3
+            duration:1,
+            stagger: .05
         },'-=1.8')
-        tl.timeScale(1.5)
+        tl.totalDuration(1)
         return tl
     }
     

@@ -1,3 +1,5 @@
+import {gsap} from "gsap"
+
 const opacityFadeOutAnimation = (data) => {
     const tl = gsap.timeline({
 

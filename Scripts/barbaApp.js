@@ -1,98 +1,109 @@
 import {initLenis} from "./lenis.js";
-import {enterProjectAnimation,leaveHomeAnimation, leaveProjectAnimation,enterHomeAnimation,aboutEnterAnimation,opacityFadeOutAnimation,opacityFadeInAnimation} from "./animations/index.js";
-document.addEventListener("DOMContentLoaded", function () {
-    gsap.registerPlugin(Flip);
-    gsap.registerPlugin(SplitText)
+import {nav_scroll} from "./nav_scroll.js";
+//potentially can import all functions from modules????
+import * as animations from "./animations/index.js";
+//And animations???
 
-    initLenis(document.querySelector('[data-barba="container"]'));
+import barba from '@barba/core';
+export default barba
 
-    barba.hooks.before(() => {
-      document.body.classList.add('scroll-lock');
-    });
+import {gsap} from 'gsap'
 
-    barba.hooks.after(() => {
-      document.body.classList.remove('scroll-lock');
-    });
-
-    barba.init({
-        preventRunning: true,
-        views: [
-            {
-              namespace: "home",
-              beforeEnter(data) {
-                let scrollTop = sessionStorage.getItem("scrollTop") || 0;
-                gsap.set(data.next.container,{
-                  scrollTop: scrollTop
-                })
-                const video = document.querySelector('video');
-                if (video.paused) {
-                  video.play().catch(err => {
-                    console.warn('Autoplay failed:', err);
-                  });
-                }
-              },
-              beforeLeave(data){
-                sessionStorage.setItem ("scrollTop", data.current.container.scrollTop);
-              },
-            },
-          ],
-        transitions: [
+barba.init({
+    preventRunning: true,
+    views: [
         {
-        name: 'home-to-project-transtion',
-        from: {
-            namespace: ["home"]
+          namespace: "home",
+          beforeEnter(data) {
+            let scrollTop = sessionStorage.getItem("scrollTop") || 0;
+            gsap.set(data.next.container,{
+              scrollTop: scrollTop
+            })
+            const video = document.querySelector('video');
+            if (video.paused) {
+              video.play().catch(err => {
+                console.warn('Autoplay failed:', err);
+              });
+            }
+          },
+          beforeLeave(data){
+            sessionStorage.setItem ("scrollTop", data.current.container.scrollTop);
+          },
         },
-        to: {
-            namespace: ["project"]
+      ],
+    transitions: [
+    {
+     name: 'default',
+     once: ({next}) => {
+        nav_scroll()
+        return animations.opacityFadeInAnimation(next.container);
+     }
+    },
+    {
+    name: 'home-to-project-transtion',
+    from: {
+        namespace: ["home"]
+    },
+    to: {
+        namespace: ["project"]
+    },
+    leave: (data) => {
+        return animations.leaveHomeAnimation(data);
+    },
+    enter: (data) => {
+        return animations.enterProjectAnimation(data);
         },
-        leave: (data) => {
-            return leaveHomeAnimation(data);
-        },
-        enter: (data) => {
-            return enterProjectAnimation(data);
-            },
-        },
-        {
-        name: 'project-to-home-transtion',
-        from: {
-            namespace: ["project"]
-        },
-        to: {
-            namespace: ["home"]
-        },
-        leave:(data) => {
-            return leaveProjectAnimation(data);
-        },
-        enter:(data) => {
-            return enterHomeAnimation(data);
+    },
+    {
+    name: 'project-to-home-transtion',
+    from: {
+        namespace: ["project"]
+    },
+    to: {
+        namespace: ["home"]
+    },
+    leave:(data) => {
+        return animations.leaveProjectAnimation(data);
+    },
+    enter:(data) => {
+        return animations.enterHomeAnimation(data);
 
-            },
         },
-        {
-        name: 'to-about-transition',
-        to: {
-          namespace: ["about"]
-        },
-        leave: ({current}) => {
-         return opacityFadeOutAnimation(current.container)
-        },
-        enter: ({next}) => {
-          return aboutEnterAnimation(next.container,false);
-        }
-      },
-      {
-        name: 'from-about-transition',
-        from: {
-          namespace: ["about"]
-        },
-        leave: ({current}) => {
-          console.log("fade out")
-          return aboutEnterAnimation(current.container,true)
-        },
-        enter: ({next}) =>{
-          console.log("fade in")
-          return opacityFadeInAnimation(next.container)
-        }
-      }
-    ]})
+    },
+    {
+    name: 'to-about-transition',
+    to: {
+      namespace: ["about"]
+    },
+    leave: ({current}) => {
+      return animations.opacityFadeOutAnimation(current.container,true)
+    },
+    enter: ({next}) => {
+      return animations.aboutEnterAnimation(next.container,false);
+    }
+  },
+  {
+    name: 'from-about-transition',
+    from: {
+      namespace: ["about"]
+    },
+    leave: ({current}) => {
+      console.log("fade out")
+      return animations.aboutEnterAnimation(current.container,true)
+    },
+    enter: ({next}) =>{
+      console.log("fade in")
+      return animations.opacityFadeInAnimation(next.container)
+    }
+  }],
+})
+
+barba.hooks.before(() => {
+  document.body.classList.add('scroll-lock');
+  });
+
+barba.hooks.after(() => {
+  initLenis(document.querySelector('[data-barba="container"]'));
+  nav_scroll();
+  document.body.classList.remove('scroll-lock');
 });

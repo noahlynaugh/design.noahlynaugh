@@ -1,5 +1,6 @@
 // animation to enter the gallery(home) page from a project page. 
-
+import {gsap,Flip} from 'gsap/all';
+gsap.registerPlugin(Flip);
 import {swap} from '../swap.js';
 
  const enterHomeAnimation = (data) => {
@@ -55,6 +56,7 @@ import {swap} from '../swap.js';
             autoAlpha:1,
             duration:.3
         });
+        tl.totalDuration(.6)
 
         return tl
     }

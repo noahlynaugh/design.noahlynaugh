@@ -1,3 +1,5 @@
+import barba from './barbaApp.js'
+
 function updateYear() {
     const footerTextElement = document.querySelectorAll("#footer-year-text-id");
     const currentYear = new Date().getFullYear().toString();

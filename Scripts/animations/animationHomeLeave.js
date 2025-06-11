@@ -1,4 +1,5 @@
 // animtion to leave the gallery page and go to the project page
+import {gsap} from 'gsap'
 
 const leaveHomeAnimation = (data) => {
     //Find the content that links to the project interacted with
@@ -29,6 +30,7 @@ const leaveHomeAnimation = (data) => {
     tl.to([moreElementsToFade,footer], {
         autoAlpha:0,
     }, "-=.5")
+    tl.totalDuration(.3)
     
     
     

@@ -1,3 +1,5 @@
+import barba from '@barba/core';
+
 export class galleryCard extends HTMLElement{
     constructor() {
         super();
