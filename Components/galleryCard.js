@@ -9,7 +9,17 @@ export class galleryCard extends HTMLElement{
         this.link = this.getAttribute("href");
         this.media = this.querySelector('#media');
         // Wait until media is ready, then check brightness
-        this.media.checkMediaBrightness();
+        if (this.media.tagName.toLowerCase() === 'video') {
+            this.media.addEventListener('loadeddata', () => {
+                this.media.requestVideoFrameCallback(() => {
+                    this.analyzeBrightness();
+                })
+            });
+        } else {
+            this.media.addEventListener('load', () => {
+                this.analyzeBrightness();
+            });
+        }
 
         this.setupEventListeners(); 
     }
