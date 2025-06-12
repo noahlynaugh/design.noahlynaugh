@@ -121,5 +121,6 @@ button.custom{
 
 .sendArrow{
     vertical-align: middle; 
-    fill: var(--color--text)
+    fill: var(--color--text);
+    color: var(--color--text);
 }
