@@ -2,7 +2,7 @@ import {initLenis} from "./lenis.js";
 import {nav_scroll} from "./nav_scroll.js";
 import  {updateYear} from "./year_update.js"
 //potentially can import all functions from modules????
-import {opacityFadeInAnimation,aboutEnterAnimation,enterHomeAnimation,leaveProjectAnimation,enterProjectAnimation,leaveHomeAnimation} from "./animations/index.js";
+import {opacityFadeOutAnimation,opacityFadeInAnimation,aboutEnterAnimation,enterHomeAnimation,leaveProjectAnimation,enterProjectAnimation,leaveHomeAnimation} from "./animations/index.js";
 //And animations???
 
 import barba from '@barba/core';

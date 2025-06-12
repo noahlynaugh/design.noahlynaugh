@@ -12,11 +12,15 @@ const leaveProjectAnimation = (data) => {
     const elementsToFade = Array.from(data.current.container.children).filter(element => element !== excludeElem);
     
     tl.to(data.current.container,{
-        scrollTo:0,
+        scrollTop:0,
+        duration: 1,
     })
     tl.to(elementsToFade,{
         autoAlpha:0,
+        duration: 1,
+        stagger: .1
     })
+    tl.totalDuration(.6)
     return tl
 }
 
