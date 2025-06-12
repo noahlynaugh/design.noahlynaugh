@@ -1,7 +1,9 @@
+import styles from '../Styles/index.css?inline'
+
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
 <style>
-    @import '/Styles/index.css';
+    ${styles};
 </style>
     <footer class="footerContainer">
         <div class="footerSocials">

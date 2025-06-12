@@ -3,11 +3,12 @@
 
 import {gsap,Flip} from "gsap/all";
 gsap.registerPlugin(Flip)
+import styles from '../Styles/index.css?inline'
 // Takes a logo, link for the logo, and various links in the nav menu
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
 <style>
-    @import '/Styles/index.css';
+    ${styles};
     ::slotted(logo){
         text-decoration: none; /* Ensure no underline */
     }

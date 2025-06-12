@@ -12,5 +12,3 @@ import '../Components/footer.js';
 
 
 
-
-

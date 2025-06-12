@@ -1,9 +1,9 @@
 //This is a form to contact me via email.
-
+import styles from '../Styles/index.css?inline'
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
 <style>
-    @import '/Styles/index.css';
+    ${styles};
 </style>
     <form id="contact-form" class="contact-form" action="https://formsubmit.co/f5af897ae73442ddad633478a311411f" method="POST">
         <input type="hidden" name="_captcha" value="false">
