@@ -10,7 +10,7 @@ export class galleryCard extends HTMLElement{
         this.media = this.querySelector('#media');
         // Wait until media is ready, then check brightness
         if (this.media.tagName.toLowerCase() === 'video') {
-            this.media.addEventListener('canplaythrough ', () => {
+            this.media.addEventListener('canplaythrough', () => {
                 this.analyzeBrightness();
             });
         } else {
