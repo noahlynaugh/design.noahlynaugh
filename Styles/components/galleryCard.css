@@ -94,7 +94,7 @@
 }
 
 .lightCardText{
-    color: var(--color--dark--gallerytext) !important;
+    color: #f5f8fa !important;
 }
 
 .galleryText{
@@ -105,7 +105,7 @@
     align-self: flex-start;
     position: absolute;
     inset: auto 1rem 0rem;
-    color: var(--color--gallerytext);
+    color: #414141;
 }
 
 @media (max-width: 992px){
