@@ -94,7 +94,7 @@
 }
 
 .lightCardText{
-    color: var(--color--dark--gallerytext) !important;
+    color: #f5f8fa;
 }
 
 .galleryText{
