@@ -8,16 +8,6 @@ export class galleryCard extends HTMLElement{
         this.galleryText= this.querySelector(".galleryText");
         this.link = this.getAttribute("href");
         this.media = this.querySelector('#media');
-        // Wait until media is ready, then check brightness
-        if (this.media.tagName.toLowerCase() === 'video') {
-            this.media.addEventListener('loadeddata', () => {
-                this.analyzeBrightness();
-            });
-        } else {
-            this.media.addEventListener('load', () => {
-                this.analyzeBrightness();
-            });
-        }
 
         this.setupEventListeners(); 
     }
@@ -101,5 +91,18 @@ export class galleryCard extends HTMLElement{
     }
 }
 
+
+barba.hooks.after(() =>{
+            // Wait until media is ready, then check brightness
+        if (this.media.tagName.toLowerCase() === 'video') {
+            this.media.addEventListener('loadeddata', () => {
+                this.analyzeBrightness();
+            });
+        } else {
+            this.media.addEventListener('load', () => {
+                this.analyzeBrightness();
+            });
+        }
+})
 
 customElements.define("gallery-card",galleryCard)
