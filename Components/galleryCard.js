@@ -13,7 +13,7 @@ export class galleryCard extends HTMLElement{
             this.media.addEventListener('loadeddata', () => {
                 requestAnimationFrame(() => {
                     this.analyzeBrightness();
-                })
+                });
             });
         } else {
             this.media.addEventListener('load', () => {
