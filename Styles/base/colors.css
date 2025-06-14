@@ -1,10 +1,9 @@
 :root {
-    --color--surface: #f5f8fa 0.6s ease-in-out;
-    --color--text: #414141 0.6s ease-in-out;
-    --color--hoverText: #212121 0.6s ease-in-out;
-    --color--elevation: #E9E9E9 0.6s ease-in-out;
-    --color--gallerytext: #414141 0.6s ease-in-out;
-   
+    --color--surface: #f5f8fa;
+    --color--text: #414141 ;
+    --color--hoverText: #212121 ;
+    --color--elevation: #E9E9E9 ;
+    --color--gallerytext: #414141 ;
   }
 
   @media (prefers-color-scheme: dark){

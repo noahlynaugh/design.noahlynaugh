@@ -80,6 +80,10 @@ body{
   /* overflow: visible; */
   background-color: var(--color--surface);
   height:fit-content;
+  transition: 
+    color  1s,
+    background-color 1s,
+    fill 1s;
 }
 
 main{
@@ -93,6 +97,10 @@ main{
   padding-left: 2rem;
   padding-right: 2rem;
   align-items: center;
+  transition: 
+    color  1s,
+    background-color 1s,
+    fill 1s;
 }
 
 .scrollWrapper{
