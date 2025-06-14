@@ -1,7 +1,6 @@
 import './barbaApp.js';
 import './year_update.js';
 import './nav_scroll.js';
-// import './darkMode.js';
 import './lenis.js';
 import '../Components/navbar.js';
 import '../Components/contactForm.js';

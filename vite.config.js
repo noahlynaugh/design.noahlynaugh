@@ -26,7 +26,7 @@ function findHtmlFiles(dir) {
 
 // automatically find all html files
 const input = {
-  ...findHtmlFiles(resolve(__dirname, './')),
+  index: resolve(__dirname, './index.html'),
   ...findHtmlFiles(resolve(__dirname, './Pages'))
 };
 

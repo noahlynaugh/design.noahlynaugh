@@ -20,22 +20,3 @@ export function initLenis(wrapper) {
   }
   requestAnimationFrame(raf);
 }
-
-// Export a function to manually trigger Lenis updates
-export function destroyLenis() {
-  if (lenis) {
-    lenis.destroy();
-  }
-}
-
-export function stopLenis() {
-  if(lenis){
-    lenis.stop();
-  }
-}
-
-export function startLenis() {
-  if(lenis){
-    lenis.start();
-  }
-}
