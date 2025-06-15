@@ -15,7 +15,7 @@ template.innerHTML = /*html*/ `
             </div>
         </div>
         <div class="lineSpacer"></div>
-        <slot name="footerBottom" class="footerBottom">bottom</slot>
+        <slot name="footerBottom" class="footerBottom" id="footer-year-text-id">© Noah Lynaugh &mdash; *Year*</slot>
     </footer> 
 `;
 
@@ -26,6 +26,7 @@ class Footer extends HTMLElement {
         let clone = template.content.cloneNode(true);
         shadowRoot.append(clone);
         this.className = "footer"
+        this.socials = this.shadowRoot.querySelector('.svgIcon')
     }
 }
 
