@@ -49,7 +49,6 @@ attachToLink(link, matchedPreview) {
 
     link.addEventListener('pointerenter', (e) => {
         if(matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/"){
-          console.log('matchedLinkedin url')
           this.positionLinkedInPreview(link)
           this.linkedInPreview.style.opacity = '1';
         } else {
@@ -61,20 +60,28 @@ attachToLink(link, matchedPreview) {
 
     
     link.addEventListener('pointermove', (e) => {
-      if(matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/"){
-          const offsetX = -155;
-          const offsetY = -262;
-          this.linkedInPreview.style.left = `${e.clientX + offsetX}px`;
-          this.linkedInPreview.style.top = `${e.clientY + offsetY}px`;
-          this.linkedInPreview.style.opacity = '1';
-        } else {
-          const offsetX = -160;
-          const offsetY = -180;
-          this.preview.style.left = `${e.clientX + offsetX}px`;
-          this.preview.style.top = `${e.clientY + offsetY}px`;
-          this.preview.style.opacity = '1';
-        }
-    });
+      const previewEl = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/"
+        ? this.linkedInPreview
+        : this.preview;
+
+      const offsetX = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -155 : -160;
+      const offsetY = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -262 : -180;
+
+      const previewWidth = previewEl.offsetWidth || 320;
+      const previewHeight = previewEl.offsetHeight || 180;
+
+      let left = e.clientX + offsetX;
+      let top = e.clientY + offsetY;
+
+      // Clamp the position to the viewport
+      left = Math.max(0, Math.min(left, window.innerWidth - previewWidth));
+      top = Math.max(0, Math.min(top, window.innerHeight - previewHeight));
+
+      previewEl.style.left = `${left}px`;
+      previewEl.style.top = `${top}px`;
+      previewEl.style.opacity = '1';
+  });
+
 
     link.addEventListener('pointerout', () => {
       if(matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/"){
@@ -104,11 +111,9 @@ attachToLink(link, matchedPreview) {
 export function initPreviews() {
   const websitePreview = new WebsitePreview();
   const links = document.querySelectorAll('[data-preview]');
-  console.log(links)
   const mergedPreviews = { ...linkPreviews, ...staticLinkPreviews };
 
   links.forEach(link => {
-    console.log(link)
     const href = link.href;
     const match = Object.values(mergedPreviews).find(item => item.url === href);
     if (match) {

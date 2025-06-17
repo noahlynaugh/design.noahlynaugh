@@ -76,10 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
       to: {
         namespace: ["about"]
       },
-      leave: ({current}) => {
-        return opacityFadeOutAnimation(current.container,true)
+      leave:  async ({current}) => {
+        if (window.matchMedia("(max-width: 992px)").matches) {
+          await document.querySelector("nav-bar").flipMenu()
+        }
+        return opacityFadeOutAnimation(current.container,true);
       },
-      enter: ({next}) => {
+      enter: async ({next}) => {
         return aboutEnterAnimation(next.container,false);
       }
     },
@@ -88,11 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
       from: {
         namespace: ["about"]
       },
-      leave: ({current}) => {
-        return aboutEnterAnimation(current.container,true)
+      leave: async ({ current }) => {
+        if (window.matchMedia("(max-width: 992px)").matches) {
+          await document.querySelector("nav-bar").flipMenu()
+        }
+        return aboutEnterAnimation(current.container, true);
       },
       enter: ({next}) =>{
-        return opacityFadeInAnimation(next.container)
+        return opacityFadeInAnimation(next.container);
       }
     }],
   })
