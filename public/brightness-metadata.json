@@ -1,0 +1,27 @@
+{
+  "3 Handle Variations.webp": {
+    "type": "image",
+    "brightness": "0.644",
+    "lightMode": false
+  },
+  "Favicon.png": {
+    "type": "image",
+    "brightness": "0.644",
+    "lightMode": false
+  },
+  "Interaction.webp": {
+    "type": "image",
+    "brightness": "0.749",
+    "lightMode": false
+  },
+  "Underside.webp": {
+    "type": "image",
+    "brightness": "0.822",
+    "lightMode": true
+  },
+  "JoystickDial.mp4": {
+    "type": "video",
+    "brightness": "0.036",
+    "lightMode": false
+  }
+}
