@@ -2,6 +2,7 @@ import {initLenis} from "./lenis.js";
 import {nav_scroll} from "./nav_scroll.js";
 import  {updateYear} from "./year_update.js"
 import {initPreviews} from "../Components/websitePreview.js"
+import {initImageZoom} from "../Components/zoomViewer.js"
 import {opacityFadeOutAnimation,opacityFadeInAnimation,aboutEnterAnimation,enterHomeAnimation,leaveProjectAnimation,enterProjectAnimation,leaveHomeAnimation} from "./animations/index.js";
 
 import barba from '@barba/core';
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
           updateYear()
           nav_scroll()
           initPreviews()
+          initImageZoom()
           return opacityFadeInAnimation(next.container);
       }
       },
@@ -106,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   barba.hooks.beforeEnter(() => {
     updateYear();
     initPreviews()
+    initImageZoom()
   })
 
   barba.hooks.before(() => {

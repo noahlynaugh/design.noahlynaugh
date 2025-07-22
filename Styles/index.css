@@ -56,6 +56,27 @@
   transform: scale(1.2);
 }
 
+img.zoomable{
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: var(--width--max);
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-radius: 4px;
+  justify-self: center;
+}
+
+img.marquee{
+  width: 720px
+}
+
+img.zoomable:hover{
+  cursor: zoom-in
+}
 
 button{
   background-color: var(--color--text);

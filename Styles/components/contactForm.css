@@ -117,10 +117,15 @@ button.custom{
     padding-left: 1rem;
     padding-right:1rem;
     max-width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-Items: center;
+    justify-Content: center;
+    gap: 0.5rem;
 }
 
 .sendArrow{
-    vertical-align: middle; 
+    align-self: center;
     fill: var(--color--surface);
     color: var(--color--surface);
 }
