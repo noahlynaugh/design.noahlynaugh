@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/noahlynaugh/design.noahlynaugh#readme",
   "dependencies": {
+    "@sanity/client": "^7.14.0",
+    "@sanity/image-url": "^2.0.2",
     "ffmpeg-static": "^5.2.0",
     "ffprobe-static": "^3.1.0",
     "fluent-ffmpeg": "^2.1.3",
