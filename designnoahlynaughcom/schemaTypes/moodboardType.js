@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import ImageUrlPreview from './ImageUrlPreview'
+import ImageUrlPreview from './ImageUrlPreview.jsx'
 
 // If you want to add Unsplash as an asset source, import it:
 // import {unsplashAssetSource} from 'sanity-plugin-asset-source-unsplash'

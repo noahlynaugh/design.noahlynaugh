@@ -8,6 +8,7 @@ import '../Components/contactForm.js';
 import '../Components/galleryCard.js';
 import '../Components/projectLander.js';
 import '../Components/footer.js';
+import '../Components/moodboard.js';
 
 
 
