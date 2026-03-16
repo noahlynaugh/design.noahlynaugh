@@ -14,5 +14,21 @@
   "github": {
     "url": "https://github.com/noahlynaugh",
     "image": "/link-previews/github.webp"
+  },
+  "ritIndustrialDesign": {
+    "url": "https://www.rit.edu/study/industrial-design-bfa#curriculum",
+    "image": "/link-previews/ritIndustrialDesign.webp"
+  },
+  "ritPhilosophy": {
+    "url": "https://www.rit.edu/study/philosophy-minor#curriculum",
+    "image": "/link-previews/ritPhilosophy.webp"
+  },
+  "ritDigitalBusiness": {
+    "url": "https://www.rit.edu/study/digital-business-minor#curriculum",
+    "image": "/link-previews/ritDigitalBusiness.webp"
+  },
+  "advancedDesign": {
+    "url": "https://advdes.org/About",
+    "image": "/link-previews/advancedDesign.webp"
   }
 }

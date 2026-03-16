@@ -4,10 +4,25 @@
     "brightness": "0.644",
     "lightMode": false
   },
+  "Accumeasure In Use.webp": {
+    "type": "image",
+    "brightness": "0.949",
+    "lightMode": true
+  },
+  "Disk Jockey.webp": {
+    "type": "image",
+    "brightness": "0.799",
+    "lightMode": false
+  },
   "Favicon.png": {
     "type": "image",
     "brightness": "0.644",
     "lightMode": false
+  },
+  "Guitar Hero.webp": {
+    "type": "image",
+    "brightness": "0.894",
+    "lightMode": true
   },
   "Interaction.webp": {
     "type": "image",

@@ -53,7 +53,7 @@ class NavBar extends HTMLElement {
         this.burger.addEventListener('click', () => {
             // Disable click events to prevent multiple triggers during animation
             this.burger.style.pointerEvents = 'none';
-            this.navMenuSlot.style.pointerEvents = "auto"
+            this.setSlottedLinksPointerEvents("auto");
             this.flipMenu();
             // Re-enable click events after the animation is complete
             setTimeout(() => {
@@ -61,30 +61,36 @@ class NavBar extends HTMLElement {
             }, 600); // Matches the animation duration
         });
 
-        // // Keep a reference to the handler so you can remove it
         const handleNavClick = async (e) => {
             const link = e.target.closest('a');
             if (!link) return;
-            // Prevent default Barba navigation
             e.preventDefault();
-            // Now trigger Barba navigation manually
             window.barba.go(link.href);
         };
 
         const updateNav = () =>{
             if (mediaQuery.matches){
-                this.navMenuSlot.style.pointerEvents = "none"
-                this.navMenuSlot.removeEventListener('click'); 
-                this.navMenuSlot.addEventListener('click', handleNavClick());
+                this.setSlottedLinksPointerEvents("none");
+                this.navMenuSlot.removeEventListener('click', handleNavClick);
+                this.navMenuSlot.addEventListener('click', handleNavClick);
             }
             else{
-                this.navMenuSlot.style.pointerEvents = "auto";
-                this.navMenuSlot.removeEventListener('click',handleNavClick()); 
+                this.setSlottedLinksPointerEvents("auto");
+                this.navMenuSlot.removeEventListener('click', handleNavClick);
             }
         }
 
         updateNav();
         mediaQuery.addEventListener("change", updateNav);
+    }
+
+    // Set pointer-events on the actual slotted <a> elements (light DOM),
+    // not just the slot element — slotted content doesn't inherit shadow DOM styles
+    setSlottedLinksPointerEvents(value) {
+        this.navMenuSlot.style.pointerEvents = value;
+        this.navMenuSlot.assignedNodes().forEach(node => {
+            if (node.style) node.style.pointerEvents = value;
+        });
     }
 
 
@@ -198,7 +204,7 @@ class NavBar extends HTMLElement {
                     } , "burger"
                 );   
                     document.body.classList.remove('scroll-lock');
-                    this.navMenuSlot.style.pointerEvents = "none"
+                    this.setSlottedLinksPointerEvents("none");
                     this.navMenu.classList.toggle('open');
                 tl.add(Flip.from(state,{
                     duration:.3,

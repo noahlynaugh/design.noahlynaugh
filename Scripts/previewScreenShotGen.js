@@ -19,6 +19,10 @@ const urls = [
   { name: 'instagram', url: 'https://www.instagram.com/noahlynaugh.design' },
   { name: 'layerMetrics', url: 'https://www.layermetricsinc.com/' },
   { name: 'github', url: 'https://github.com/noahlynaugh' },
+  { name: 'ritIndustrialDesign', url: 'https://www.rit.edu/study/industrial-design-bfa#curriculum' },
+  { name: 'ritPhilosophy', url: 'https://www.rit.edu/study/philosophy-minor#curriculum' },
+  { name: 'ritDigitalBusiness', url: 'https://www.rit.edu/study/digital-business-minor#curriculum' },
+  { name: 'advancedDesign', url: 'https://advdes.org/About' },
 ];
 
 // We'll collect the data here

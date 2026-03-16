@@ -65,7 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
       to: {
           namespace: ["home"]
       },
-      leave:(data) => {
+      leave: async (data) => {
+          if (window.matchMedia("(max-width: 992px)").matches) {
+            const navbar = document.querySelector("nav-bar");
+            if (navbar.shadowRoot.querySelector('.navMenuContainer').classList.contains('open')) {
+              await navbar.flipMenu();
+            }
+          }
           return leaveProjectAnimation(data);
       },
       enter:(data) => {
