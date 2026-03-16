@@ -6,7 +6,8 @@ const leaveProjectAnimation = (data) => {
     const tl = gsap.timeline({
         defaults:{
             ease: 'power4.out',
-            duration: .3
+            duration: .3,
+            force3D: true
         }
     });
     const elementsToFade = Array.from(data.current.container.children).filter(element => element !== excludeElem);

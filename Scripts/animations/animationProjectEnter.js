@@ -13,7 +13,8 @@ const enterProjectAnimation = (data) => {
     const tl = gsap.timeline({
         defaults:{
             ease: 'power4.out',
-            duration: .2
+            duration: .2,
+            force3D: true
         }
     });
 

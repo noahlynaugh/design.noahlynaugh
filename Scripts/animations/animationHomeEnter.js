@@ -7,7 +7,8 @@ import {swap} from '../swap.js';
         const tl = gsap.timeline({
             defaults:{
                 ease: 'power4.in',
-                duration: .6
+                duration: .6,
+                force3D: true
             }
         });
         

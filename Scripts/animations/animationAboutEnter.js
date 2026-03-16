@@ -3,6 +3,7 @@ gsap.registerPlugin(SplitText);
 
 const aboutEnterAnimation = (container,reverse) => {
     const tl = gsap.timeline({
+            defaults: { force3D: true }
         });
     var elementsToFade = Array.from(container.querySelector('#aboutContainer').children);
         elementsToFade = elementsToFade.filter(element => (element !== document.querySelector('#headline')));

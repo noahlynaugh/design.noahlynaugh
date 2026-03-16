@@ -119,7 +119,8 @@ main{
   padding-left: 2rem;
   padding-right: 2rem;
   align-items: center;
-  transition: 
+  will-change: transform, opacity;
+  transition:
     color  1s,
     background-color 1s,
     fill 1s;

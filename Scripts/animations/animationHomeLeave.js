@@ -13,7 +13,8 @@ const leaveHomeAnimation = (data) => {
     const tl = gsap.timeline({
         defaults:{
             ease: 'power3.in',
-            duration: .35
+            duration: .35,
+            force3D: true
         }
     });
     // Add fade-out animation for selected elements

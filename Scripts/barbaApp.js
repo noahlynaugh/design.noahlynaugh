@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       leave:  async ({current}) => {
         if (window.matchMedia("(max-width: 992px)").matches) {
-          await document.querySelector("nav-bar").flipMenu()
+          const navbar = document.querySelector("nav-bar");
+          if (navbar.shadowRoot.querySelector('.navMenuContainer').classList.contains('open')) {
+            await navbar.flipMenu();
+          }
         }
         return opacityFadeOutAnimation(current.container,true);
       },
@@ -101,7 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       leave: async ({ current }) => {
         if (window.matchMedia("(max-width: 992px)").matches) {
-          await document.querySelector("nav-bar").flipMenu()
+          const navbar = document.querySelector("nav-bar");
+          if (navbar.shadowRoot.querySelector('.navMenuContainer').classList.contains('open')) {
+            await navbar.flipMenu();
+          }
         }
         return aboutEnterAnimation(current.container, true);
       },
