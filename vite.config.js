@@ -30,6 +30,11 @@ const input = {
   ...findHtmlFiles(resolve(__dirname, './Pages'))
 };
 
+// Dev-only reference pages: served by `npm run dev` but excluded from the
+// production build, so they never deploy to Vercel.
+const devOnlyPages = ['typescale'];
+for (const name of devOnlyPages) delete input[name];
+
 export default defineConfig({
     root: './',
     build: {
