@@ -73,7 +73,7 @@ p {
     margin:0;
     margin-block-start: 0rem;
     margin-block-end: 0rem;
-    margin-inline-start: 0rem,;
+    margin-inline-start: 0rem;
     margin-inline-end: 0rem;
     margin-bottom: var(--line-height-1);
     text-wrap: pretty;
@@ -89,7 +89,7 @@ small{
     font-size: var(--font-size);
     font-weight: 900;
     margin:0;
-    line-height: var(--line-height);
+    line-height: var(--line-height-1);
     opacity: .4;
 }
 @media (max-width: 992px){

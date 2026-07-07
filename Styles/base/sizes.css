@@ -3,7 +3,7 @@
 }
 
 @media (max-width: 790px){
-    .root{
+    :root{
         --width--max:720px;
     }
 }

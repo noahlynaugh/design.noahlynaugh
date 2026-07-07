@@ -69,7 +69,7 @@
     z-index: 10;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background-color: #212121;
+    background-color: var(--color--onMedia--darkButton);
     mix-blend-mode: darken ;
     border-radius: 32px;
     flex-flow: column;
@@ -82,19 +82,19 @@
     display: flex;
     position: absolute;
     inset: 1rem 1rem auto auto;
-    color: #ffffff ;
-    fill: white
+    color: var(--color--onMedia--darkButtonIcon);
+    fill: var(--color--onMedia--darkButtonIcon)
 }
 
 .lightCardButton{
-    background-color: #f5f8fa ;
-    color: #000000 ;
-    fill: black;
+    background-color: var(--color--onMedia--lightButton);
+    color: var(--color--onMedia--lightButtonIcon);
+    fill: var(--color--onMedia--lightButtonIcon);
     mix-blend-mode: lighten ;
 }
 
 .lightCardText{
-    color: #f5f8fa !important;
+    color: var(--color--onMedia--lightText) !important;
 }
 
 .galleryText{
@@ -105,7 +105,7 @@
     align-self: flex-start;
     position: absolute;
     inset: auto 1rem 0rem;
-    color: #414141;
+    color: var(--color--onMedia--darkText);
 }
 
 @media (max-width: 992px){

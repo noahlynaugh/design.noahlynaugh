@@ -1,11 +1,21 @@
 :root {
     --color--surface: #f5f8fa;
-    --color--text: #414141 ;
-    --color--hoverText: #212121 ;
-    --color--elevation: #E9E9E9 ;
-    --color--gallerytext: #414141 ;
+    --color--text: #414141;
+    --color--hoverText: #212121;
+    --color--elevation: #E9E9E9;
+    --color--gallerytext: #414141;
     --color--boxShadow--light: #ffffff;
-    --color--boxShadow--dark:  #0000001a;
+    --color--boxShadow--dark: #0000001a;
+
+    /* On-media colors: keyed to image brightness (see Scripts/analyzeBrightness.js),
+       NOT the UI color scheme - identical in light and dark mode on purpose.
+       "dark" tokens sit on light imagery; "light" tokens sit on dark imagery. */
+    --color--onMedia--darkButton: #212121;
+    --color--onMedia--darkButtonIcon: #ffffff;
+    --color--onMedia--lightButton: #f5f8fa;
+    --color--onMedia--lightButtonIcon: #000000;
+    --color--onMedia--darkText: #414141;
+    --color--onMedia--lightText: #f5f8fa;
   }
 
   @media (prefers-color-scheme: dark){
@@ -16,6 +26,6 @@
       --color--elevation: #404040;
       --color--gallerytext: #f5f8fa;
       --color--boxShadow--light: #404040;
-      --color--boxShadow--dark:  #000000;
+      --color--boxShadow--dark: #000000;
     }
   }
