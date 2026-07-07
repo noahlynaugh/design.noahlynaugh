@@ -1,7 +1,6 @@
 /*Overall container of the nav component*/
 
 .navContainer{
-    flex-direction: 0 auto;
     justify-content: space-between;
     align-self: center;
     align-items: center;

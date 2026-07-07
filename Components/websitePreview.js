@@ -24,7 +24,7 @@ class WebsitePreview{
     this.preview.style.maxWidth = '320px';
     this.preview.style.maxHeight = '180px';
     this.preview.style.borderRadius = '4px';
-    this.preview.style.background = '#fff';
+    this.preview.style.background = 'var(--color--surface)';
     this.preview.style.boxShadow = '-.5rem -.5rem 1rem var(--color--boxShadow--light), 1rem 1rem 2rem var(--color--boxShadow--dark)';
     this.preview.style.userSelect = 'none';
     this.linkedInPreview = document.createElement('div')
