@@ -68,8 +68,17 @@ import {swap} from '../swap.js';
             console.error("No activeProjectId found.");
             return null;
         }
-        const fileName = decodeURIComponent(new URL(projectId).pathname);
-        const matchingCard = container.querySelector(`[src="${fileName}"]`);
+        // Try the exact stored src first (handles absolute Sanity CDN URLs),
+        // then fall back to the pathname match (local /WEBP, /MP4 paths).
+        let matchingCard = container.querySelector(`[src="${projectId}"]`);
+        if (!matchingCard) {
+            try {
+                const fileName = decodeURIComponent(new URL(projectId).pathname);
+                matchingCard = container.querySelector(`[src="${fileName}"]`);
+            } catch (e) {
+                // projectId wasn't a full URL — ignore.
+            }
+        }
 
         // Find the matching card in the homepage container
         return matchingCard || null;

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollTop: scrollTop
               })
               const video = document.querySelector('video');
-              if (video.paused) {
+              if (video && video.paused) {
                 video.play().catch(err => {
                   console.warn('Autoplay failed:', err);
                 });

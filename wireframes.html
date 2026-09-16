@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Elements Wireframe Library</title>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F5F5;
+      --card: #FFFFFF;
+      --border: #CCCCCC;
+      --border-dashed: #AAAAAA;
+      --text: #333333;
+      --text-muted: #888888;
+      --text-label: #555555;
+      --accent: #4A90D9;
+      --accent-light: #D0E8F9;
+      --interactive: #5A9E6F;
+      --interactive-light: #D4EDDA;
+      --disabled: #E0E0E0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.12);
+      --radius: 4px;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      padding: 32px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111;
+      letter-spacing: -0.3px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    /* SECTION HEADER */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin: 36px 0 16px;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* COMPONENT CARD */
+    .wf-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wf-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+    }
+    .wf-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      justify-content: center;
+      min-height: 72px;
+    }
+
+    /* ─── WIREFRAME PRIMITIVES ─── */
+
+    /* Box placeholder */
+    .wf-box {
+      background: var(--disabled);
+      border: 1px solid var(--border-dashed);
+      border-radius: var(--radius);
+    }
+
+    /* Button */
+    .wf-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      padding: 0 12px;
+      border: 1.5px solid var(--accent);
+      border-radius: var(--radius);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      gap: 4px;
+      background: var(--accent-light);
+    }
+    .wf-btn.primary { background: var(--accent); color: #fff; }
+    .wf-btn.sm { height: 22px; padding: 0 8px; font-size: 10px; }
+    .wf-btn.ghost { background: transparent; border-color: var(--border); color: var(--text-muted); }
+
+    /* Text line */
+    .wf-line {
+      height: 8px;
+      background: var(--disabled);
+      border-radius: 2px;
+    }
+
+    /* Input field */
+    .wf-input {
+      height: 28px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: #fff;
+    }
+    .wf-input.focused { border-color: var(--accent); }
+
+    /* Checkbox / Radio */
+    .wf-check {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .wf-check.checked { background: var(--accent); border-color: var(--accent); }
+    .wf-check.checked::after { content: '✓'; color: #fff; font-size: 9px; }
+    .wf-radio {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .wf-radio.checked::after { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+    .wf-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-label);
+    }
+    .wf-col { display: flex; flex-direction: column; gap: 5px; }
+
+    /* Badge */
+    .wf-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      background: #E53935;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 99px;
+    }
+
+    /* Toggle */
+    .wf-toggle {
+      width: 32px; height: 16px;
+      border-radius: 99px;
+      background: var(--interactive);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .wf-toggle::after {
+      content: '';
+      position: absolute;
+      width: 12px; height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2px; right: 2px;
+    }
+    .wf-toggle.off { background: var(--border); }
+    .wf-toggle.off::after { left: 2px; right: auto; }
+
+    /* Progress bar */
+    .wf-progress-track {
+      height: 8px;
+      background: var(--disabled);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .wf-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+    }
+
+    /* Slider */
+    .wf-slider-track {
+      height: 4px;
+      background: var(--disabled);
+      border-radius: 99px;
+      position: relative;
+      margin: 8px 0;
+    }
+    .wf-slider-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .wf-slider-thumb {
+      width: 14px; height: 14px;
+      background: #fff;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+    }
+
+    /* Arrow / caret */
+    .caret-down::after { content: ' ▾'; }
+    .caret-right::after { content: ' ▸'; }
+
+    /* Tag / chip */
+    .wf-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 10px;
+      color: var(--text-label);
+      background: var(--disabled);
+      gap: 3px;
+    }
+
+    /* Divider */
+    .wf-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+    /* Scrollbar */
+    .wf-scroll-track {
+      width: 8px;
+      background: var(--disabled);
+      border-radius: 99px;
+      height: 60px;
+      position: relative;
+    }
+    .wf-scroll-thumb {
+      width: 8px;
+      height: 20px;
+      background: var(--border-dashed);
+      border-radius: 99px;
+      position: absolute;
+      top: 8px;
+    }
+
+    /* Overlay backdrop */
+    .wf-overlay {
+      border: 1.5px solid var(--accent);
+      border-radius: 6px;
+      background: #fff;
+      padding: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Menu item */
+    .wf-menu-item {
+      height: 24px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 11px;
+      color: var(--text-label);
+      border-radius: 3px;
+    }
+    .wf-menu-item.active { background: var(--accent-light); color: var(--accent); }
+
+    /* Tab */
+    .wf-tab {
+      height: 28px;
+      padding: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: default;
+    }
+    .wf-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Spinner */
+    .wf-spinner {
+      width: 24px; height: 24px;
+      border: 3px solid var(--disabled);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* Breadcrumb */
+    .wf-crumb {
+      font-size: 11px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .wf-crumb span { color: var(--text-muted); }
+    .wf-crumb .current { color: var(--text); font-weight: 600; }
+
+    /* Card container */
+    .wf-card-inner {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .wf-card-img { height: 40px; background: var(--disabled); }
+    .wf-card-body { padding: 6px 8px; display: flex; flex-direction: column; gap: 4px; }
+
+    /* Skeleton */
+    .wf-skeleton { background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%); border-radius: 2px; }
+
+    /* Ribbon tab */
+    .wf-ribbon-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .wf-ribbon-tab { padding: 4px 10px; font-size: 10px; color: var(--text-muted); border: 1px solid transparent; border-bottom: none; }
+    .wf-ribbon-tab.active { border-color: var(--border); border-bottom-color: #fff; margin-bottom: -1px; background: #fff; color: var(--accent); }
+    .wf-ribbon-content { display: flex; gap: 8px; padding: 6px; background: #fff; border: 1px solid var(--border); border-top: none; }
+
+    /* Segmented button */
+    .wf-seg { display: inline-flex; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .wf-seg-btn { padding: 4px 10px; font-size: 10px; color: var(--text-muted); border-right: 1px solid var(--border); }
+    .wf-seg-btn:last-child { border-right: none; }
+    .wf-seg-btn.active { background: var(--accent); color: #fff; }
+
+    /* Bottom sheet */
+    .wf-bottom-sheet {
+      border: 1.5px solid var(--border);
+      border-radius: 10px 10px 0 0;
+      background: #fff;
+      padding: 8px;
+      margin-top: auto;
+    }
+    .wf-bottom-sheet-handle { width: 32px; height: 4px; background: var(--border); border-radius: 99px; margin: 0 auto 8px; }
+
+    /* Knob */
+    .wf-knob {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--disabled);
+      border: 2px solid var(--border);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wf-knob::after {
+      content: '';
+      width: 2px; height: 12px;
+      background: var(--accent);
+      border-radius: 1px;
+      position: absolute;
+      top: 4px;
+      transform-origin: bottom;
+      transform: rotate(20deg);
+    }
+
+    /* Pie menu */
+    .wf-pie-menu {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--disabled);
+      border: 2px solid var(--border);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wf-pie-center {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      z-index: 1;
+    }
+    .wf-pie-item {
+      position: absolute;
+      font-size: 8px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Floating action button */
+    .wf-fab {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      font-weight: 300;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Snackbar */
+    .wf-snackbar {
+      background: #323232;
+      color: #fff;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .wf-snackbar span { color: var(--accent); font-size: 10px; font-weight: 600; }
+
+    /* Back to top */
+    .wf-btt {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Anchor link / TOC */
+    .wf-toc-item { font-size: 11px; color: var(--accent); padding: 2px 0; display: block; }
+    .wf-toc-item.sub { padding-left: 12px; color: var(--text-muted); }
+
+    /* Contextual menu */
+    .wf-ctx-menu {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 3px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      width: 120px;
+    }
+    .wf-ctx-item { padding: 5px 10px; font-size: 11px; color: var(--text-label); display: flex; align-items: center; gap: 6px; }
+    .wf-ctx-item.active { background: var(--accent-light); color: var(--accent); }
+    .wf-ctx-sep { height: 1px; background: var(--border); margin: 3px 0; }
+
+    /* Side sheet / Drawer */
+    .wf-drawer {
+      border: 1.5px solid var(--border);
+      border-right: none;
+      border-radius: 6px 0 0 6px;
+      background: #fff;
+      padding: 8px;
+      width: 90px;
+      min-height: 70px;
+    }
+
+    /* Wheel picker */
+    .wf-wheel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      width: 70px;
+      text-align: center;
+    }
+    .wf-wheel-item { padding: 4px; font-size: 11px; color: var(--text-muted); }
+    .wf-wheel-item.selected { background: var(--accent-light); color: var(--accent); font-weight: 600; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    /* Popup tip */
+    .wf-popup-tip {
+      background: #333;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 6px 8px;
+      font-size: 10px;
+      position: relative;
+      max-width: 100px;
+    }
+    .wf-popup-tip::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #333;
+      border-bottom: none;
+    }
+
+    /* Calendar */
+    .wf-cal { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .wf-cal-header { background: var(--accent); color: #fff; padding: 4px 8px; font-size: 10px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    .wf-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); padding: 4px; gap: 1px; }
+    .wf-cal-day { width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--text-muted); border-radius: 50%; }
+    .wf-cal-day.selected { background: var(--accent); color: #fff; }
+    .wf-cal-day.today { border: 1px solid var(--accent); color: var(--accent); }
+
+    /* Input stepper */
+    .wf-stepper { display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .wf-stepper-btn { width: 24px; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--disabled); font-size: 14px; color: var(--text-label); }
+    .wf-stepper-val { flex: 1; text-align: center; font-size: 11px; padding: 0 4px; }
+
+    /* Listbox */
+    .wf-listbox { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .wf-listbox-item { padding: 5px 8px; font-size: 11px; color: var(--text-label); border-bottom: 1px solid var(--disabled); display: flex; align-items: center; justify-content: space-between; }
+    .wf-listbox-item:last-child { border-bottom: none; }
+    .wf-listbox-item.selected { background: var(--accent-light); color: var(--accent); }
+
+    /* Megamenu */
+    .wf-megamenu { border: 1px solid var(--border); border-radius: var(--radius); background: #fff; padding: 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .wf-megamenu-col-title { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
+
+    /* Split button */
+    .wf-splitbtn { display: inline-flex; border: 1.5px solid var(--accent); border-radius: var(--radius); overflow: hidden; }
+    .wf-splitbtn-main { padding: 4px 10px; font-size: 11px; color: var(--accent); background: var(--accent-light); font-weight: 600; }
+    .wf-splitbtn-arrow { padding: 4px 7px; font-size: 11px; color: var(--accent); background: var(--accent-light); border-left: 1px solid var(--accent); }
+
+    /* Lightbox */
+    .wf-lightbox-bg { background: rgba(0,0,0,0.6); border-radius: var(--radius); padding: 8px; display: flex; align-items: center; justify-content: center; height: 70px; }
+    .wf-lightbox-img { background: var(--disabled); width: 60px; height: 50px; border-radius: 3px; border: 2px solid #fff; }
+
+    /* 2D Matrix */
+    .wf-matrix { border: 1.5px solid var(--border); border-radius: var(--radius); background: #fafafa; height: 60px; position: relative; }
+    .wf-matrix-point { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: absolute; }
+    .wf-matrix-line { position: absolute; border-top: 1.5px dashed var(--border-dashed); width: 100%; top: 50%; }
+
+    /* Expandable menu */
+    .wf-expand-item { padding: 5px 8px; font-size: 11px; color: var(--text-label); border-bottom: 1px solid var(--disabled); display: flex; justify-content: space-between; align-items: center; }
+    .wf-expand-sub { padding: 4px 8px 4px 18px; font-size: 11px; color: var(--text-muted); border-bottom: 1px solid var(--disabled); background: #fafafa; }
+
+    /* Submenu */
+    .wf-submenu { display: flex; gap: 0; position: relative; }
+    .wf-submenu-parent { border: 1px solid var(--border); border-radius: var(--radius) 0 0 var(--radius); background: #fff; min-width: 80px; }
+    .wf-submenu-child { border: 1px solid var(--border); border-left: none; border-radius: 0 var(--radius) var(--radius) 0; background: #fff; min-width: 80px; }
+
+    /* Container */
+    .wf-container-box { border: 2px dashed var(--border-dashed); border-radius: var(--radius); padding: 8px; min-height: 50px; }
+    .wf-container-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+
+    /* Control generic */
+    .wf-control-group { display: flex; flex-direction: column; gap: 4px; }
+    .wf-control-label { font-size: 10px; color: var(--text-muted); }
+
+    /* Range */
+    .wf-range { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <h1>UI Elements Wireframe Library</h1>
+  <p class="subtitle">61 components from the Nielsen Norman Group UI Elements Glossary — wireframe reference</p>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Buttons &amp; Actions</div>
+  <div class="grid">
+
+    <!-- Button -->
+    <div class="wf-card">
+      <div class="wf-label">Button</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div class="wf-btn primary">Primary</div>
+        <div class="wf-btn">Secondary</div>
+        <div class="wf-btn ghost">Ghost</div>
+      </div>
+    </div>
+
+    <!-- Floating Button (FAB) -->
+    <div class="wf-card">
+      <div class="wf-label">Floating Action Button</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:flex-end; justify-content:flex-end; position:relative; min-height:72px;">
+        <div class="wf-box" style="width:100%; height:60px; border-radius:4px; position:absolute; top:0; left:0;"></div>
+        <div class="wf-fab" style="position:relative; z-index:1;">+</div>
+      </div>
+    </div>
+
+    <!-- Back-to-Top Button -->
+    <div class="wf-card">
+      <div class="wf-label">Back-to-Top Button</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:flex-end; justify-content:flex-end; position:relative; min-height:72px;">
+        <div class="wf-box" style="width:100%; height:60px; border-radius:4px; position:absolute; top:0; left:0;"></div>
+        <div class="wf-btt" style="position:relative; z-index:1;">↑</div>
+      </div>
+    </div>
+
+    <!-- Split Button -->
+    <div class="wf-card">
+      <div class="wf-label">Split Button</div>
+      <div class="wf-preview" style="align-items:flex-start;">
+        <div class="wf-splitbtn">
+          <div class="wf-splitbtn-main">Save</div>
+          <div class="wf-splitbtn-arrow">▾</div>
+        </div>
+        <div class="wf-line" style="width:60%; margin-top:6px;"></div>
+      </div>
+    </div>
+
+    <!-- Segmented Button -->
+    <div class="wf-card">
+      <div class="wf-label">Segmented Button</div>
+      <div class="wf-preview" style="align-items:flex-start;">
+        <div class="wf-seg">
+          <div class="wf-seg-btn active">Day</div>
+          <div class="wf-seg-btn">Week</div>
+          <div class="wf-seg-btn">Month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="wf-card">
+      <div class="wf-label">Icon</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:center; gap:10px; flex-wrap:wrap;">
+        <div class="wf-box" style="width:24px; height:24px; border-radius:4px;"></div>
+        <div class="wf-box" style="width:24px; height:24px; border-radius:50%;"></div>
+        <div class="wf-box" style="width:20px; height:24px; border-radius:2px;"></div>
+        <div style="font-size:9px; color:var(--text-muted); width:100%;">□ Placeholder graphic elements</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Input Controls</div>
+  <div class="grid">
+
+    <!-- Textbox -->
+    <div class="wf-card">
+      <div class="wf-label">Textbox / Text Field</div>
+      <div class="wf-preview">
+        <div class="wf-row" style="flex-direction:column; align-items:flex-start; gap:3px;">
+          <div style="font-size:10px; color:var(--text-muted);">Label</div>
+          <div class="wf-input focused" style="width:100%;">Placeholder text…</div>
+        </div>
+        <div class="wf-row" style="flex-direction:column; align-items:flex-start; gap:3px;">
+          <div style="font-size:10px; color:var(--text-muted);">Textarea</div>
+          <div class="wf-input" style="width:100%; height:40px; align-items:flex-start; padding-top:5px;">Multi-line input…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="wf-card">
+      <div class="wf-label">Checkbox</div>
+      <div class="wf-preview">
+        <div class="wf-row"><div class="wf-check checked"></div> Option A</div>
+        <div class="wf-row"><div class="wf-check"></div> Option B</div>
+        <div class="wf-row"><div class="wf-check"></div> Option C</div>
+      </div>
+    </div>
+
+    <!-- Radio Button -->
+    <div class="wf-card">
+      <div class="wf-label">Radio Button</div>
+      <div class="wf-preview">
+        <div class="wf-row"><div class="wf-radio checked"></div> Option 1</div>
+        <div class="wf-row"><div class="wf-radio"></div> Option 2</div>
+        <div class="wf-row"><div class="wf-radio"></div> Option 3</div>
+      </div>
+    </div>
+
+    <!-- Toggle / Toggle Switch -->
+    <div class="wf-card">
+      <div class="wf-label">Toggle Switch</div>
+      <div class="wf-preview">
+        <div class="wf-row"><div class="wf-toggle"></div> Wi-Fi <span style="font-size:9px; color:var(--interactive);">On</span></div>
+        <div class="wf-row"><div class="wf-toggle off"></div> Bluetooth <span style="font-size:9px; color:var(--text-muted);">Off</span></div>
+        <div class="wf-row"><div class="wf-toggle"></div> Notifications</div>
+      </div>
+    </div>
+
+    <!-- Dropdown List -->
+    <div class="wf-card">
+      <div class="wf-label">Dropdown List</div>
+      <div class="wf-preview">
+        <div class="wf-input caret-down" style="width:100%; justify-content:space-between;">Select option</div>
+        <div class="wf-ctx-menu" style="width:100%; margin-top:-2px; border-radius:0 0 4px 4px;">
+          <div class="wf-ctx-item active">Option A</div>
+          <div class="wf-ctx-item">Option B</div>
+          <div class="wf-ctx-item">Option C</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Combo Box -->
+    <div class="wf-card">
+      <div class="wf-label">Combo Box</div>
+      <div class="wf-preview">
+        <div class="wf-input focused caret-down" style="width:100%; justify-content:space-between;">Type or select…</div>
+        <div class="wf-ctx-menu" style="width:100%; margin-top:-2px; border-radius:0 0 4px 4px;">
+          <div class="wf-ctx-item active">Matching result</div>
+          <div class="wf-ctx-item">Other option</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listbox -->
+    <div class="wf-card">
+      <div class="wf-label">Listbox</div>
+      <div class="wf-preview">
+        <div class="wf-listbox">
+          <div class="wf-listbox-item selected">Item A <span>✓</span></div>
+          <div class="wf-listbox-item">Item B</div>
+          <div class="wf-listbox-item selected">Item C <span>✓</span></div>
+          <div class="wf-listbox-item">Item D</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Stepper -->
+    <div class="wf-card">
+      <div class="wf-label">Input Stepper</div>
+      <div class="wf-preview" style="align-items:flex-start; gap:8px;">
+        <div style="font-size:10px; color:var(--text-muted);">Quantity</div>
+        <div class="wf-stepper" style="width:90px;">
+          <div class="wf-stepper-btn">−</div>
+          <div class="wf-stepper-val">3</div>
+          <div class="wf-stepper-btn">+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- State-Switch Control -->
+    <div class="wf-card">
+      <div class="wf-label">State-Switch Control</div>
+      <div class="wf-preview" style="gap:8px;">
+        <div class="wf-seg" style="width:100%;">
+          <div class="wf-seg-btn active" style="flex:1; text-align:center;">● On</div>
+          <div class="wf-seg-btn" style="flex:1; text-align:center;">Off</div>
+        </div>
+        <div style="font-size:9px; color:var(--text-muted);">Switches between 2 mutually exclusive states</div>
+      </div>
+    </div>
+
+    <!-- Picker -->
+    <div class="wf-card">
+      <div class="wf-label">Picker (generic)</div>
+      <div class="wf-preview" style="flex-direction:row; gap:8px; align-items:flex-start; flex-wrap:wrap;">
+        <div class="wf-input caret-down" style="width:100%; justify-content:space-between;">Choose value</div>
+        <div style="font-size:9px; color:var(--text-muted); width:100%;">Selects a single value from a set</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Range &amp; Numeric Controls</div>
+  <div class="grid">
+
+    <!-- Slider -->
+    <div class="wf-card">
+      <div class="wf-label">Slider</div>
+      <div class="wf-preview" style="padding: 0 4px;">
+        <div style="font-size:10px; color:var(--text-muted);">Volume</div>
+        <div class="wf-slider-track">
+          <div class="wf-slider-fill" style="width:65%;"></div>
+          <div class="wf-slider-thumb" style="left:calc(65% - 7px);"></div>
+        </div>
+        <div class="wf-row" style="justify-content:space-between;">
+          <span style="color:var(--text-muted);">0</span>
+          <span style="color:var(--accent); font-weight:600;">65</span>
+          <span style="color:var(--text-muted);">100</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Range Control -->
+    <div class="wf-card">
+      <div class="wf-label">Range Control</div>
+      <div class="wf-preview" style="padding: 0 4px;">
+        <div style="font-size:10px; color:var(--text-muted);">Price Range</div>
+        <div class="wf-slider-track">
+          <div class="wf-slider-fill" style="width:70%; left:20%; position:absolute; top:0;"></div>
+          <div class="wf-slider-thumb" style="left:calc(20% - 7px);"></div>
+          <div class="wf-slider-thumb" style="left:calc(90% - 7px);"></div>
+        </div>
+        <div class="wf-row" style="justify-content:space-between;">
+          <span style="color:var(--text-muted);">$0</span>
+          <span style="color:var(--accent); font-weight:600;">$20 – $90</span>
+          <span style="color:var(--text-muted);">$100</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Knob -->
+    <div class="wf-card">
+      <div class="wf-label">Knob</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:center; gap:16px;">
+        <div class="wf-knob"></div>
+        <div class="wf-col">
+          <div style="font-size:10px; color:var(--text-muted);">Gain</div>
+          <div style="font-size:13px; font-weight:600; color:var(--accent);">+3 dB</div>
+          <div style="font-size:9px; color:var(--text-muted);">Min — Max</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2D Matrix Input -->
+    <div class="wf-card">
+      <div class="wf-label">2D Matrix Input</div>
+      <div class="wf-preview">
+        <div class="wf-matrix">
+          <div class="wf-matrix-line"></div>
+          <div class="wf-matrix-point" style="left:20%; top:30%;"></div>
+          <div class="wf-matrix-point" style="left:50%; top:55%;"></div>
+          <div class="wf-matrix-point" style="left:78%; top:25%;"></div>
+        </div>
+        <div style="font-size:9px; color:var(--text-muted);">Draggable curve / control points</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Date &amp; Time Controls</div>
+  <div class="grid">
+
+    <!-- Date Picker -->
+    <div class="wf-card">
+      <div class="wf-label">Date Picker</div>
+      <div class="wf-preview">
+        <div class="wf-input caret-down" style="justify-content:space-between;">📅 MM / DD / YYYY</div>
+        <div style="font-size:9px; color:var(--text-muted);">Manual entry or calendar</div>
+      </div>
+    </div>
+
+    <!-- Calendar Picker -->
+    <div class="wf-card">
+      <div class="wf-label">Calendar Picker</div>
+      <div class="wf-preview">
+        <div class="wf-cal">
+          <div class="wf-cal-header"><span>◀</span> March 2026 <span>▶</span></div>
+          <div class="wf-cal-grid">
+            <div class="wf-cal-day">S</div><div class="wf-cal-day">M</div><div class="wf-cal-day">T</div><div class="wf-cal-day">W</div><div class="wf-cal-day">T</div><div class="wf-cal-day">F</div><div class="wf-cal-day">S</div>
+            <div class="wf-cal-day">1</div><div class="wf-cal-day">2</div><div class="wf-cal-day">3</div><div class="wf-cal-day">4</div><div class="wf-cal-day today">5</div><div class="wf-cal-day">6</div><div class="wf-cal-day">7</div>
+            <div class="wf-cal-day">8</div><div class="wf-cal-day">9</div><div class="wf-cal-day">10</div><div class="wf-cal-day">11</div><div class="wf-cal-day">12</div><div class="wf-cal-day">13</div><div class="wf-cal-day">14</div>
+            <div class="wf-cal-day selected">15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wheel Picker -->
+    <div class="wf-card">
+      <div class="wf-label">Wheel Picker</div>
+      <div class="wf-preview" style="flex-direction:row; gap:4px; align-items:center;">
+        <div class="wf-wheel">
+          <div class="wf-wheel-item">Apr</div>
+          <div class="wf-wheel-item selected">May</div>
+          <div class="wf-wheel-item">Jun</div>
+        </div>
+        <div class="wf-wheel">
+          <div class="wf-wheel-item">14</div>
+          <div class="wf-wheel-item selected">15</div>
+          <div class="wf-wheel-item">16</div>
+        </div>
+        <div class="wf-wheel">
+          <div class="wf-wheel-item">2025</div>
+          <div class="wf-wheel-item selected">2026</div>
+          <div class="wf-wheel-item">2027</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wheel-Style Date Picker -->
+    <div class="wf-card">
+      <div class="wf-label">Wheel-Style Date Picker</div>
+      <div class="wf-preview" style="flex-direction:row; gap:4px; align-items:center;">
+        <div class="wf-wheel" style="flex:1;">
+          <div class="wf-wheel-item">Mar</div>
+          <div class="wf-wheel-item selected">Mar 15</div>
+          <div class="wf-wheel-item">Mar 16</div>
+        </div>
+        <div class="wf-wheel" style="width:40px;">
+          <div class="wf-wheel-item">10</div>
+          <div class="wf-wheel-item selected">11</div>
+          <div class="wf-wheel-item">12</div>
+        </div>
+        <div class="wf-wheel" style="width:40px;">
+          <div class="wf-wheel-item">AM</div>
+          <div class="wf-wheel-item selected">PM</div>
+          <div class="wf-wheel-item">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Navigation</div>
+  <div class="grid">
+
+    <!-- Navigation Bar -->
+    <div class="wf-card">
+      <div class="wf-label">Navigation Bar</div>
+      <div class="wf-preview" style="gap:0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; height:36px; background:var(--accent); border-radius:4px; padding:0 12px;">
+          <span style="color:#fff; font-size:11px; font-weight:700;">Logo</span>
+          <div style="display:flex; gap:12px;">
+            <span style="color:rgba(255,255,255,0.9); font-size:10px;">Home</span>
+            <span style="color:rgba(255,255,255,0.9); font-size:10px;">About</span>
+            <span style="color:rgba(255,255,255,0.9); font-size:10px;">Work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="wf-card">
+      <div class="wf-label">Menu Bar</div>
+      <div class="wf-preview">
+        <div style="display:flex; gap:2px; background:var(--disabled); border:1px solid var(--border); border-radius:4px; padding:2px;">
+          <div class="wf-menu-item active">File</div>
+          <div class="wf-menu-item">Edit</div>
+          <div class="wf-menu-item">View</div>
+          <div class="wf-menu-item">Help</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="wf-card">
+      <div class="wf-label">Breadcrumbs</div>
+      <div class="wf-preview">
+        <div class="wf-crumb">
+          Home <span>/</span> Products <span>/</span> <span class="current">Shoes</span>
+        </div>
+        <div style="height:1px; background:var(--border); margin:4px 0;"></div>
+        <div class="wf-crumb">
+          Docs <span>›</span> Guide <span>›</span> <span class="current">Install</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="wf-card">
+      <div class="wf-label">Tab Bar (Tabs)</div>
+      <div class="wf-preview">
+        <div style="display:flex; border-bottom:1px solid var(--border);">
+          <div class="wf-tab active">Overview</div>
+          <div class="wf-tab">Details</div>
+          <div class="wf-tab">Reviews</div>
+        </div>
+        <div style="padding:6px; background:#fff; border:1px solid var(--border); border-top:none; border-radius:0 0 4px 4px;">
+          <div class="wf-line" style="width:80%;"></div>
+          <div class="wf-line" style="width:60%; margin-top:4px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Drawer Menu</div>
+      <div class="wf-preview" style="flex-direction:row; justify-content:flex-start;">
+        <div class="wf-drawer">
+          <div class="wf-line" style="width:70%; margin-bottom:6px;"></div>
+          <div class="wf-menu-item active" style="border-radius:3px; margin-bottom:2px;">Home</div>
+          <div class="wf-menu-item" style="margin-bottom:2px;">Profile</div>
+          <div class="wf-menu-item">Settings</div>
+        </div>
+        <div class="wf-box" style="flex:1; height:100%; min-height:70px; border-radius:0 4px 4px 0; opacity:0.3;"></div>
+      </div>
+    </div>
+
+    <!-- Anchor Link / TOC -->
+    <div class="wf-card">
+      <div class="wf-label">Anchor Link</div>
+      <div class="wf-preview">
+        <div class="wf-col">
+          <div style="font-size:10px; font-weight:600; color:var(--text-label); margin-bottom:2px;">Table of Contents</div>
+          <a class="wf-toc-item">1. Introduction</a>
+          <a class="wf-toc-item">2. Methods</a>
+          <a class="wf-toc-item sub">2.1 Setup</a>
+          <a class="wf-toc-item sub">2.2 Testing</a>
+          <a class="wf-toc-item">3. Results</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link -->
+    <div class="wf-card">
+      <div class="wf-label">Link (Hyperlink)</div>
+      <div class="wf-preview">
+        <div class="wf-line" style="width:90%;"></div>
+        <div style="font-size:11px; line-height:1.6;">
+          Visit our <span style="color:var(--accent); text-decoration:underline;">documentation page</span> to learn more about the <span style="color:var(--accent); text-decoration:underline;">API reference</span>.
+        </div>
+        <div class="wf-line" style="width:70%;"></div>
+      </div>
+    </div>
+
+    <!-- Scrollbar -->
+    <div class="wf-card">
+      <div class="wf-label">Scrollbar</div>
+      <div class="wf-preview" style="flex-direction:row; gap:4px; align-items:stretch;">
+        <div style="flex:1; display:flex; flex-direction:column; gap:3px; padding-right:4px; overflow:hidden;">
+          <div class="wf-line"></div>
+          <div class="wf-line" style="width:90%;"></div>
+          <div class="wf-line" style="width:80%;"></div>
+          <div class="wf-line"></div>
+          <div class="wf-line" style="width:70%;"></div>
+        </div>
+        <div class="wf-scroll-track">
+          <div class="wf-scroll-thumb"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Menus</div>
+  <div class="grid">
+
+    <!-- Dropdown Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Dropdown Menu</div>
+      <div class="wf-preview">
+        <div class="wf-btn sm ghost caret-down" style="align-self:flex-start;">Actions</div>
+        <div class="wf-ctx-menu" style="width:100%;">
+          <div class="wf-ctx-item">Edit</div>
+          <div class="wf-ctx-item">Duplicate</div>
+          <div class="wf-ctx-sep"></div>
+          <div class="wf-ctx-item" style="color:#c00;">Delete</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contextual Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Contextual Menu</div>
+      <div class="wf-preview" style="position:relative;">
+        <div class="wf-box" style="height:40px; width:100%; border-radius:4px;"></div>
+        <div class="wf-ctx-menu" style="width:100%; margin-top:2px;">
+          <div class="wf-ctx-item active">Open</div>
+          <div class="wf-ctx-item">Copy Link</div>
+          <div class="wf-ctx-sep"></div>
+          <div class="wf-ctx-item">Share</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expandable Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Expandable Menu</div>
+      <div class="wf-preview" style="gap:0; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+        <div class="wf-expand-item">Products <span>▾</span></div>
+        <div class="wf-expand-sub">Software</div>
+        <div class="wf-expand-sub" style="background:var(--accent-light); color:var(--accent);">Hardware</div>
+        <div class="wf-expand-sub">Services</div>
+        <div class="wf-expand-item">About <span>▸</span></div>
+        <div class="wf-expand-item" style="border:none;">Contact <span>▸</span></div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Navigation Menu</div>
+      <div class="wf-preview" style="gap:0; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+        <div class="wf-menu-item active">🏠 Home</div>
+        <div class="wf-menu-item">📦 Products</div>
+        <div class="wf-menu-item">📄 Docs</div>
+        <div class="wf-menu-item">💬 Support</div>
+      </div>
+    </div>
+
+    <!-- Megamenu -->
+    <div class="wf-card" style="grid-column: span 2;">
+      <div class="wf-label">Megamenu</div>
+      <div class="wf-preview">
+        <div style="display:flex; gap:2px; background:var(--disabled); border:1px solid var(--border); border-radius:4px 4px 0 0; padding:2px;">
+          <div class="wf-menu-item active">Products</div>
+          <div class="wf-menu-item">Solutions</div>
+          <div class="wf-menu-item">Resources</div>
+        </div>
+        <div class="wf-megamenu" style="border-radius:0 0 4px 4px; border-top:none;">
+          <div>
+            <div class="wf-megamenu-col-title">Category A</div>
+            <div class="wf-menu-item">Item 1</div>
+            <div class="wf-menu-item">Item 2</div>
+          </div>
+          <div>
+            <div class="wf-megamenu-col-title">Category B</div>
+            <div class="wf-menu-item">Item 3</div>
+            <div class="wf-menu-item">Item 4</div>
+          </div>
+          <div>
+            <div class="wf-megamenu-col-title">Category C</div>
+            <div class="wf-menu-item">Item 5</div>
+            <div class="wf-menu-item">Item 6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submenu -->
+    <div class="wf-card" style="grid-column: span 2;">
+      <div class="wf-label">Submenu</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:flex-start;">
+        <div class="wf-submenu-parent">
+          <div class="wf-menu-item">File</div>
+          <div class="wf-menu-item active">Edit <span style="margin-left:auto;">▸</span></div>
+          <div class="wf-menu-item">View</div>
+        </div>
+        <div class="wf-submenu-child">
+          <div class="wf-menu-item active">Undo</div>
+          <div class="wf-menu-item">Redo</div>
+          <div class="wf-ctx-sep"></div>
+          <div class="wf-menu-item">Cut</div>
+          <div class="wf-menu-item">Copy</div>
+          <div class="wf-menu-item">Paste</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie / Radial Menu -->
+    <div class="wf-card">
+      <div class="wf-label">Pie Menu (Radial)</div>
+      <div class="wf-preview" style="align-items:center; justify-content:center; position:relative; min-height:80px;">
+        <div class="wf-pie-menu">
+          <div class="wf-pie-center"></div>
+          <div class="wf-pie-item" style="top:4px; left:50%; transform:translateX(-50%);">Cut</div>
+          <div class="wf-pie-item" style="right:2px; top:50%; transform:translateY(-50%);">Copy</div>
+          <div class="wf-pie-item" style="bottom:4px; left:50%; transform:translateX(-50%);">Paste</div>
+          <div class="wf-pie-item" style="left:2px; top:50%; transform:translateY(-50%);">Del</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ribbon -->
+    <div class="wf-card" style="grid-column: span 3;">
+      <div class="wf-label">Ribbon</div>
+      <div class="wf-preview">
+        <div class="wf-ribbon-tabs">
+          <div class="wf-ribbon-tab active">Home</div>
+          <div class="wf-ribbon-tab">Insert</div>
+          <div class="wf-ribbon-tab">Format</div>
+          <div class="wf-ribbon-tab">View</div>
+        </div>
+        <div class="wf-ribbon-content">
+          <div style="display:flex; flex-direction:column; gap:3px; align-items:center; padding:0 4px; border-right:1px solid var(--border);">
+            <div class="wf-box" style="width:20px; height:18px;"></div>
+            <div style="font-size:8px; color:var(--text-muted);">Paste</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:3px; align-items:center; padding:0 4px; border-right:1px solid var(--border);">
+            <div style="display:flex; gap:2px;">
+              <div class="wf-box" style="width:16px; height:18px;"></div>
+              <div class="wf-box" style="width:16px; height:18px;"></div>
+              <div class="wf-box" style="width:16px; height:18px;"></div>
+            </div>
+            <div style="font-size:8px; color:var(--text-muted);">Clipboard</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:3px; align-items:center; padding:0 4px;">
+            <div style="display:flex; gap:2px;">
+              <div class="wf-btn sm ghost" style="font-weight:900; width:18px; padding:0; justify-content:center;">B</div>
+              <div class="wf-btn sm ghost" style="font-style:italic; width:18px; padding:0; justify-content:center;">I</div>
+              <div class="wf-btn sm ghost" style="text-decoration:underline; width:18px; padding:0; justify-content:center;">U</div>
+            </div>
+            <div style="font-size:8px; color:var(--text-muted);">Font</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Overlays &amp; Dialogs</div>
+  <div class="grid">
+
+    <!-- Dialog -->
+    <div class="wf-card">
+      <div class="wf-label">Dialog</div>
+      <div class="wf-preview" style="position:relative; align-items:center; justify-content:center; background:rgba(0,0,0,0.2); border-radius:4px; padding:8px;">
+        <div class="wf-overlay" style="width:100%;">
+          <div style="font-size:11px; font-weight:600; margin-bottom:4px;">Confirm Action</div>
+          <div class="wf-line" style="margin-bottom:8px;"></div>
+          <div class="wf-line" style="width:80%; margin-bottom:10px;"></div>
+          <div style="display:flex; gap:6px; justify-content:flex-end;">
+            <div class="wf-btn ghost sm">Cancel</div>
+            <div class="wf-btn sm primary">Confirm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="wf-card">
+      <div class="wf-label">Tooltip</div>
+      <div class="wf-preview" style="align-items:center; justify-content:center; gap:8px;">
+        <div style="position:relative; display:inline-block;">
+          <div class="wf-popup-tip">Descriptive hint text</div>
+        </div>
+        <div class="wf-btn sm" style="margin-top:12px;">Hover target ⓘ</div>
+      </div>
+    </div>
+
+    <!-- Popup / Popover -->
+    <div class="wf-card">
+      <div class="wf-label">Popup (Popover)</div>
+      <div class="wf-preview" style="position:relative;">
+        <div class="wf-btn sm ghost" style="align-self:flex-start;">ⓘ Info</div>
+        <div class="wf-overlay" style="margin-top:4px;">
+          <div style="font-size:10px; font-weight:600; margin-bottom:3px;">More details</div>
+          <div class="wf-line"></div>
+          <div class="wf-line" style="width:75%; margin-top:3px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Tip -->
+    <div class="wf-card">
+      <div class="wf-label">Popup Tip</div>
+      <div class="wf-preview" style="align-items:center; gap:8px;">
+        <div class="wf-btn sm ghost">ⓘ</div>
+        <div style="position:relative;">
+          <div class="wf-popup-tip" style="max-width:none; width:100%;">Tap for more info about this field</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="wf-card">
+      <div class="wf-label">Lightbox</div>
+      <div class="wf-preview">
+        <div class="wf-lightbox-bg">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="color:rgba(255,255,255,0.6); font-size:16px;">‹</div>
+            <div class="wf-lightbox-img"></div>
+            <div style="color:rgba(255,255,255,0.6); font-size:16px;">›</div>
+          </div>
+        </div>
+        <div style="font-size:9px; color:var(--text-muted);">Overlay, not full screen</div>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="wf-card">
+      <div class="wf-label">Overlay</div>
+      <div class="wf-preview" style="position:relative; min-height:72px;">
+        <div class="wf-box" style="position:absolute; inset:0; border-radius:4px; opacity:0.4;"></div>
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.45); border-radius:4px; display:flex; align-items:center; justify-content:center;">
+          <div style="background:#fff; padding:8px 12px; border-radius:4px; font-size:10px; font-weight:600;">Modal Content</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Snackbar / Toast -->
+    <div class="wf-card">
+      <div class="wf-label">Snackbar (Toast)</div>
+      <div class="wf-preview" style="justify-content:flex-end;">
+        <div class="wf-snackbar">File saved successfully <span>UNDO</span></div>
+        <div class="wf-snackbar" style="margin-top:6px; background:#1b5e20;">✓ Changes published</div>
+      </div>
+    </div>
+
+    <!-- Bottom Sheet -->
+    <div class="wf-card">
+      <div class="wf-label">Bottom Sheet</div>
+      <div class="wf-preview" style="justify-content:flex-end; position:relative;">
+        <div class="wf-box" style="height:40px; width:100%; border-radius:4px 4px 0 0; position:absolute; top:0; opacity:0.3;"></div>
+        <div class="wf-bottom-sheet" style="width:100%; position:relative; z-index:1;">
+          <div class="wf-bottom-sheet-handle"></div>
+          <div class="wf-menu-item">Share</div>
+          <div class="wf-menu-item">Download</div>
+          <div class="wf-menu-item" style="color:#c00;">Delete</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Sheet / Drawer / Flyout -->
+    <div class="wf-card">
+      <div class="wf-label">Side Sheet (Flyout)</div>
+      <div class="wf-preview" style="flex-direction:row; justify-content:flex-end; position:relative;">
+        <div class="wf-box" style="flex:1; height:80px; border-radius:4px 0 0 4px; opacity:0.3;"></div>
+        <div style="width:80px; border:1.5px solid var(--border); border-radius:0 4px 4px 0; background:#fff; padding:6px; display:flex; flex-direction:column; gap:4px;">
+          <div class="wf-line" style="width:80%;"></div>
+          <div class="wf-line" style="width:60%;"></div>
+          <div class="wf-btn sm primary" style="margin-top:4px;">Apply</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Progress &amp; Status</div>
+  <div class="grid">
+
+    <!-- Progress Bar -->
+    <div class="wf-card">
+      <div class="wf-label">Progress Bar</div>
+      <div class="wf-preview">
+        <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-bottom:3px;"><span>Upload</span><span style="color:var(--accent);">72%</span></div>
+        <div class="wf-progress-track"><div class="wf-progress-fill" style="width:72%;"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-top:8px; margin-bottom:3px;"><span>Indeterminate</span></div>
+        <div class="wf-progress-track"><div class="wf-progress-fill" style="width:40%; margin-left:20%; background: repeating-linear-gradient(45deg, var(--accent), var(--accent) 6px, var(--accent-light) 6px, var(--accent-light) 12px);"></div></div>
+      </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="wf-card">
+      <div class="wf-label">Progress Indicator</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:center; gap:10px; flex-wrap:wrap;">
+        <div class="wf-spinner"></div>
+        <div style="flex:1; min-width:60px;">
+          <div style="font-size:10px; color:var(--text-muted); margin-bottom:3px;">Step 2 of 4</div>
+          <div style="display:flex; gap:3px;">
+            <div style="width:16px; height:4px; background:var(--accent); border-radius:99px;"></div>
+            <div style="width:16px; height:4px; background:var(--accent); border-radius:99px;"></div>
+            <div style="width:16px; height:4px; background:var(--disabled); border-radius:99px;"></div>
+            <div style="width:16px; height:4px; background:var(--disabled); border-radius:99px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div class="wf-card">
+      <div class="wf-label">Spinner</div>
+      <div class="wf-preview" style="flex-direction:row; align-items:center; gap:12px;">
+        <div class="wf-spinner"></div>
+        <div>
+          <div class="wf-spinner" style="width:16px; height:16px; border-width:2px;"></div>
+        </div>
+        <div style="font-size:10px; color:var(--text-muted);">Loading…</div>
+      </div>
+    </div>
+
+    <!-- Skeleton Screen -->
+    <div class="wf-card">
+      <div class="wf-label">Skeleton Screen</div>
+      <div class="wf-preview">
+        <div style="display:flex; gap:8px; align-items:flex-start;">
+          <div class="wf-skeleton" style="width:32px; height:32px; border-radius:50%;"></div>
+          <div style="flex:1; display:flex; flex-direction:column; gap:5px; padding-top:2px;">
+            <div class="wf-skeleton" style="height:8px; width:60%;"></div>
+            <div class="wf-skeleton" style="height:8px; width:90%;"></div>
+            <div class="wf-skeleton" style="height:8px; width:75%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badge -->
+    <div class="wf-card">
+      <div class="wf-label">Badge</div>
+      <div class="wf-preview" style="flex-direction:row; gap:16px; align-items:center;">
+        <div style="position:relative; display:inline-block;">
+          <div class="wf-box" style="width:28px; height:28px; border-radius:50%;"></div>
+          <div class="wf-badge" style="position:absolute; top:-4px; right:-4px;">3</div>
+        </div>
+        <div style="position:relative; display:inline-block;">
+          <div class="wf-box" style="width:28px; height:28px; border-radius:4px;"></div>
+          <div class="wf-badge" style="position:absolute; top:-4px; right:-4px; width:8px; height:8px; min-width:unset; padding:0;"></div>
+        </div>
+        <div style="position:relative; display:inline-block;">
+          <div class="wf-box" style="width:28px; height:28px; border-radius:4px;"></div>
+          <div class="wf-badge" style="position:absolute; top:-4px; right:-4px;">99+</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section-title">Content &amp; Layout Containers</div>
+  <div class="grid">
+
+    <!-- Card -->
+    <div class="wf-card">
+      <div class="wf-label">Card</div>
+      <div class="wf-preview">
+        <div class="wf-card-inner">
+          <div class="wf-card-img"></div>
+          <div class="wf-card-body">
+            <div class="wf-line" style="width:70%;"></div>
+            <div class="wf-line" style="width:90%;"></div>
+            <div class="wf-line" style="width:55%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="wf-card">
+      <div class="wf-label">Carousel</div>
+      <div class="wf-preview">
+        <div style="display:flex; align-items:center; gap:4px;">
+          <div style="font-size:16px; color:var(--text-muted);">‹</div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:52px; border-radius:4px;"></div>
+          </div>
+          <div style="font-size:16px; color:var(--text-muted);">›</div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:4px; margin-top:4px;">
+          <div style="width:6px; height:6px; background:var(--accent); border-radius:50%;"></div>
+          <div style="width:6px; height:6px; background:var(--disabled); border-radius:50%;"></div>
+          <div style="width:6px; height:6px; background:var(--disabled); border-radius:50%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="wf-card">
+      <div class="wf-label">Accordion</div>
+      <div class="wf-preview" style="gap:0; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+        <div style="padding:7px 10px; display:flex; justify-content:space-between; font-size:11px; background:var(--accent-light); color:var(--accent); font-weight:600; border-bottom:1px solid var(--border);">
+          Section A <span>▾</span>
+        </div>
+        <div style="padding:8px 10px; border-bottom:1px solid var(--border);">
+          <div class="wf-line"></div>
+          <div class="wf-line" style="width:80%; margin-top:4px;"></div>
+        </div>
+        <div style="padding:7px 10px; display:flex; justify-content:space-between; font-size:11px; color:var(--text-label); border-bottom:1px solid var(--border);">
+          Section B <span>▸</span>
+        </div>
+        <div style="padding:7px 10px; display:flex; justify-content:space-between; font-size:11px; color:var(--text-label);">
+          Section C <span>▸</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container -->
+    <div class="wf-card">
+      <div class="wf-label">Container</div>
+      <div class="wf-preview">
+        <div class="wf-container-box">
+          <div class="wf-container-label">Section</div>
+          <div style="display:flex; gap:4px;">
+            <div class="wf-box" style="flex:1; height:24px; border-radius:3px;"></div>
+            <div class="wf-box" style="flex:1; height:24px; border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Control (generic) -->
+    <div class="wf-card">
+      <div class="wf-label">Control (generic)</div>
+      <div class="wf-preview" style="gap:8px;">
+        <div class="wf-control-group">
+          <div class="wf-control-label">Text input control</div>
+          <div class="wf-input" style="width:100%;">Value</div>
+        </div>
+        <div class="wf-control-group">
+          <div class="wf-control-label">Select control</div>
+          <div class="wf-input caret-down" style="width:100%; justify-content:space-between;">Option</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Control -->
+    <div class="wf-card">
+      <div class="wf-label">Input Control</div>
+      <div class="wf-preview" style="gap:6px;">
+        <div class="wf-row" style="gap:6px; flex-wrap:wrap;">
+          <div class="wf-input" style="flex:1; min-width:60px;">Text</div>
+          <div class="wf-stepper" style="width:80px;">
+            <div class="wf-stepper-btn">−</div>
+            <div class="wf-stepper-val">5</div>
+            <div class="wf-stepper-btn">+</div>
+          </div>
+        </div>
+        <div class="wf-row"><div class="wf-check checked"></div> Checkbox</div>
+        <div class="wf-row"><div class="wf-radio checked"></div> Radio</div>
+      </div>
+    </div>
+
+    <!-- Menu (generic) -->
+    <div class="wf-card">
+      <div class="wf-label">Menu (generic)</div>
+      <div class="wf-preview">
+        <div class="wf-ctx-menu" style="width:100%;">
+          <div class="wf-ctx-item">Action 1</div>
+          <div class="wf-ctx-item active">Action 2</div>
+          <div class="wf-ctx-sep"></div>
+          <div class="wf-ctx-item">Action 3</div>
+          <div class="wf-ctx-item">Action 4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Picker (generic reference) already shown above -->
+
+  </div>
+
+  <div style="height: 40px;"></div>
+
+</body>
+</html>
