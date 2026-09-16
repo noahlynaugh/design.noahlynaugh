@@ -1,0 +1,18 @@
+{
+  "kekDesign": {
+    "url": "https://www.kekdesign.com/",
+    "image": "/link-previews/kekDesign.webp"
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/noahlynaugh.design",
+    "image": "/link-previews/instagram.webp"
+  },
+  "layerMetrics": {
+    "url": "https://www.layermetricsinc.com/",
+    "image": "/link-previews/layerMetrics.webp"
+  },
+  "github": {
+    "url": "https://github.com/noahlynaugh",
+    "image": "/link-previews/github.webp"
+  }
+}

@@ -1,0 +1,139 @@
+.galleryCard{
+    display: flex;
+    flex:1 1 auto;
+    box-sizing: border-box;
+}
+
+.galleryCardSection{
+    opacity: 1;
+    display: flex;
+    flex-flow: row;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    /* justify-content: center; */
+    box-sizing: border-box;
+}
+
+.galleryCardContainer{
+    opacity: 1;
+    overflow: visible;
+    min-width:280px;
+    max-width: 720px;
+    height: min-content;
+    display: flex;
+    flex-basis: max-content;
+    flex: 1;
+    align-self:stretch;
+    align-items: flex-start;
+    position: relative;
+    box-sizing: border-box;
+    justify-self: anchor-center;
+}
+
+.galleryCardMedia{
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    align-self: stretch;
+    display: block;
+    position: relative;
+    overflow: visible;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    inset: 0%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cardMedia{
+    z-index: 0;
+    box-sizing: border-box;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+
+
+.link{
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.buttonLink{
+    z-index: 10;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: #212121;
+    mix-blend-mode: darken ;
+    border-radius: 32px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    display: flex;
+    position: absolute;
+    inset: 1rem 1rem auto auto;
+    color: #ffffff ;
+    fill: white
+}
+
+.lightCardButton{
+    background-color: #f5f8fa ;
+    color: #000000 ;
+    fill: black;
+    mix-blend-mode: lighten ;
+}
+
+.lightCardText{
+    color: #f5f8fa !important;
+}
+
+.galleryText{
+    z-index: 10;
+    flex-flow: column;
+    flex: 1;
+    display: flex;
+    align-self: flex-start;
+    position: absolute;
+    inset: auto 1rem 0rem;
+    color: #414141;
+}
+
+@media (max-width: 992px){
+    .galleryCardContainer{
+        min-width:280px;
+        max-width: 720px;
+    }
+
+    .galleryCardMedia{
+        aspect-ratio: 4/3;
+    }
+
+    .cardMedia{
+        aspect-ratio: 4/3;
+    }
+}
+  
+@media (max-width: 480px){
+    .galleryCardContainer{
+        min-width:280px;
+        max-width: 480px;
+    }
+
+    .galleryCardMedia{
+        aspect-ratio: 1/1;
+    }
+
+    .cardMedia{
+        aspect-ratio: 1/1;
+    }
+}

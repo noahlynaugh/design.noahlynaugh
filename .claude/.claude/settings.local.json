@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-desktop__get_design_context",
+      "Read(//c/Users/noahl/desktop/coding/design.noahlynaugh/**)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

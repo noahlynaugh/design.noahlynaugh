@@ -1,0 +1,21 @@
+:root {
+    --color--surface: #f5f8fa;
+    --color--text: #414141 ;
+    --color--hoverText: #212121 ;
+    --color--elevation: #E9E9E9 ;
+    --color--gallerytext: #414141 ;
+    --color--boxShadow--light: #ffffff;
+    --color--boxShadow--dark:  #0000001a;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --color--surface: #212121;
+      --color--text: #d5d8da;
+      --color--hoverText: #f5f8fa;
+      --color--elevation: #404040;
+      --color--gallerytext: #f5f8fa;
+      --color--boxShadow--light: #404040;
+      --color--boxShadow--dark:  #000000;
+    }
+  }

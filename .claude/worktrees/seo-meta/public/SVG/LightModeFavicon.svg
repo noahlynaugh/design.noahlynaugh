@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #f5f8fa;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #212121;
+      }
+
+      .cls-6 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="21.21" y1="23.84" x2="20.36" y2="24.12" gradientUnits="userSpaceOnUse">
+      <stop offset=".7" stop-color="#0f0c0a"/>
+      <stop offset="1" stop-color="#dedede"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="11.43" y1="9.08" x2="11.5" y2="9.06" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f0c0a"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="drop-shadow-1" x="5" y="0" width="24" height="33" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="2"/>
+      <feFlood flood-color="#f5f8fa" flood-opacity="1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Color">
+    <g>
+      <circle class="cls-2" cx="16" cy="16.57" r="16"/>
+      <g>
+        <path class="cls-3" d="M19.21,19.96l.61,1.93c-.2-.64-.4-1.28-.61-1.93Z"/>
+        <polygon class="cls-7" points="21.26 26.2 21.2 26.2 19.83 21.91 19.89 21.91 21.26 26.2"/>
+        <polygon class="cls-1" points="12.17 11.22 12.11 11.22 10.74 6.93 10.8 6.93 12.17 11.22"/>
+        <path class="cls-5" d="M23.78,6.93v19.27h-2.52l-1.37-4.29c-.15-2.6-.21-5.24-.21-7.91v-7.07h4.1Z"/>
+        <path class="cls-5" d="M12.32,19.13v7.07h-4.1V6.93h2.52l1.37,4.29c.15,2.6.21,5.24.21,7.91Z"/>
+        <path class="cls-6" d="M21.2,26.2h-3.6l-2.82-7.49c-.95-2.43-1.84-4.99-2.61-7.49l-1.37-4.29h3.6l2.85,7.49c.68,1.8,1.35,3.68,1.96,5.54l.61,1.93v.02s1.38,4.29,1.38,4.29Z"/>
+      </g>
+      <line class="cls-4" x1="12.64" y1="12.69" x2="12.17" y2="11.22"/>
+    </g>
+  </g>
+</svg>
