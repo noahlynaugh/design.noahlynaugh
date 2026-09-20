@@ -60,7 +60,11 @@ h6 {
     font-size: var(--font-size-1);
     font-weight: 400;
     margin: 0;
-    line-height: var(--line-height-1);
+    /* --line-height-1 is smaller than --font-size-1 (the only tier where the
+       scale's ratio outpaces its linear line-height step), so h6 gets negative
+       leading at every root font-size, not just small ones. Barely visible on
+       a short single-line label, but cramped as soon as h6 text wraps. */
+    line-height: calc(var(--font-size-1) * 1.3);
     margin-bottom: var(--line-height-1);
     text-wrap: balance;
 }
@@ -107,14 +111,6 @@ small{
         font-weight:300;
         margin:0;
         line-height: var(--line-height-6);
-    }
-
-    /* --line-height-1 is smaller than --font-size-1 (the only tier where the
-       scale's ratio outpaces its linear line-height step), so h6 gets negative
-       leading. Barely visible at desktop sizes, but cramped once the root
-       font-size shrinks here and more h6 text wraps onto multiple lines. */
-    h6{
-        line-height: calc(var(--font-size-1) * 1.3);
     }
   }
 
