@@ -21,8 +21,9 @@ class WebsitePreview{
     this.preview.style.opacity = '0';
     this.preview.style.zIndex = '10000';
     this.preview.className = this.previewClass;
-    this.preview.style.maxWidth = '320px';
-    this.preview.style.maxHeight = '180px';
+    // max-width/max-height live in Styles/components/websitePreview.css so the
+    // 480px mobile breakpoint can override them; an inline style here would
+    // always beat that media query regardless of viewport.
     this.preview.style.borderRadius = '4px';
     this.preview.style.background = '#fff';
     this.preview.style.boxShadow = '-.5rem -.5rem 1rem var(--color--boxShadow--light), 1rem 1rem 2rem var(--color--boxShadow--dark)';
@@ -101,8 +102,11 @@ attachToLink(link, matchedPreview) {
       const previewWidth = previewEl.offsetWidth || 320;
       const previewHeight = previewEl.offsetHeight || 180;
 
-      const offsetX = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -(previewWidth / 2) : -160;
-      const offsetY = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -previewHeight : -180;
+      // Derived from the preview's actual rendered size (not a hardcoded
+      // desktop value) so this stays centered/above the cursor at any size,
+      // including the smaller mobile hover-preview-image breakpoint.
+      const offsetX = -(previewWidth / 2);
+      const offsetY = -previewHeight;
 
       let left = e.clientX + offsetX;
       let top = e.clientY + offsetY;
@@ -128,20 +132,26 @@ attachToLink(link, matchedPreview) {
 
   positionPreview(link) {
        if (!this.preview.isConnected) {
-        link.style.position = 'relative';
-        link.appendChild(this.preview);
+        // Appended to body (not the link) so this stays fixed to the
+        // viewport even if an ancestor (e.g. main) sets will-change/transform,
+        // which would otherwise turn it into the fixed-position containing block.
+        document.body.appendChild(this.preview);
       };
     }
 
   positionLinkedInPreview(link) {
     if (!this.linkedInPreview.isConnected) {
-    link.style.position = 'relative';
-    link.appendChild(this.linkedInPreview);
+    document.body.appendChild(this.linkedInPreview);
   };
 }
 }
 
 export function initPreviews() {
+  // Hover-preview cards are a desktop affordance; skip them entirely on
+  // touch devices rather than translating hover into a tap/long-press
+  // interaction for what's ultimately decorative content.
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
   const websitePreview = new WebsitePreview();
   const links = document.querySelectorAll('[data-preview]');
   const mergedPreviews = { ...linkPreviews, ...staticLinkPreviews };

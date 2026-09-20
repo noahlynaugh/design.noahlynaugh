@@ -7,6 +7,7 @@
 @import './components/projectLander.css';
 @import './components/contactForm.css';
 @import './components/moodBoard.css';
+@import './components/websitePreview.css';
 
 ::-webkit-scrollbar{
   display: none;
