@@ -27,20 +27,54 @@ class WebsitePreview{
     this.preview.style.background = '#fff';
     this.preview.style.boxShadow = '-.5rem -.5rem 1rem var(--color--boxShadow--light), 1rem 1rem 2rem var(--color--boxShadow--dark)';
     this.preview.style.userSelect = 'none';
-    this.linkedInPreview = document.createElement('div')
+    // LinkedIn is deprecating the live profile badge widget (LIRenderAll),
+    // so this renders a static local mini-profile card instead of embedding it.
+    this.linkedInPreview = document.createElement('div');
     this.linkedInPreview.className = "badge-base LI-profile-badge";
-    this.linkedInPreview.setAttribute('data-locale', 'en_US');
-    this.linkedInPreview.setAttribute('data-size', 'large');
-    this.linkedInPreview.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') 
-    this.linkedInPreview.setAttribute('data-type', "HORIZONTAL");
-    this.linkedInPreview.setAttribute('data-vanity', "noah-lynaugh");
-    this.linkedInPreview.setAttribute('data-version', 'v1')
     this.linkedInPreview.style.opacity = '0';
     this.linkedInPreview.style.position = 'fixed';
     this.linkedInPreview.style.zIndex = '10000';
     this.linkedInPreview.style.marginTop = this.offset;
     this.linkedInPreview.style.pointerEvents = 'none';
-    this.linkedInPreview.style.borderRadius = '12px'
+    this.linkedInPreview.style.transition = 'opacity 0.3s ease';
+    this.linkedInPreview.style.borderRadius = '12px';
+    this.linkedInPreview.style.display = 'flex';
+    this.linkedInPreview.style.alignItems = 'center';
+    this.linkedInPreview.style.gap = '0.75rem';
+    this.linkedInPreview.style.boxSizing = 'border-box';
+    this.linkedInPreview.style.width = 'fit-content';
+    this.linkedInPreview.style.padding = '1rem';
+    this.linkedInPreview.style.background = 'var(--color--surface)';
+    this.linkedInPreview.style.boxShadow = '-.5rem -.5rem 1rem var(--color--boxShadow--light), 1rem 1rem 2rem var(--color--boxShadow--dark)';
+    this.linkedInPreview.style.userSelect = 'none';
+
+    const photo = document.createElement('img');
+    photo.src = '/link-previews/linkedin.webp';
+    photo.alt = 'Noah Lynaugh';
+    photo.style.width = '72px';
+    photo.style.height = '72px';
+    photo.style.borderRadius = '50%';
+    photo.style.objectFit = 'cover';
+    photo.style.flexShrink = '0';
+
+    // Name/headline reuse the site's own type scale (h6 + p, same pairing
+    // used for gallery card titles/descriptions) rather than custom sizes.
+    const textWrap = document.createElement('div');
+    textWrap.style.minWidth = '0';
+
+    const name = document.createElement('h6');
+    name.textContent = 'Noah Lynaugh';
+
+    const headline = document.createElement('p');
+    headline.textContent = 'Industrial Designer | Product Designer';
+    headline.style.width = 'auto';
+    headline.style.whiteSpace = 'nowrap';
+    headline.style.marginBottom = '0';
+
+    textWrap.appendChild(name);
+    textWrap.appendChild(headline);
+    this.linkedInPreview.appendChild(photo);
+    this.linkedInPreview.appendChild(textWrap);
   }
 
 
@@ -64,11 +98,11 @@ attachToLink(link, matchedPreview) {
         ? this.linkedInPreview
         : this.preview;
 
-      const offsetX = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -155 : -160;
-      const offsetY = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -262 : -180;
-
       const previewWidth = previewEl.offsetWidth || 320;
       const previewHeight = previewEl.offsetHeight || 180;
+
+      const offsetX = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -(previewWidth / 2) : -160;
+      const offsetY = matchedPreview.url === "https://www.linkedin.com/in/noah-lynaugh/" ? -previewHeight : -180;
 
       let left = e.clientX + offsetX;
       let top = e.clientY + offsetY;
@@ -103,7 +137,6 @@ attachToLink(link, matchedPreview) {
     if (!this.linkedInPreview.isConnected) {
     link.style.position = 'relative';
     link.appendChild(this.linkedInPreview);
-    window.LIRenderAll(this.linkedInPreview)
   };
 }
 }
